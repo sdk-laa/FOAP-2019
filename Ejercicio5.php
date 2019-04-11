@@ -47,7 +47,7 @@
             $numeros=generararray(10);
             echo "<br>Contenido del array:</br>";
             print_r($numeros);
-	    echo "<br> El resultado de las funciones creadas en el programa: " 			     
+	        echo "<br> El resultado de las funciones creadas en el programa: " 			     
             echo "<br>El max es "._max($numeros);
             echo "<br>El min es "._min($numeros);
             echo "<br>La suma es "._Suma($numeros);
