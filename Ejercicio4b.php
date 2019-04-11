@@ -29,7 +29,7 @@
             echo "<br>$suma</br>";
             echo "<br>El maximo es::</br>";
             echo "<br>$Max</br>";
-            echo "<br>El minimo es::</br>";
+            echo "<br>El minimo es:</br>";
             echo "<br>$Min</br>";
             echo "<br>Contenido del array:</br>";
             print_r($numeros);
