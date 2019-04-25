@@ -1,0 +1,14 @@
+    
+body {
+    font-family: verdana, arial, sans-serif; 
+    font-size: 1em;
+}
+
+p.correcto{
+    background-color: green;
+    display: inline;
+}
+p.error{
+    background-color: red;
+    display: inline;
+}
