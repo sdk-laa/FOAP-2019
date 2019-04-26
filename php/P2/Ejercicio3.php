@@ -29,7 +29,8 @@
             echo "<br>";
             print("El resultado de la operacion es: ".$Resultado);
         }
-        
+        echo "<br>";
+        print("Fin");
     }
 
     else {
