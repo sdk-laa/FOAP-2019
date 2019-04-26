@@ -34,13 +34,15 @@
     else {
 ?>
     <form action="Ejercicio3.php" method="POST">
-            Valor1: <input type="text" name="Valor1">
-            Valor2: <input type="text" name="Valor2">
+            Valor1: <input type="number" name="Valor1" id="">
+            Valor2: <input type="number" name="Valor2" id=""> 
+            
             Operacion:
             <INPUT TYPE="radio" NAME="Operacion" VALUE="Suma" CHECKED>Suma
             <INPUT TYPE="radio" NAME="Operacion" VALUE="Resta">Resta
             <INPUT TYPE="radio" NAME="Operacion" VALUE="Division">Division
             <INPUT TYPE="radio" NAME="Operacion" VALUE="Multiplicacion">Multiplicacion
+            
             <input type="submit" name="submit" value="Enviar">
 
     </form>
