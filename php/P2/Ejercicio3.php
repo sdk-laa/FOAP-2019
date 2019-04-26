@@ -8,26 +8,26 @@
         print("El segundo valor es: $Valor2"."\n");
         echo "<br>";
         $Operacion= $_POST['Operacion'];
-        print($Operacion);
-        if ($Operacion=='S'){
+        print("La operacion es: ".$Operacion);
+        if ($Operacion=='Suma'){
             $Resultado=$Valor1+$Valor2;
             echo "<br>";
             print($Resultado);
         }
-        elseif ($Operacion=='R'){
+        elseif ($Operacion=='Resta'){
             $Resultado=$Valor1-$Valor2;
             echo "<br>";
             print($Resultado);
         }
-        elseif ($Operacion=='D'){
+        elseif ($Operacion=='Division'){
             $Resultado=$Valor1/$Valor2;
             echo "<br>";
             print($Resultado);
         }
-        elseif ($Operacion=='M'){
+        elseif ($Operacion=='Multiplicacion'){
             $Resultado=$Valor1*$Valor2;
             echo "<br>";
-            print($Resultado);
+            print("El resultado de la operacion es: ".$Resultado);
         }
     }
 
@@ -37,10 +37,10 @@
             Valor1: <input type="text" name="Valor1">
             Valor2: <input type="text" name="Valor2">
             Operacion:
-            <INPUT TYPE="radio" NAME="Operacion" VALUE="S" CHECKED>Suma
-            <INPUT TYPE="radio" NAME="Operacion" VALUE="R">Resta
-            <INPUT TYPE="radio" NAME="Operacion" VALUE="D">Division
-            <INPUT TYPE="radio" NAME="Operacion" VALUE="M">Multiplicacion
+            <INPUT TYPE="radio" NAME="Operacion" VALUE="Suma" CHECKED>Suma
+            <INPUT TYPE="radio" NAME="Operacion" VALUE="Resta">Resta
+            <INPUT TYPE="radio" NAME="Operacion" VALUE="Division">Division
+            <INPUT TYPE="radio" NAME="Operacion" VALUE="Multiplicacion">Multiplicacion
             <input type="submit" name="submit" value="Enviar">
 
     </form>
