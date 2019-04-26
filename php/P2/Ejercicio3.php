@@ -12,17 +12,17 @@
         if ($Operacion=='Suma'){
             $Resultado=$Valor1+$Valor2;
             echo "<br>";
-            print($Resultado);
+            print("El resultado de la operacion es: ".$Resultado);
         }
         elseif ($Operacion=='Resta'){
             $Resultado=$Valor1-$Valor2;
             echo "<br>";
-            print($Resultado);
+            print("El resultado de la operacion es: ".$Resultado);
         }
         elseif ($Operacion=='Division'){
             $Resultado=$Valor1/$Valor2;
             echo "<br>";
-            print($Resultado);
+            print("El resultado de la operacion es: ".$Resultado);
         }
         elseif ($Operacion=='Multiplicacion'){
             $Resultado=$Valor1*$Valor2;
