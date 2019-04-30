@@ -7,9 +7,19 @@
         } 
         else {
                 $name = test_input($_POST["name"]);
-                if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
+/*                 if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
                     $nameError = "Only letters and white space allowed"; 
-                }
+                } */
+        }
+
+        if (empty($_POST["Apellido"])) {
+            $ApellidoError = "";
+        } 
+        else {
+            $Apellido= test_input($_POST["Apellido"]);
+/*             if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
+                $ApellidoError = "Only letters and white space allowed"; 
+            } */
         }
         
         if (empty($_POST["email"])) {
@@ -22,26 +32,19 @@
                 }
         }
         
-        if (empty($_POST["surname"])) {
-                $ApellidoError = "";
-        } 
-        else {
-                $Apellido= test_input($_POST["surname"]);
-                if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
-                    $ApellidoError = "Only letters and white space allowed"; 
+
+        if (!empty($_POST["Edad"])){
+            if (is_numeric($_POST["Edad"])) {
+                $Edad = test_input($_REQUEST["Edad"]);
+                if ($Edad<=18){
+                    $EdadError = "Error en la edad introducida tiene que ser mayor que 18 años ";
                 }
+            }
+            else{
+                $EdadError = "Error en la edad introducida tiene que ser un valor numerico ";
+            } 
         }
 
-        if (empty($_POST["age"])) {
-            $Edad = "";
-            //$id = $_GET['id'];
-        } 
-        elseif ((is_numeric($Edad))$Edad<=18){
-            $Edad = "Error";
-        }
-        else {
-            $Edad= test_input($_POST["age"]);
-        }
         
         if (empty($_POST["comment"])) {
                 $commentError = "";
@@ -75,11 +78,12 @@
             Name:     <input type="text" name="name" value="<?php echo $name;?>">
             <span class="error">* <?php echo $nameError;?></span>
             <br><br>
-            Apellido: <input type="text" name="surname" value="<?php echo $surname;?>">
+            Apellido: <input type="text" name="Apellido" value="<?php echo $Apellido;?>">
             <br><br>
-            Edad:     <input type="text" name="age" value="<?php echo $age;?>">
+            Edad:     <input type="number" name="Edad" value="<?php echo $Edad;?>">
+            <span class="error">* <?php echo $EdadError;?></span>
             <br><br>
-            E-mail:   <input type="text" name="email" value="<?php echo $email;?>">
+            E-mail:   <input type="email" name="email" value="<?php echo $email;?>">
             <span class="error">* <?php echo $emailError;?></span>
             <br><br>
             Comment:  <textarea name="comment" rows="5" cols="40" <?php echo $comment;?>></textarea>
