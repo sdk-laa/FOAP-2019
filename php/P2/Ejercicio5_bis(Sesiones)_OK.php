@@ -7,9 +7,9 @@
     }
     if(isset($_SESSION["login"])){
 ?>
-    Bienvenido......<?=$_SESSION["nom"]?>
+    Bienvenido......<?=$_SESSION["nombre"]?>
 
-    <a href="ejemplo_privado.php?logout">[logout]</a>
+    <a href="Ejercicio5_bis(Sesiones)_OK.php?logout">[logout]</a>
 <?php
     }else{
         header('Location:Ejercicio5_bis(Sesiones).php');           
