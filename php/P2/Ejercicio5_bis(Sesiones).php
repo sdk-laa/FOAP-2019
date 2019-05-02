@@ -6,14 +6,12 @@ session_start();
     $Usuario = $Contraseña="";
     $ErrorUsuario = $ErrorContraseña=$Error="";
     $MostarF=false;
-    if (isset($_COOKIE["ValidUser"]) && $_COOKIE["ValidUser"]==true){
-        echo "Cookie '" . $cookie_name . "' is set!<br>";
-        echo "Value is: " . $_COOKIE[$cookie_name];
+    if (isset($_COOKIE["ValidUser"]) && $_COOKIE["ValidUser"]==1){
         header('Location:Ejercicio5_bis(Sesiones)_OK.php');
     }
     else{
         echo "Cookie named is not set!"; //"Cookie named '" . $cookie_name . "' is not set!";
-    }
+    } 
     if (isset($_SESSION["login"])&&$_SESSION["login"]==true){
         header('Location:Ejercicio5_bis(Sesiones)_OK.php');
     }
@@ -36,6 +34,7 @@ session_start();
                 $_SESSION["login"]=true;
                 $_SESSION["ValidUser"]=true;
                 $_SESSION["nombre"]=$_REQUEST["username"];
+                if($_REQUEST["username"])
                 //$cookie_name = "ValidUser";
                 //$cookie_value = "sdk";
                 //setcookie($cookie_name, $cookie_value, time() + (20), "/"); // 86400 = 1 day      
@@ -95,7 +94,11 @@ session_start();
                 <label>Contraseña:</label> 
                 <input type="password" name="password" value="<?php echo $Contraseña;?>">
                 <span class="error">* <?php echo $ErrorContraseña;?></span>
-                <br><br> 
+                <br><br>
+
+                <label>Recordar:</label> 
+                <input type="checkbox" name="extras[]" value="garaje">
+                <br><br>
 
                 <input type="submit" name="submit" value="Login">
         </form>
