@@ -1,17 +1,23 @@
 <?php
     session_start();
-    print("");
+?>
+<?php
     if(isset($_REQUEST["logout"])){
         session_destroy(); 
         header('Location:Ejercicio5_bis(Sesiones).php');           
     }
     if(isset($_SESSION["login"])){
-?>
-    Bienvenido......<?=$_SESSION["nombre"]?>
+        $cookie_name = "ValidUser";
+        $cookie_value = "sdk";
+        setcookie($cookie_name, $cookie_value, time() + (20), "/"); // 86400 = 1 day
 
-    <a href="Ejercicio5_bis(Sesiones)_OK.php?logout">[logout]</a>
+?>
+        Bienvenido......<?=$_SESSION["nombre"]?>
+
+        <a href="Ejercicio5_bis(Sesiones)_OK.php?logout">[logout]</a>
 <?php
-    }else{
+    }
+    else{
         header('Location:Ejercicio5_bis(Sesiones).php');           
     }
 ?>

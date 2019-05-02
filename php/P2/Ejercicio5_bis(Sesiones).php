@@ -6,7 +6,15 @@ session_start();
     $Usuario = $Contraseña="";
     $ErrorUsuario = $ErrorContraseña=$Error="";
     $MostarF=false;
-    if ($_SESSION["login"]==true){
+    if (isset($_COOKIE["ValidUser"]) && $_COOKIE["ValidUser"]==true){
+        echo "Cookie '" . $cookie_name . "' is set!<br>";
+        echo "Value is: " . $_COOKIE[$cookie_name];
+        header('Location:Ejercicio5_bis(Sesiones)_OK.php');
+    }
+    else{
+        echo "Cookie named is not set!"; //"Cookie named '" . $cookie_name . "' is not set!";
+    }
+    if (isset($_SESSION["login"])&&$_SESSION["login"]==true){
         header('Location:Ejercicio5_bis(Sesiones)_OK.php');
     }
     if(isset($_REQUEST['submit'])){
@@ -26,8 +34,16 @@ session_start();
 
             if(($_REQUEST["username"]=="sdk") && ($_REQUEST["password"]=="1234")) {
                 $_SESSION["login"]=true;
-                $_SESSION["nombre"]=$_REQUEST["username"];      
+                $_SESSION["ValidUser"]=true;
+                $_SESSION["nombre"]=$_REQUEST["username"];
+                //$cookie_name = "ValidUser";
+                //$cookie_value = "sdk";
+                //setcookie($cookie_name, $cookie_value, time() + (20), "/"); // 86400 = 1 day      
+                
+                //echo "Cookie '" . $cookie_name . "' is set!<br>";
+                //echo "Value is: " . $_COOKIE[$cookie_name];
                 header('Location:Ejercicio5_bis(Sesiones)_OK.php');
+
                 // Código para usuarios autorizados
                 $MostarF=false;
             }    
