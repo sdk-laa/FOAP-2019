@@ -88,7 +88,16 @@
             <br><br>
             Comment:  <textarea name="comment" rows="5" cols="40" <?php echo $comment;?>></textarea>
             <br><br>
-            <input type="submit" name="submit" value="OK">
+            Usuario:     <input type="text" name="User" value="<?php echo $User;?>">
+            <span class="error">* <?php echo $UserError;?></span>
+            <br><br>
+            Contraseña:     <input type="passwerd" name="Passwerd" value="<?php echo $Passwerd;?>">
+            <span class="error">* <?php echo $PasswordError;?></span>
+            <br><br>
+            Repetir Contraseña:     <input type="passwerd" name="RPasswerd" value="<?php echo $RPasswerd;?>">
+            <span class="error">* <?php echo $RPasswordError;?></span>
+            <br><br>
+            <input type="submit" name="submit" value="Validar">
         </form>
     </body>
 </html>

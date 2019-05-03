@@ -8,7 +8,7 @@
     $MostarF=false;
 
     if (isset($_SESSION["login"]) && $_SESSION["login"]==true){   // Si ya esta hecho login enviar siempre a la pagina restringida
-        if(($_SESSION["ValidUser"]==md5("sdk")) && ($_SESSION["ValidPassword"]==md5("1234"))){
+        if(($_SESSION["ValidUser"]=="sdk") && ($_SESSION["ValidPassword"]==md5("1234"))){
             header('Location:Login_OK_EX.php');
         }
              
@@ -27,6 +27,9 @@
             $Error="Usuario o Contraseña incorrecta";    
         }
         
+    }
+    if (isset($_REQUEST["Registrar"])){
+        header('Location:Registro_EX.php');
     }
 
     if(isset($_REQUEST['submit'])){
@@ -48,7 +51,7 @@
                 $_SESSION["login"]=true;
                 $_SESSION["ValidUser"]="sdk";
                 $_SESSION["ValidPassword"]=md5("1234");
-                $_SESSION["nombre"]=$_REQUEST["username"];
+                //$_SESSION["nombre"]=$_REQUEST["username"];
                 if(($_REQUEST["recordar"]) && ($_REQUEST["recordar"]==1)){
                     setcookie("CookiePassword",md5($_REQUEST["password"]),time()+60*60);
                     setcookie("CookieUser",$_REQUEST["username"],time()+60*60);
@@ -114,7 +117,7 @@
             <input type="submit" name="submit" value="Login">
             <br><br>
 
-            <label>Si es la primera ves que visitas nuestra pagina Registrarte:</label>
+            <label>Registrarte para Crear una cuenta:</label>
             <br>
             <input type="submit" name="Registrar" value="Registrar">
             

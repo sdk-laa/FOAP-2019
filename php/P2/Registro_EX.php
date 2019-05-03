@@ -45,7 +45,7 @@
             } 
         }
 
-        if ($nameError = $emailError = $EdadError = "";){
+        if ($nameError = $emailError = $EdadError = ""){
             header('Location:Login_OK_EX.php');
         }
 
