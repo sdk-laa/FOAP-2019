@@ -94,22 +94,31 @@
 
         <form action="Formulario_EX.php" method="POST">
 
-            <label>Usuario:</label>      
+            <label>Usuario:</label>
+            <br>      
             <input type="text" name="username" value="<?php echo $Usuario;?>">
             <span class="error">* <?php echo $UsuarioError;?></span>
             <br><br>
 
-            <label>Contraseña:</label>  
+            <label>Contraseña:</label>
+            <br>  
             <input type="password" name="password" value="<?php echo $Contraseña;?>">
             <span class="error">* <?php echo $ContraseñaError;?></span>
             <br><br>
 
-            <label>Recordar:</label> 
+            <label>Recordar:</label>
+            <br> 
             <input type="checkbox" name="recordar" value="1">
             <br><br>
 
-            <input type="submit" name="Registrar" value="Registrar">
             <input type="submit" name="submit" value="Login">
+            <br><br>
+
+            <label>Si es la primera ves que visitas nuestra pagina Registrarte:</label>
+            <br>
+            <input type="submit" name="Registrar" value="Registrar">
+            
+            
         </form>
     </body>
 </html>
