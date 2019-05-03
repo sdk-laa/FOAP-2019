@@ -1,15 +1,15 @@
 <?php
-session_start();
+    session_start();
 ?>
 
 <?php
     $Usuario = $Contraseña="";
-    $ErrorUsuario = $ErrorContraseña = $Error="";
+    $UsuarioError = $ContraseñaError = $Error="";
     $MostarF=false;
 
     if (isset($_SESSION["login"]) && $_SESSION["login"]==true){   // Si ya esta hecho login enviar siempre a la pagina restringida
         if(($_SESSION["ValidUser"]==md5("sdk")) && ($_SESSION["ValidPassword"]==md5("1234"))){
-            header('Location:Ejercicio5_bis(Sesiones)_OK.php');
+            header('Location:Login_OK_EX.php');
         }
              
     }
@@ -21,7 +21,7 @@ session_start();
             $_SESSION["ValidUser"]=$_COOKIE["CookieUser"];
             $_SESSION["ValidPassword"]=$_COOKIE["CookiePassword"];
             //$_SESSION["nombre"]=$_COOKIE["CookieUser"];
-            header('Location:Ejercicio5_bis(Sesiones)_OK.php');
+            header('Location:Login_OK_EX.php');
         }
         else{
             $Error="Usuario o Contraseña incorrecta";    
@@ -31,14 +31,14 @@ session_start();
 
     if(isset($_REQUEST['submit'])){
             if (empty($_REQUEST["username"])) {
-                $ErrorUsuario = "Rellena el usuario.";
+                $UsuarioError = "Rellena el usuario.";
             }
             else{
                 $Usuario = test_input($_REQUEST["username"]);
             }
 
             if (empty($_REQUEST["password"])) {
-                $ErrorContraseña = "Rellena la contraseña.";
+                $ContraseñaError = "Rellena la contraseña.";
             }
             else{
                 $Contraseña = test_input($_REQUEST["password"]);
@@ -53,7 +53,7 @@ session_start();
                     setcookie("CookiePassword",md5($_REQUEST["password"]),time()+60*60);
                     setcookie("CookieUser",$_REQUEST["username"],time()+60*60);
                 }
-                header('Location:Ejercicio5_bis(Sesiones)_OK.php');
+                header('Location:Login_OK_EX.php');
                 $MostarF=false;
                 // Código para usuarios autorizados
             }    
@@ -80,40 +80,36 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <style>
+        <!--<style>
             .error {color: #FF0000;}
-        </style>
-    <title>Document</title>
-</head> 
+        </style> -->
+    <link rel="stylesheet" type="text/css" href="../../CSS/estiloT.css" />
+    <title>Pagina de noticias PHP</title>
+    
+</head>
     <body>
-        <h2>Ejemplo de validación de Usuario PHP</h2>
-        <?php
-            if ($MostarF==true){
-                //Mostrar Error los datos son incorrectos     
-        ?>
-        <p> <span class="error">* Usuario o contraseña incorrecta </span></p>
-        <?php
-        }
-        ?>
-        <?//=$Error?>
+   
+        <h2><p><span class="Titulo"> Noticias </span></p></h2>
         
-        
-        <form action="Ejercicio5_bis(Sesiones).php" method="POST">
-                <label>Usuario:</label>     
-                <input type="text" name="username" value="<?php echo $Usuario;?>">
-                <span class="error">* <?php echo $ErrorUsuario;?></span>
-                <br><br>
-                
-                <label>Contraseña:</label> 
-                <input type="password" name="password" value="<?php echo $Contraseña;?>">
-                <span class="error">* <?php echo $ErrorContraseña;?></span>
-                <br><br>
 
-                <label>Recordar:</label> 
-                <input type="checkbox" name="recordar" value="1">
-                <br><br>
+        <form action="Formulario_EX.php" method="POST">
 
-                <input type="submit" name="submit" value="Login">
+            <label>Usuario:</label>      
+            <input type="text" name="username" value="<?php echo $Usuario;?>">
+            <span class="error">* <?php echo $UsuarioError;?></span>
+            <br><br>
+
+            <label>Contraseña:</label>  
+            <input type="password" name="password" value="<?php echo $Contraseña;?>">
+            <span class="error">* <?php echo $ContraseñaError;?></span>
+            <br><br>
+
+            <label>Recordar:</label> 
+            <input type="checkbox" name="recordar" value="1">
+            <br><br>
+
+            <input type="submit" name="Registrar" value="Registrar">
+            <input type="submit" name="submit" value="Login">
         </form>
     </body>
 </html>

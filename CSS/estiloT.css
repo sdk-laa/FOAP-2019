@@ -1,4 +1,5 @@
     
+html
 body {
     font-family: verdana, arial, sans-serif; 
     font-size: 1em;
@@ -16,4 +17,13 @@ p.correcto{
 p.error{
     background-color: red;
     display: inline;
+}
+.correcto{
+    color: green;
+}
+.error{
+    color:red;
+}
+.Titulo{
+    color:blue;
 }
