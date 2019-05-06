@@ -1,5 +1,6 @@
 <?php
-    $MostrarF=false;
+    $MostrarF=true;
+    $Registar=true;
     $User=$Password=$RPassword="";
     $UserError=$PasswordError=$RPasswordError="";
     if(isset($_REQUEST['submit'])){
@@ -26,13 +27,18 @@
 
         if ((!empty($_POST["Password"])) && (!empty($_POST["RPassword"]))){
             $Password = $_POST["Password"];
+            //echo ($Password);
             $RPassword = $_POST["RPassword"];
+            //echo ($RPassword);
             if($Password != $RPassword){
-                //$MostrarF=true;
-                $PasswordError="<li>Las contraseñas no coinciden<\li>"
+                $MostrarF=true;
+                $Registar=false;
+                //echo "Las contraseñas no coinciden";
             }
             else{
-                echo "las contraseñas no coinciden";
+                $MostrarF=false;
+                $Registar=true;
+                //echo "Todo correcto";
             }
         }    
     }
@@ -54,7 +60,7 @@
     
     <body>
         <?php
-            if ($MostrarF=true){
+            if ($MostrarF==true){
                 
         ?>
 
@@ -68,7 +74,7 @@
             <span class="error">* <?php echo $UserError;?></span>
             <br><br>
             <label>Password:</label> 
-            <<input type="Password" name="Password" value="<?php echo $Password;?>">
+            <input type="Password" name="Password" value="<?php echo $Password;?>">
             <span class="error">* <?php echo $PasswordError;?></span>
             <br><br>
             <label>Repeat Password:</label>     
@@ -77,11 +83,24 @@
             <br><br>
             <label><input type="submit" name="submit" value="Validar"></label>
         </form>
-        <?php
+
+        <?php 
+                if ($MostrarF==true && $Registar==false){
+                ?>   
+                    <p><span class="error">* Las contraseñas no coinciden</span></p>
+                <?php
+                }
+                
             
-                //echo "Todo correcto";
+            }
+            else{
+                echo "Bienvinido: ".$User;
             }
 
-        ?>
+     
+
+                //<p><span class="error">* Las contraseñas no coinciden</span></p>
+
+            ?>
     </body>
 </html>

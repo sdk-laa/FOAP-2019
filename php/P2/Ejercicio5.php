@@ -7,9 +7,10 @@ $MostarF=true;
                 header('Location:Ejercicio5.OK.php');
         }    
         else{
-            <p> <class="error">.$Error=<span class =error>"Usuario o contraseña incorrecta"<\span>;
-            print ("<p>  class="error".$Error no está en 
-                    formato europeo</p>\n"); //hay corregir el error de esta linea
+            //<p><span class="error">* Usuario o contraseña incorrecta</span></p>
+            print ("Usuario o contraseña incorrecta"); 
+            //print ("<p>  class="error".$Error no está en 
+                    //formato europeo</p>\n"); //hay corregir el error de esta linea
         }
    }
 ?>

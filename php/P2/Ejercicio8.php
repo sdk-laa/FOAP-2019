@@ -52,24 +52,28 @@
         else {
                 $comment = test_input($_POST["comment"]);
         }
-                if (empty($_POST["name"])) {
+
+        if (empty($_POST["name"])) {
                 $nameError = "Name is required";
         } 
         else {
                 $name = test_input($_POST["name"]);
         }
+
         if (empty($_POST["User"])) {
             $UserError = "User is required";
         } 
         else {
                 $User = test_input($_POST["User"]);
         }
+
         if (empty($_POST["Password"])) {
             $PasswordError = "Password is required";
         } 
         else {
                 $Password = test_input($_POST["Password"]);
         }
+        
         if (empty($_POST["RPasswerd"])) {
             $RPasswordError = "Repeat Password is required";
         } 

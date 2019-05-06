@@ -44,6 +44,7 @@
             } 
         }
 
+
         if (empty($_POST["User"])) {
             $UserError = "User is required";
         } 
@@ -63,10 +64,26 @@
                 $RPassword = test_input($_POST["RPassword"]);
         }
 
-        if ($nameError = $emailError = $EdadError = ""){
-            header('Location:Login_OK_EX.php');
-        }
+        if ((!empty($_POST["Password"])) && (!empty($_POST["RPassword"]))){
+            $Password = $_POST["Password"];
+            //echo ($Password);
+            $RPassword = $_POST["RPassword"];
+            //echo ($RPassword);
+            if($Password != $RPassword){
+                $MostrarF=true;
+                $Registar=false;
+                //echo "Las contraseñas no coinciden";
+            }
+            else{
+                $MostrarF=false;
+                $Registar=true;
+                //echo "Todo correcto";
+            }
+        } 
 
+        if (empty($nameError) && empty($emailError) && empty($EdadError) && empty($UserError) && empty($PasswordError) && empty($RPasswordError)){
+            header('Location:Login_OK_EX.php');
+        }  
     }
 
     function test_input($data) {
