@@ -1,6 +1,6 @@
 <?php
-   $nameError = $emailError = $ApellidoError = $EdadError = "";
-   $name = $email = $Apellido = $Edad = $comment = "";
+   $nameError=$emailError=$ApellidoError=$EdadError=$UserError=$PasswordError=$RPasswordError="";
+   $name=$email=$Apellido=$Edad=$comment=$User=$Passwerd=$RPasswerd="";
    if(isset($_REQUEST['submit'])){
         if (empty($_POST["name"])) {
                 $nameError = "Name is required";
@@ -52,14 +52,37 @@
         else {
                 $comment = test_input($_POST["comment"]);
         }
+                if (empty($_POST["name"])) {
+                $nameError = "Name is required";
+        } 
+        else {
+                $name = test_input($_POST["name"]);
+        }
+        if (empty($_POST["User"])) {
+            $UserError = "User is required";
+        } 
+        else {
+                $User = test_input($_POST["User"]);
+        }
+        if (empty($_POST["Password"])) {
+            $PasswordError = "Password is required";
+        } 
+        else {
+                $Password = test_input($_POST["Password"]);
+        }
+        if (empty($_POST["RPasswerd"])) {
+            $RPasswordError = "Repeat Password is required";
+        } 
+        else {
+                $RPassword = test_input($_POST["RPassword"]);
+        }
     }
-
     function test_input($data) {
         $data = trim($data);
         $data = stripslashes($data);
         $data = htmlspecialchars($data);
         return $data;
-      }
+    }
 ?>
 <html>
     <head>
@@ -91,10 +114,10 @@
             Usuario:     <input type="text" name="User" value="<?php echo $User;?>">
             <span class="error">* <?php echo $UserError;?></span>
             <br><br>
-            Contraseña:     <input type="passwerd" name="Passwerd" value="<?php echo $Passwerd;?>">
+            Contraseña:     <input type="password" name="Password" value="<?php echo $Password;?>">
             <span class="error">* <?php echo $PasswordError;?></span>
             <br><br>
-            Repetir Contraseña:     <input type="passwerd" name="RPasswerd" value="<?php echo $RPasswerd;?>">
+            Repetir Contraseña:     <input type="password" name="RPassword" value="<?php echo $RPassword;?>">
             <span class="error">* <?php echo $RPasswordError;?></span>
             <br><br>
             <input type="submit" name="submit" value="Validar">

@@ -45,9 +45,9 @@
             } 
         }
 
-        if ($nameError = $emailError = $EdadError = ""){
-            header('Location:Login_OK_EX.php');
-        }
+        //if ($nameError = $emailError = $EdadError = ""){
+           // header('Location:Login_OK_EX.php');
+        //}
 
     }
 
