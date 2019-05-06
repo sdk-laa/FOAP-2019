@@ -7,7 +7,7 @@
         } 
         else {
                 $name = test_input($_POST["name"]);
-/*                 if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
+                /* if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
                     $nameError = "Only letters and white space allowed"; 
                 } */
         }
@@ -17,7 +17,7 @@
         } 
         else {
             $Apellido= test_input($_POST["Apellido"]);
-/*             if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
+            /* if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
                 $ApellidoError = "Only letters and white space allowed"; 
             } */
         }
@@ -72,7 +72,7 @@
     </head>
     
     <body>
-        <h2>Registrarte</h2>
+        <h2>Registrar nueva cuenta</h2>
         <p><span class="error">* Campo obligatorio</span></p>
 
         <form action="Regitro_EX.php" method="POST">
