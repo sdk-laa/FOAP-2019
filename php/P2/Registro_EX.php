@@ -1,6 +1,12 @@
 <?php
+    session_start();
+?>
+
+<?php
    $nameError=$emailError=$ApellidoError=$EdadError=$UserError=$PasswordError=$RPasswordError="";
    $name=$email=$Apellido=$Edad =$User=$Password=$RPassword="";
+   $Registar=true;
+   //$Registar=true;
    if(isset($_REQUEST['submit'])){
         if (empty($_POST["name"])) {
                 $nameError = "Name is required";
@@ -57,7 +63,7 @@
         else {
                 $Password = test_input($_POST["Password"]);
         }
-        if (empty($_POST["RPasswerd"])) {
+        if (empty($_POST["RPassword"])) {
             $RPasswordError = "Repeat Password is required";
         } 
         else {
@@ -70,18 +76,30 @@
             $RPassword = $_POST["RPassword"];
             //echo ($RPassword);
             if($Password != $RPassword){
-                $MostrarF=true;
+                //$MostrarF=true;
                 $Registar=false;
                 //echo "Las contraseñas no coinciden";
             }
             else{
-                $MostrarF=false;
+                //$MostrarF=false;
                 $Registar=true;
                 //echo "Todo correcto";
             }
-        } 
+        }
+        
+        if(($_REQUEST["name"]=="sdk") && ($_REQUEST["Password"]=="1234")) { // Si U o C son correctos enviar a la pagina restringida
+            $_SESSION["login"]=true;
+            $_SESSION["ValidUser"]="sdk";
+            $_SESSION["ValidPassword"]=md5("1234");
 
-        if (empty($nameError) && empty($emailError) && empty($EdadError) && empty($UserError) && empty($PasswordError) && empty($RPasswordError)){
+            //header('Location:Login_OK_EX.php');
+
+        }    
+        else{
+
+        }
+
+        if (empty($nameError) && empty($emailError) && empty($EdadError) && empty($UserError) && empty($PasswordError) && empty($RPasswordError) && $Registar==true){
             header('Location:Login_OK_EX.php');
         }  
     }
@@ -135,5 +153,14 @@
             <br><br>
             <input type="submit" name="submit" value="Registrar">
         </form>
+        <?php
+            if($Registar==false){
+
+        ?>
+                <p><span class="error">* Las contraseñas no coinciden</span></p>
+        <?php
+                
+            }
+        ?>
     </body>
 </html>
