@@ -1,6 +1,6 @@
 <?php
-   $nameError = $emailError = $ApellidoError = $EdadError = "";
-   $name = $email = $Apellido = $Edad = "";
+   $nameError=$emailError=$ApellidoError=$EdadError=$UserError=$PasswordError=$RPasswordError="";
+   $name=$email=$Apellido=$Edad =$User=$Password=$RPassword="";
    if(isset($_REQUEST['submit'])){
         if (empty($_POST["name"])) {
                 $nameError = "Name is required";
@@ -13,7 +13,7 @@
         }
 
         if (empty($_POST["Apellido"])) {
-            $ApellidoError = "";
+            $ApellidoError ="";
         } 
         else {
             $Apellido= test_input($_POST["Apellido"]);
@@ -31,7 +31,6 @@
                     $emailError = "Invalid email format"; 
                 }
         }
-        
 
         if (!empty($_POST["Edad"])){
             if (is_numeric($_POST["Edad"])) {
@@ -45,9 +44,28 @@
             } 
         }
 
-        //if ($nameError = $emailError = $EdadError = ""){
-           // header('Location:Login_OK_EX.php');
-        //}
+        if (empty($_POST["User"])) {
+            $UserError = "User is required";
+        } 
+        else {
+                $User = test_input($_POST["User"]);
+        }
+        if (empty($_POST["Password"])) {
+            $PasswordError = "Password is required";
+        } 
+        else {
+                $Password = test_input($_POST["Password"]);
+        }
+        if (empty($_POST["RPasswerd"])) {
+            $RPasswordError = "Repeat Password is required";
+        } 
+        else {
+                $RPassword = test_input($_POST["RPassword"]);
+        }
+
+        if ($nameError = $emailError = $EdadError = ""){
+            header('Location:Login_OK_EX.php');
+        }
 
     }
 
@@ -72,12 +90,13 @@
     </head>
     
     <body>
-        <h2>Registrar nueva cuenta</h2>
+        <h2><p><span class="Titulo"> Registrar nueva cuenta</span></p></h2>
+        
         <p><span class="error">* Campo obligatorio</span></p>
 
-        <form action="Regitro_EX.php" method="POST">
+        <form action="Registro_EX.php" method="POST">
 
-            Name:     <input type="text" name="name" value="<?php echo $name;?>">
+            Nombre:     <input type="text" name="name" value="<?php echo $name;?>">
             <span class="error">* <?php echo $nameError;?></span>
             <br><br>
             Apellido: <input type="text" name="Apellido" value="<?php echo $Apellido;?>">
@@ -87,6 +106,15 @@
             <br><br>
             E-mail:   <input type="email" name="email" value="<?php echo $email;?>">
             <span class="error">* <?php echo $emailError;?></span>
+            <br><br>
+            Usuario:     <input type="text" name="User" value="<?php echo $User;?>">
+            <span class="error">* <?php echo $UserError;?></span>
+            <br><br>
+            Contraseña:     <input type="password" name="Password" value="<?php echo $Password;?>">
+            <span class="error">* <?php echo $PasswordError;?></span>
+            <br><br>
+            Repetir Contraseña:     <input type="password" name="RPassword" value="<?php echo $RPassword;?>">
+            <span class="error">* <?php echo $RPasswordError;?></span>
             <br><br>
             <input type="submit" name="submit" value="Registrar">
         </form>

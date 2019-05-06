@@ -1,13 +1,13 @@
 <?php
    $nameError=$emailError=$ApellidoError=$EdadError=$UserError=$PasswordError=$RPasswordError="";
-   $name=$email=$Apellido=$Edad=$comment=$User=$Passwerd=$RPasswerd="";
+   $name=$email=$Apellido=$Edad=$comment=$User=$Password=$RPassword="";
    if(isset($_REQUEST['submit'])){
         if (empty($_POST["name"])) {
                 $nameError = "Name is required";
         } 
         else {
                 $name = test_input($_POST["name"]);
-/*                 if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
+                /* if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
                     $nameError = "Only letters and white space allowed"; 
                 } */
         }
@@ -17,7 +17,7 @@
         } 
         else {
             $Apellido= test_input($_POST["Apellido"]);
-/*             if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
+            /*  if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
                 $ApellidoError = "Only letters and white space allowed"; 
             } */
         }
