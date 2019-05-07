@@ -24,7 +24,7 @@
             header('Location:Login_OK_EX.php');
         }
         else{
-            $Error="Usuario o Contraseña incorrecta";    
+            $Error="Usuario o Contraseña incorrecta";   
         }
         
     }

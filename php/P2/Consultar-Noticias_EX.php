@@ -31,7 +31,7 @@
         <div id="wrapper">
             <header>
                 <div class='define'>
-                    <h1>Noticias</h1> <!-- Titulo de pagina -->
+                    <h1>Noticiasss</h1> <!-- Titulo de pagina -->
                     <form action="Consultar-Noticias_EX.php" method="POST" enctype="multipart/form-data">
                         <input type="submit" name="MenuPrincipal" value="Menu Principal">
                         <input type="submit" name="InsertarNoticias" value="Insertar Noticias">

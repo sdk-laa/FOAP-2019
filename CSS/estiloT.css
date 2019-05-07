@@ -57,17 +57,9 @@ body{
     color: #FFF;
 } */
 
-
-
-
-
-
-* {
-    margin: 0;
-    padding: 0;
-}
 html,body {
     height:100%;
+    width:100%;
 }
 /* Div que engloba el contenido de la página menos el footer */
 #wrapper {
@@ -106,7 +98,4 @@ footer {
    El contenido queda centrado y limitado, pero la cabecera y el pie
    llegan hasta los limites del navegador.
 */
-.define {
-    width:960px;
-    margin:0 auto;
-}
+ 
