@@ -5,7 +5,7 @@
 <?php
     // Declaracion de variables:
    $nameError=$emailError=$ApellidoError=$EdadError=$UserError=$PasswordError=$RPasswordError="";
-   $name=$email=$Apellido=$Edad =$User=$Password=$RPassword=$Errores="";
+   $name=$email=$Apellido=$Edad=$User=$Password=$RPassword=$Errores="";
    $Registar=true;
    $Rcorrecto=false;
 
@@ -82,7 +82,7 @@
         if ((empty($PasswordError)) && (empty($RPasswordError)) ){
             if($Password != $RPassword){
                 $Registar=false;
-                $Errores=("<li>Las contraseñas no coinciden.</li>");
+                $Errores="";
                 //echo "Las contraseñas no coinciden";
             }
             else{
@@ -92,10 +92,10 @@
             }
         }
         
-        if(($_REQUEST["name"]=="sdk") && ($_REQUEST["Password"]=="Sdk1234&")) { // Si U o C son correctos enviar a la pagina restringida
+        if(($_REQUEST["name"]=="sdk") && ($_REQUEST["Password"]=="Sdk1234!")) { // Si U o C son correctos enviar a la pagina restringida
             $_SESSION["login"]=true;
             $_SESSION["ValidUser"]="sdk";
-            $_SESSION["ValidPassword"]=md5("Sdk1234&");
+            $_SESSION["ValidPassword"]=md5("Sdk1234!");
 
             //header('Location:Login_OK_EX.php');
 
@@ -104,7 +104,7 @@
 
         }
 
-        if (empty($nameError) && empty($ApellidoError) && empty($emailError) && empty($EdadError) && empty($UserError) && empty($PasswordError) && empty($RPasswordError) && $Registar==true){
+        if (empty($nameError) && empty($ApellidoError) && empty($emailError) && empty($EdadError) && empty($UserError) && empty($PasswordError) && empty($RPasswordError) && empty($Errores) && $Registar==true){
             $Rcorrecto=true;
         }
         else{
@@ -127,7 +127,7 @@
             $Errores = $Errores . "<li>La contraseña debe tener al menos un caracter numérico</li>";
         }
         if (!preg_match('/[#~$%!]/',$Password)){
-            $Errores = $Errores . "<li>La contraseña debe tener al menos un caracter de estos '#~$%!'</li>";
+            $Errores = $Errores . "<li>La contraseña debe tener al menos un caracter de estos ' #~$%!& '</li>";
         }
         return $Errores;
     }
@@ -209,10 +209,11 @@
                             <?php echo $Errores;?>
                             <br>
                             <?php
+                        
                         }
                             ?>
                     <?php    
-                        if ($Rcorrecto==true && $Registar==true && $Errores=""){
+                        if ($Rcorrecto==true && $Registar==true && $Errores==""){
 
                     ?>
                             <p><span class="nota">* Account registered correctly in Spirit Social</span></p>

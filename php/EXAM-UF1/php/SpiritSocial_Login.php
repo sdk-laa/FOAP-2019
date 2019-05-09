@@ -11,7 +11,7 @@
     }
 
     if(isset($_SESSION["login"]) && ($_SESSION["login"]==true)){
-        if(($_SESSION["ValidUser"]=="sdk") && ($_SESSION["ValidPassword"]==md5("Sdk1234&"))){
+        if(($_SESSION["ValidUser"]=="sdk") && ($_SESSION["ValidPassword"]==md5("Sdk1234!"))){
 
      
 ?>

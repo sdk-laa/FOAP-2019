@@ -9,14 +9,14 @@
     $MostarE=false;                           //Variable para mostar el error o no
 
     if (isset($_SESSION["login"]) && $_SESSION["login"]==true){   // Si ya esta hecho login enviar siempre a la pagina restringida
-        if(($_SESSION["ValidUser"]=="sdk") && ($_SESSION["ValidPassword"]==md5("Sdk1234&"))){
+        if(($_SESSION["ValidUser"]=="sdk") && ($_SESSION["ValidPassword"]==md5("Sdk1234!"))){
             header('Location:SpiritSocial_Login.php');
         }       
     }                                                            // Si se cierra navegador volver a login
     
 
     if (isset($_COOKIE["CookieUser"]) && $_COOKIE["CookiePassword"]){ // Cookie para mantener seccion abiera el tiempo que se desea aunque se cierra la pagina
-        if(($_COOKIE["CookieUser"]=="sdk") && ($_COOKIE["CookiePassword"]==md5("Sdk1234&"))){ // Si el usuario y la contraseña son correctos guardar Cookie
+        if(($_COOKIE["CookieUser"]=="sdk") && ($_COOKIE["CookiePassword"]==md5("Sdk1234!"))){ // Si el usuario y la contraseña son correctos guardar Cookie
             $_SESSION["login"]=true;
             $_SESSION["ValidUser"]=$_COOKIE["CookieUser"];
             $_SESSION["ValidPassword"]=$_COOKIE["CookiePassword"];
@@ -46,10 +46,10 @@
                 $Password = test_input($_REQUEST["password"]);
             }
 
-            if(($_REQUEST["username"]=="sdk") && ($_REQUEST["password"]=="Sdk1234&")) { // Si U o C son correctos enviar a la pagina restringida
+            if(($_REQUEST["username"]=="sdk") && ($_REQUEST["password"]=="Sdk1234!")) { // Si U o C son correctos enviar a la pagina restringida
                 $_SESSION["login"]=true;
                 $_SESSION["ValidUser"]="sdk";
-                $_SESSION["ValidPassword"]=md5("Sdk1234&");
+                $_SESSION["ValidPassword"]=md5("Sdk1234!");
                 //$_SESSION["nombre"]=$_REQUEST["username"];
                 if(($_REQUEST["recordar"]) && ($_REQUEST["recordar"]==1)){
                     setcookie("CookiePassword",md5($_REQUEST["password"]),time()+60*60);
