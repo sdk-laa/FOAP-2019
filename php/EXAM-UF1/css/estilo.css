@@ -65,8 +65,14 @@ p.error{
     display: inline;
 }
 .correcto{
-    color: rgb(4, 6, 97);
+    color: #021846;
 }
 .error{
     color:red;
+}
+.nota{
+    color:rgb(15, 18, 231);
+}
+.N{
+    color:rgb(0, 0, 0);
 }
