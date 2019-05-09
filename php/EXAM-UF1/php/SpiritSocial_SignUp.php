@@ -4,10 +4,11 @@
 
 <?php
     // Declaracion de variables:
-   $nameError=$emailError=$ApellidoError=$EdadError=$UserError=$PasswordError=$RPasswordError="";
-   $name=$email=$Apellido=$Edad=$User=$Password=$RPassword=$Errores="";
+   $nameError=$emailError=$ApellidoError=$fechaError=$UserError=$PasswordError=$RPasswordError="";
+   $name=$email=$Apellido=$fecha=$Edad=$User=$Password=$RPassword=$Errores="";
    $Registar=true;
    $Rcorrecto=false;
+   $ValidDate=true;
 
    if (isset($_REQUEST["login"])){
     header('Location:SpiritSocial.php');
@@ -44,19 +45,20 @@
                 }
         }
 
-        if (!empty($_POST["Edad"])){
-            if (is_numeric($_POST["Edad"])) {
-                $Edad = test_input($_REQUEST["Edad"]);
+        if (!empty($_POST["FechaNacimiento"])){
+            $fecha = $_POST["FechaNacimiento"];
+            if ((validateDate($fecha)) == true) {
+                $Edad=calcularEdad($fecha);
                 if ($Edad<=18){
-                    $EdadError = "Error en la edad introducida tiene que ser mayor que 18 años ";
+                    $fechaError = "Error en la fecha introducida, la edad tiene que ser mayor que 18 años ";
                 }
             }
             else{
-                $EdadError = "Error en la edad introducida tiene que ser un valor numerico ";
+                $fechaError = "Error en la efecha introducida tiene que ser un formato de fechas ";
             } 
         }
         else{
-            $EdadError="Age is required";
+            $fechaError="Birthdate is required";
         }
 
 
@@ -96,9 +98,6 @@
             $_SESSION["login"]=true;
             $_SESSION["ValidUser"]="sdk";
             $_SESSION["ValidPassword"]=md5("Sdk1234!");
-
-            //header('Location:Login_OK_EX.php');
-
         }    
         else{
 
@@ -111,6 +110,22 @@
             $Rcorrecto=false;
         }
  
+    }
+
+    function validateDate($fecha){
+        $d = strtotime($fecha);
+        return ($d>=1) ? 1 : 0;
+    }
+
+
+    function calcularEdad($fecha){
+        list($ano,$mes,$dia) = explode("-",$fecha);
+        $ano_diferencia = date("Y") - $ano;
+        $mes_diferencia = date("m") - $mes;
+        $dia_diferencia = date("d") - $dia;
+            if ($dia_diferencia < 0 && $mes_diferencia <= 0)
+                $ano_diferencia--;
+        return $ano_diferencia;
     }
 
     function valida_contrasena($Password,$Errores){
@@ -132,7 +147,6 @@
         return $Errores;
     }
 
-
     function test_input($data) {
         $data = trim($data);
         $data = stripslashes($data);
@@ -144,101 +158,94 @@
 
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <link rel="stylesheet" type="text/css" href="../CSS/estilo.css" />
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" type="text/css" href="../CSS/estilo.css" />
+    </head>
  
-<body>
-<div id="wrapper">
-        <header>
-            <div class='define'>
-            <div style= "width:200px"> <h2> Spirit Social </h2></div> 
-            </div>
+    <body>
+        <div id="wrapper">
+            <header>
+                <div class='define'>
+                    <div style= "width:200px"> <h2> Spirit Social </h2></div> 
+                </div>
+            </header>
 
-        </header>
+            <section>
+                <div class='define'>
+                    <div id ="logo"> <img src= "../imgs/SpiritSocial.jpg" alt="Logo" height="500px" width="500px"></div>
+                    <h2><p><span class="Titulo"> Registrar nueva cuenta</span></p></h2>
+                    <p><span class="error">* Campo obligatorio</span></p>
 
-
-        <section>
-            <div class='define'>
-                <div id ="logo"> <img src= "../imgs/SpiritSocial.jpg" alt="Logo" height="500px" width="500px"></div>
-                <h2><p><span class="Titulo"> Registrar nueva cuenta</span></p></h2>
-        
-                <p><span class="error">* Campo obligatorio</span></p>
-
-                <form action="SpiritSocial_SignUp.php" method="POST">
-
-                    Name:     <input type="text" name="name" value="<?php echo $name;?>">
-                    <span class="error">* <?php echo $nameError;?></span>
-                    <br><br>
-                    Surname: <input type="text" name="Apellido" value="<?php echo $Apellido;?>">
-                    <span class="error">* <?php echo $ApellidoError;?></span>
-                    <br><br>
-                    age:     <input type="number" name="Edad" value="<?php echo $Edad;?>">
-                    <span class="error">* <?php echo $EdadError;?></span>
-                    <br><br>
-                    E-mail:   <input type="email" name="email" value="<?php echo $email;?>">
-                    <span class="error">* <?php echo $emailError;?></span>
-                    <br><br>
-                    User:     <input type="text" name="User" value="<?php echo $User;?>">
-                    <span class="error">* <?php echo $UserError;?></span>
-                    <br><br>
-                    Password:     <input type="password" name="Password" value="<?php echo $Password;?>">
-                    <span class="error">* <?php echo $PasswordError;?></span>
-                    <br><br>
-                    Repeat Password:     <input type="password" name="RPassword" value="<?php echo $RPassword;?>">
-                    <span class="error">* <?php echo $RPasswordError;?></span>
-                    <br><br>
-                    <input type="submit" name="submit" value="Registrar">
-                
-                    <?php
-                        if($Registar==false){
-
-                    ?>
-                            <p><span class="error">* Las contraseñas no coinciden</span></p>
-                    <?php
+                    <form action="SpiritSocial_SignUp.php" method="POST">
+                        Name:     <input type="text" name="name" value="<?php echo $name;?>">
+                        <span class="error">* <?php echo $nameError;?></span>
+                        <br><br>
+                        Surname: <input type="text" name="Apellido" value="<?php echo $Apellido;?>">
+                        <span class="error">* <?php echo $ApellidoError;?></span>
+                        <br><br>
+                        Birthdate:
+                        <input type="date" name="FechaNacimiento" format='Y-m-d' min="1950-01-01" max="2019-06-01" step="" value="<?php echo $fecha;?>">
+                        <span class="error">* <?php echo $fechaError;?></span>
+                        <br><br>
+                        E-mail:   <input type="email" name="email" value="<?php echo $email;?>">
+                        <span class="error">* <?php echo $emailError;?></span>
+                        <br><br>
+                        User:     <input type="text" name="User" value="<?php echo $User;?>">
+                        <span class="error">* <?php echo $UserError;?></span>
+                        <br><br>
+                        Password:     <input type="password" name="Password" value="<?php echo $Password;?>">
+                        <span class="error">* <?php echo $PasswordError;?></span>
+                        <br><br>
+                        Repeat Password:     <input type="password" name="RPassword" value="<?php echo $RPassword;?>">
+                        <span class="error">* <?php echo $RPasswordError;?></span>
+                        <br><br>
+                        <input type="submit" name="submit" value="Registrar">
+                    
+                        <?php
+                            if($Registar==false){
+                        ?>
+                                <p><span class="error">* Las contraseñas no coinciden</span></p>
+                        <?php   
+                            }
                             
-                        }
-                        
-                        if ($Errores !=""){
-                    ?>
-                            <p><span class="N">Errores en la contraseña</span></p>
-                            <?php echo $Errores;?>
-                            <br>
-                            <?php
-                        
-                        }
-                            ?>
-                    <?php    
-                        if ($Rcorrecto==true && $Registar==true && $Errores==""){
-
-                    ?>
-                            <p><span class="nota">* Account registered correctly in Spirit Social</span></p>
-                            <br><br>
-                            <p><span class="correcto"> "Spirit Social helps you communicate and share</span></p>
-                            <br>
-                            <p><span class="correcto"> with the people who are part of your life"</span></p>
-                            <br><br>
-                            <p><span class="nota"> Click in Login to start</span></p>
-                            <br>
-                            <input type="submit" name="login" value="Login">
-                    <?php    
-                        
-                        }
-                    ?>        
-                    <!--<div style="float:left"> <img src= "../imgs/redesS.png" alt="Logo" height="750px" width="400px"></div>-->
-                </form>    
-            </div>
-        </section>
-    </div>
- 
-    <footer>
-        <div class='define'>
-            <p>Contenido del pie de página</p>
+                            if ($Errores !=""){
+                        ?>
+                                <p><span class="N">Errores en la contraseña</span></p>
+                                <?php echo $Errores;?>
+                                <br>
+                                <?php
+                            
+                            }
+                                ?>
+                        <?php    
+                            if ($Rcorrecto==true && $Registar==true && $Errores==""){
+                        ?>
+                                <p><span class="nota">* Account registered correctly in Spirit Social</span></p>
+                                <br><br>
+                                <p><span class="correcto"> "Spirit Social helps you communicate and share</span></p>
+                                <br>
+                                <p><span class="correcto"> with the people who are part of your life"</span></p>
+                                <br><br>
+                                <p><span class="nota"> Click in Login to start</span></p>
+                                <br>
+                                <input type="submit" name="login" value="Login">
+                        <?php    
+                            
+                            }
+                        ?>        
+                        <!--<div style="float:left"> <img src= "../imgs/redesS.png" alt="Logo" height="750px" width="400px"></div>-->
+                    </form>    
+                </div>
+            </section>
         </div>
-    </footer>
-</body>
+    
+        <footer>
+            <div class='define'>
+                <p>Al hacer clic en Registrar, aceptas nuestras Condiciones. Obtén más información sobre cómo recopilamos, usamos y compartimos tu información en la Política de datos, así como el uso que hacemos de las cookies y tecnologías similares en nuestra Política de cookies.</p>
+            </div>
+        </footer>
+    </body>
 </html>

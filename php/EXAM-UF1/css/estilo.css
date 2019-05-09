@@ -12,8 +12,8 @@ html,body {
 header {
     display:block;
     background:#47494A;
-    padding:10px 0px;
-    text-align: center;
+    padding:20px 0px;
+    text-align: left;
     color: #FFFFFF;
 }
 section {
@@ -37,7 +37,7 @@ footer {
     padding:5px 0px;
     clear: both;
     background: #47494A;
-    text-align: center;
+    text-align: left;
     color: #FFFFFF;
 }
 
@@ -46,7 +46,7 @@ footer {
    llegan hasta los limites del navegador.
 */
 .define {
-    width:960px;
+    width:960px;     /* Esta anchura para el tamaño de pantallas cumunes, es el tamaño común para el diseño de paginas web*/
     margin:0 auto;
 }
 
@@ -76,3 +76,5 @@ p.error{
 .N{
     color:rgb(0, 0, 0);
 }
+
+

@@ -144,7 +144,7 @@
  
     <footer>
         <div class='define'>
-            <p>Contenido del pie de página</p>
+            <p>Al hacer clic en Registrar, aceptas nuestras Condiciones. Obtén más información sobre cómo recopilamos, usamos y compartimos tu información en la Política de datos, así como el uso que hacemos de las cookies y tecnologías similares en nuestra Política de cookies.</p>
         </div>
     </footer>
 </body>
