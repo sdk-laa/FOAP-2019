@@ -65,7 +65,7 @@ p.error{
     display: inline;
 }
 .correcto{
-    color: green;
+    color: rgb(4, 6, 97);
 }
 .error{
     color:red;
