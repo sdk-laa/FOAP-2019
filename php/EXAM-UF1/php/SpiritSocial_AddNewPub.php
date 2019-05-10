@@ -4,8 +4,8 @@
 
 <?php
     // Declaracion de variables:
-    $Title=$Description="";
-    $TitleError=$DescriptionError="";
+    $Title=$Description=$Image="";
+    $TitleError=$DescriptionError=$ImageError="";
 
     require("SpiritSocial_Functions.php");
         
@@ -17,12 +17,53 @@
         } 
 
         if(isset($_REQUEST['MainMenu'])){
-            header('Location:SpiritSocial_Login.php');
+            header('Location:SpiritSocial_Login_OK.php');
         }
 
         if(isset($_SESSION["login"]) && ($_SESSION["login"]==true)){
             if(($_SESSION["ValidUser"]=="sdk") && ($_SESSION["ValidPassword"]==md5("Sdk1234!"))){
+                if(isset($_REQUEST["UploadPub"])){
+                    if (empty($_POST["Title"])) {
+                        $TitleError = "Title is required";
+                    } 
+                    else {
+                            $Title = test_input($_POST["Title"]);
+                            $TitleError=valida_Title($Title,$TitleError);
+                    }
 
+                    if (empty($_POST["Description"])) {
+                        $DescriptionError = "Description is required";
+                    } 
+                    else {
+                            $Description = test_input($_POST["Description"]);
+                            $DescriptionError=valida_Description($Description,$DescriptionError);
+                    }
+
+                    if(isset($_REQUEST["UploadImage"])){ 
+                        print_r($_FILES);
+                        echo "<br>^<br>";
+                        if(!is_uploaded_file($_FILES['Image']['tmp_name'])){
+                            echo "otro error";
+                        }
+                        $dir_subida = '../imgs/';
+                        $Image_Upload = $dir_subida . time()."_".basename($_FILES['Image']['name']);
+                        if (move_uploaded_file($_FILES['Image']['tmp_name'], $Image_Upload)) {
+                            echo "La Imagen es válida y se subió con éxito.\n";
+                            echo "<a href=\"$Image_Upload\">imagen</a>";
+                            echo "<img src=\"$Image_Upload\">";
+                        } else {
+                            echo "¡error!\n";
+                        }
+                    }else{
+                        $ImageError="Image is required";
+                    }
+                    if(($TitleError=="") && ($DescriptionError=="") && ($ImageError=="")){
+                        $_SESSION["Upload Pub"]=true;
+                        echo "<a href=\"$Image_Upload\">imagen</a>";
+                        echo "<img src=\"$Image_Upload\">";
+                        }
+                    } 
+       
     
 ?>
 
@@ -33,7 +74,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link rel="stylesheet" type="text/css" href="../CSS/estilo.css" />
+        <link rel="stylesheet" type="text/css" href="../css/estilo.css" />
     </head>
  
     <body>
@@ -43,16 +84,16 @@
                     <div style= "width:200px"> <h2> Spirit Social </h2></div>
                     <div style= "text-align:right"> 
                         <?=$_SESSION["ValidUser"]?>
-                        <a href="SpiritSocial_Login.php?Logout">[Logout]</a>
+                        <a href="SpiritSocial_Login_OK.php?Logout">[Logout]</a>
                     </div> 
                 </div>
             </header>
 
             <section>
                 <div class='define'>
-                    <div id ="logo"> <img src= "../imgs/SpiritSocial.jpg" alt="Logo" height="500px" width="500px"></div>
+                    <div id ="logo"> <img src= "../imgs/SpiritSocial.jpg" alt="Logo" height="450px" width="500px"></div>
                     <div>
-                    <form action="SpiritSocial_AddNewPub.php" method="POST">
+                    <form action="SpiritSocial_AddNewPub.php" method="POST" enctype="multipart/form-data">
                         <input type="submit" name="UploadPub" value="Upload Pub">
                         &nbsp;&nbsp;
                         <input type="submit" name="MainMenu" value="Main Menu">
@@ -60,9 +101,9 @@
                         <br><br>
                         
                         <h2><p><span class="Titulo"> Add New Pub</span></p></h2>
-                        <p><span class="error">* Obligatory field</span></p>
                         <br><br>
-
+                        <p><span class="error">* Obligatory field</span></p>
+                        <br>
                         Title:     <input type="text" name="Title" value="<?php echo $Title;?>">
                         <span class="error">* <?php echo $TitleError;?></span>
                         <br><br>
@@ -70,7 +111,9 @@
                         <span class="error">* <?php echo $DescriptionError;?></span>
                         <br><br>
                         IMAGE:
-                         
+                        <input type="file" name="Image"><br>
+                        <input type="submit" name="UploadImage" value="Upload Image">
+                        <span class="error">* <?php echo $ImageError;?></span>
                     </form> 
                     </div>   
                 </div>
@@ -83,8 +126,8 @@
             </div>
         </footer>
         <?php
-
-            
+                
+           
             }
         }
         else{

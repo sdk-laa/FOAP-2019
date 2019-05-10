@@ -8,9 +8,11 @@
     $UsernameError=$PasswordError=$Error="";  //Variables de Errpr de Usuario y Contraseña
     $MostarE=false;                           //Variable para mostar el error o no
 
+    require("SpiritSocial_Functions.php");
+
     if (isset($_SESSION["login"]) && $_SESSION["login"]==true){   // Si ya esta hecho login enviar siempre a la pagina restringida
         if(($_SESSION["ValidUser"]=="sdk") && ($_SESSION["ValidPassword"]==md5("Sdk1234!"))){
-            header('Location:SpiritSocial_Login.php');
+            header('Location:SpiritSocial_Login_OK.php');
         }       
     }                                                            // Si se cierra navegador volver a login
     
@@ -20,7 +22,7 @@
             $_SESSION["login"]=true;
             $_SESSION["ValidUser"]=$_COOKIE["CookieUser"];
             $_SESSION["ValidPassword"]=$_COOKIE["CookiePassword"];
-            header('Location:SpiritSocial_Login.php');
+            header('Location:SpiritSocial_Login_OK.php');
         }
         else{
             $Error="Usuario o Contraseña incorrecta";   
@@ -55,7 +57,7 @@
                     setcookie("CookiePassword",md5($_REQUEST["password"]),time()+60*60);
                     setcookie("CookieUser",$_REQUEST["username"],time()+60*60);
                 }
-                header('Location:SpiritSocial_Login.php');
+                header('Location:SpiritSocial_Login_OK.php');
                 $MostarE=false;
                 // Código para usuarios autorizados
             }    
@@ -69,12 +71,7 @@
 
         
     }
-    function test_input($data) {          // funcion para ajustar string
-        $data = trim($data);              // eliminar espacios
-        $data = stripslashes($data);      // eliminar barras....
-        $data = htmlspecialchars($data);  // eliminar caracteres especiales...
-        return $data;
-      }
+
 ?>
 
 
@@ -85,7 +82,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <link rel="stylesheet" type="text/css" href="../CSS/estilo.css" />
+    <link rel="stylesheet" type="text/css" href="../css/estilo.css" />
 </head>
  
 <body>

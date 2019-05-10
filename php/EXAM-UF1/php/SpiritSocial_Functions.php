@@ -4,7 +4,6 @@
         return ($d>=1) ? 1 : 0;
     }
 
-
     function calcularEdad($fecha){
         list($ano,$mes,$dia) = explode("-",$fecha);
         $ano_diferencia = date("Y") - $ano;
@@ -39,6 +38,26 @@
         $data = stripslashes($data);
         $data = htmlspecialchars($data);
         return $data;
+    }
+
+    function valida_Title($Title,$TitleError){
+        if(strlen($Title) < 10 ){
+            $TitleError = $TitleError . "<li>The Title must have a minimum of 10 characters</li>";
+        }
+        if (!preg_match("/^[a-zA-Z ]*$/",$Title)) {
+            $TitleError = $TitleError . "<li>Only letters and white space allowed</li>"; 
+        }
+        return $TitleError;
+    }
+
+    function valida_Description($Description,$DescriptionError){
+        if(strlen($Description) < 50 ){
+            $DescriptionError = $DescriptionError . "<li>The Description must have a minimum of 50 characters</li>";
+        }
+        if (!preg_match("/^[a-zA-Z ]*$/",$Description)) {
+            $DescriptionError = $DescriptionError . "<li>Only letters and white space allowed</li>"; 
+        } 
+        return $DescriptionError;
     }
 
 

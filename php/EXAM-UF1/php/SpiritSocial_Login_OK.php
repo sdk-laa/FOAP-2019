@@ -39,7 +39,7 @@
                 <div style= "width:200px"> <h2> Spirit Social </h2>   </div>
                 <div style= "text-align:right"> 
                     Bienvenido.......... <?=$_SESSION["ValidUser"]?>
-                    <a href="SpiritSocial_Login.php?Logout">[Logout]</a>
+                    <a href="SpiritSocial_Login_OK.php?Logout">[Logout]</a>
                 </div>
                 
             </div>
@@ -50,7 +50,7 @@
         <section>
             <div class='define'>
                 <!--<div id ="logo"> <img src= "../imgs/SpiritSocial.jpg" alt="Logo" height="800px" width="250px"></div>-->
-                <form action="SpiritSocial_Login.php" method="POST">
+                <form action="SpiritSocial_Login_OK.php" method="POST">
                     <input type="submit" name="AddNewPub" value="Add New Pub">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <input type="submit" name="RemovePub" value="Remove Pub">
@@ -58,7 +58,8 @@
                     <br><br>
                     <div>
                         <b><p><span class="titulo"> Griezmann rumbo a Barcelona:</span></p></b>
-                        <p><span class="titulo"> Griezmann, cuya cláusula de rescisión pasaría de los 120 millones de euros a los 100 millones el uno de julio, firmaría un contrato por cuatro o cinco años, explica el rortativo francés; incluyendo una rebaja salarial (fija los ingresos del delantero en 23 millones de euros anuales).</span></p>      
+                        <p><span> El francés concita el quorum en el área técnica del Barça por su calidad, experiencia y precio.</span></p>      
+                        <p><span> La debacle en Champions refuerza la idea de poner competencia y fichar gol en la delantera.</span></p> 
                         <p><img src= "../imgs/Griezman.jpg" alt="Logo" height="400px" width="700px"></p>   
                         <input type="submit" name="Like" value="Like">
                         <p><span class="titulo"> Comment:</span></p>  
@@ -68,7 +69,7 @@
                     </div>
                     <div>
                         <b><p><span class="titulo"> Luis Suárez se pierde la final de Copa</span></p></b>
-                        <p><span class="titulo"> El club azulgrana emitió un comunicado en el que aseguraba que la intervención había sido un éxito y que el uruguayo no podrá estar en Sevilla.</span></p>      
+                        <p><span> El club azulgrana emitió un comunicado en el que aseguraba que la intervención había sido un éxito y que el uruguayo no podrá estar en Sevilla.</span></p>      
                         <p><img src= "../imgs/Suarez.jpg" alt="Logo" height="400px" width="700px"></p>   
                         <input type="submit" name="Like" value="Like">
                         <p><span class="titulo"> Comment:</span></p>  
@@ -77,7 +78,7 @@
                     </div>
                     <div>
                         <b><p><span class="titulo"> El Barça acelera los contactos finales por De Ligt</span></p></b>
-                        <p><span class="titulo"> Tras el KO del Ajax en la Champions, el Barça quiere dejarlo todo lista para abordar su contratación cuando termine la Eredivise.</span></p>      
+                        <p><span> Tras el KO del Ajax en la Champions, el Barça quiere dejarlo todo lista para abordar su contratación cuando termine la Eredivise.</span></p>      
                         <p><img src= "../imgs/DeLigt.jpg" alt="Logo" height="400px" width="700px"></p> 
                         <input type="submit" name="Like" value="Like">
                         <p><span class="titulo"> Comment:</span></p>  
