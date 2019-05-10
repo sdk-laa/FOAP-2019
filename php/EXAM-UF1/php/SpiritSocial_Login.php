@@ -47,40 +47,39 @@
             <div class='define'>
                 <!--<div id ="logo"> <img src= "../imgs/SpiritSocial.jpg" alt="Logo" height="800px" width="250px"></div>-->
                 <form action="SpiritSocial_Login.php" method="POST">
-
+                    <input type="submit" name="AddNewPub" value="Add New Pub">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="submit" name="RemovePub" value="Remove Pub">
+                    <br><br>
+                    <br><br>
                     <div>
-                        <li>
-                        <p><span class="titulo"> Griezmann rumbo a Barcelona:</span></p>
-                        <br>
-                        <p><span class="titulo"> Griezmann, cuya cláusula de rescisión pasaría de los 120 millones de euros a los 100 millones el uno de julio, firmaría un contrato por cuatro o cinco años, explica el rortativo francés; incluyendo una rebaja salarial (fija los ingresos del delantero en 23 millones de euros anuales.:</span></p>      
-                        <br>
-                        <p><span class="titulo"><img src= "../imgs/Griezman.jpg" alt="Logo" height="250px" width="300px"></span></p>   
-                        <br> 
-
+                        <b><p><span class="titulo"> Griezmann rumbo a Barcelona:</span></p></b>
+                        <p><span class="titulo"> Griezmann, cuya cláusula de rescisión pasaría de los 120 millones de euros a los 100 millones el uno de julio, firmaría un contrato por cuatro o cinco años, explica el rortativo francés; incluyendo una rebaja salarial (fija los ingresos del delantero en 23 millones de euros anuales).</span></p>      
+                        <p><span class="titulo"><img src= "../imgs/Griezman.jpg" alt="Logo" height="400px" width="700px"></span></p>   
                         <input type="submit" name="Like" value="Like">
-                        <br>
                         <p><span class="titulo"> Comment:</span></p>  
                         <textarea name="comment" rows="5" cols="40" <?php echo $comment;?>></textarea>
                         <br><br>
-                        </li>
+                        <br><br>
                     </div>
                     <div>
-                        <li>
-                        <p><span class="titulo"> Griezmann rumbo a Barcelona:</span></p>
-                        <br>
-                        <p><span class="titulo"> Griezmann, cuya cláusula de rescisión pasaría de los 120 millones de euros a los 100 millones el uno de julio, firmaría un contrato por cuatro o cinco años, explica el rortativo francés; incluyendo una rebaja salarial (fija los ingresos del delantero en 23 millones de euros anuales.:</span></p>      
-                        <br>
-                        <p><span class="titulo"><img src= "../imgs/Griezman.jpg" alt="Logo" height="250px" width="300px"></span></p>   
-                        <br> 
-
+                        <b><p><span class="titulo"> Luis Suárez se pierde la final de Copa</span></p></b>
+                        <p><span class="titulo"> El club azulgrana emitió un comunicado en el que aseguraba que la intervención había sido un éxito y que el uruguayo no podrá estar en Sevilla.</span></p>      
+                        <p><span class="titulo"><img src= "../imgs/Suarez.jpg" alt="Logo" height="400px" width="700px"></span></p>   
                         <input type="submit" name="Like" value="Like">
-                        <br>
                         <p><span class="titulo"> Comment:</span></p>  
                         <textarea name="comment" rows="5" cols="40" <?php echo $comment;?>></textarea>
                         <br><br>
-                        </li>
                     </div>
-
+                    <div>
+                        <b><p><span class="titulo"> El Barça acelera los contactos finales por De Ligt</span></p></b>
+                        <p><span class="titulo"> Tras el KO del Ajax en la Champions, el Barça quiere dejarlo todo lista para abordar su contratación cuando termine la Eredivise.</span></p>      
+                        <p><span class="titulo"><img src= "../imgs/DeLigt.jpg" alt="Logo" height="400px" width="700px"></span></p>   
+                        <input type="submit" name="Like" value="Like">
+                        <p><span class="titulo"> Comment:</span></p>  
+                        <textarea name="comment" rows="5" cols="40" <?php echo $comment;?>></textarea>
+                        <br><br>
+                    </div>
 
                 </form>
                 <!--<div style="float:left"> <img src= "../imgs/redesS.png" alt="Logo" height="750px" width="400px"></div>-->
