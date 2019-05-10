@@ -32,18 +32,19 @@
             <header>
                 <div class='define'>
                     <h1>Noticiasss</h1> <!-- Titulo de pagina -->
-                    <form action="Consultar-Noticias_EX.php" method="POST" enctype="multipart/form-data">
-                        <input type="submit" name="MenuPrincipal" value="Menu Principal">
-                        <input type="submit" name="InsertarNoticias" value="Insertar Noticias">
-                        <input type="submit" name="EliminarNoticias" value="Eliminar Noticias">
-                        <br><br>
-                    </form>
+
 
                 </div>
             </header>
     
             <section>
                 <div class='define'>
+                    <form action="Consultar-Noticias_EX.php" method="POST" enctype="multipart/form-data">
+                        <input type="submit" name="MenuPrincipal" value="Menu Principal">
+                        <input type="submit" name="InsertarNoticias" value="Insertar Noticias">
+                        <input type="submit" name="EliminarNoticias" value="Eliminar Noticias">
+                        <br><br>
+                    </form>
                     <!-- Continido de la pagina -->
                     <!--<a href="imgs/Liv-Bar.jpg"> Imagen</a>  esto espara un enlace-->
                     <img src= "imgs/Liv-Bar.jpg"  alt="Barca">

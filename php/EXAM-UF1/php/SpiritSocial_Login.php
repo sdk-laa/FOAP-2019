@@ -11,6 +11,10 @@
         header('Location:SpiritSocial.php');           
     }
 
+    if(isset($_REQUEST['AddNewPub'])){
+        header('Location:SpiritSocial_AddNewPub.php');
+    }
+
     if(isset($_SESSION["login"]) && ($_SESSION["login"]==true)){
         if(($_SESSION["ValidUser"]=="sdk") && ($_SESSION["ValidPassword"]==md5("Sdk1234!"))){
 
@@ -55,7 +59,7 @@
                     <div>
                         <b><p><span class="titulo"> Griezmann rumbo a Barcelona:</span></p></b>
                         <p><span class="titulo"> Griezmann, cuya cláusula de rescisión pasaría de los 120 millones de euros a los 100 millones el uno de julio, firmaría un contrato por cuatro o cinco años, explica el rortativo francés; incluyendo una rebaja salarial (fija los ingresos del delantero en 23 millones de euros anuales).</span></p>      
-                        <p><span class="titulo"><img src= "../imgs/Griezman.jpg" alt="Logo" height="400px" width="700px"></span></p>   
+                        <p><img src= "../imgs/Griezman.jpg" alt="Logo" height="400px" width="700px"></p>   
                         <input type="submit" name="Like" value="Like">
                         <p><span class="titulo"> Comment:</span></p>  
                         <textarea name="comment" rows="5" cols="40" <?php echo $comment;?>></textarea>
@@ -65,7 +69,7 @@
                     <div>
                         <b><p><span class="titulo"> Luis Suárez se pierde la final de Copa</span></p></b>
                         <p><span class="titulo"> El club azulgrana emitió un comunicado en el que aseguraba que la intervención había sido un éxito y que el uruguayo no podrá estar en Sevilla.</span></p>      
-                        <p><span class="titulo"><img src= "../imgs/Suarez.jpg" alt="Logo" height="400px" width="700px"></span></p>   
+                        <p><img src= "../imgs/Suarez.jpg" alt="Logo" height="400px" width="700px"></p>   
                         <input type="submit" name="Like" value="Like">
                         <p><span class="titulo"> Comment:</span></p>  
                         <textarea name="comment" rows="5" cols="40" <?php echo $comment;?>></textarea>
@@ -74,7 +78,7 @@
                     <div>
                         <b><p><span class="titulo"> El Barça acelera los contactos finales por De Ligt</span></p></b>
                         <p><span class="titulo"> Tras el KO del Ajax en la Champions, el Barça quiere dejarlo todo lista para abordar su contratación cuando termine la Eredivise.</span></p>      
-                        <p><span class="titulo"><img src= "../imgs/DeLigt.jpg" alt="Logo" height="400px" width="700px"></span></p>   
+                        <p><img src= "../imgs/DeLigt.jpg" alt="Logo" height="400px" width="700px"></p> 
                         <input type="submit" name="Like" value="Like">
                         <p><span class="titulo"> Comment:</span></p>  
                         <textarea name="comment" rows="5" cols="40" <?php echo $comment;?>></textarea>
@@ -94,9 +98,7 @@
     </footer>
 
     <?php
-                if(isset($_REQUEST['AddPub'])){
-                    header('Location:SpiritSocial_AddPub.php');
-                }
+
             
             }
         }

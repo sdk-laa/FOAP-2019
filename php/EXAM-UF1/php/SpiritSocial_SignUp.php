@@ -10,6 +10,8 @@
    $Rcorrecto=false;
    $ValidDate=true;
 
+   require("SpiritSocial_Functions.php");
+
    if (isset($_REQUEST["login"])){
     header('Location:SpiritSocial.php');
     } 
@@ -112,47 +114,6 @@
  
     }
 
-    function validateDate($fecha){
-        $d = strtotime($fecha);
-        return ($d>=1) ? 1 : 0;
-    }
-
-
-    function calcularEdad($fecha){
-        list($ano,$mes,$dia) = explode("-",$fecha);
-        $ano_diferencia = date("Y") - $ano;
-        $mes_diferencia = date("m") - $mes;
-        $dia_diferencia = date("d") - $dia;
-            if ($dia_diferencia < 0 && $mes_diferencia <= 0)
-                $ano_diferencia--;
-        return $ano_diferencia;
-    }
-
-    function valida_contrasena($Password,$Errores){
-        if(strlen($Password) < 6 || strlen($Password) > 8){
-            $Errores = $Errores . "<li>La contraseña debe tener entre 6 y 8 caracteres</li>";
-        }
-        if (!preg_match('/[a-z]/',$Password)){
-            $Errores = $Errores . "<li>La contraseña debe tener al menos una letra minúscula</li>";
-        }
-        if (!preg_match('/[A-Z]/',$Password)){
-            $Errores = $Errores . "<li>La contraseña debe tener al menos una letra mayúscula</li>";
-        }
-        if (!preg_match('/[0-9]/',$Password)){
-            $Errores = $Errores . "<li>La contraseña debe tener al menos un caracter numérico</li>";
-        }
-        if (!preg_match('/[#~$%!]/',$Password)){
-            $Errores = $Errores . "<li>La contraseña debe tener al menos un caracter de estos ' #~$%!& '</li>";
-        }
-        return $Errores;
-    }
-
-    function test_input($data) {
-        $data = trim($data);
-        $data = stripslashes($data);
-        $data = htmlspecialchars($data);
-        return $data;
-      }
 ?>
 
 
@@ -176,8 +137,8 @@
             <section>
                 <div class='define'>
                     <div id ="logo"> <img src= "../imgs/SpiritSocial.jpg" alt="Logo" height="500px" width="500px"></div>
-                    <h2><p><span class="Titulo"> Registrar nueva cuenta</span></p></h2>
-                    <p><span class="error">* Campo obligatorio</span></p>
+                    <h2><p><span class="Titulo"> Register new account</span></p></h2>
+                    <p><span class="error">* Obligatory field</span></p>
 
                     <form action="SpiritSocial_SignUp.php" method="POST">
                         Name:     <input type="text" name="name" value="<?php echo $name;?>">
