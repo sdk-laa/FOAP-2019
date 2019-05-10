@@ -1,15 +1,15 @@
 <?php
     if(isset($_REQUEST["submit"])){ 
-        print_r($_FILES);
-        echo "<br>^<br>";
+        //print_r($_FILES);
+        //echo "<br>^<br>";
         if(!is_uploaded_file($_FILES['fichero']['tmp_name'])){
             echo "otro error";
         }
         $dir_subida = 'imgs/';
         $fichero_subido = $dir_subida . time()."_".basename($_FILES['fichero']['name']);
         if (move_uploaded_file($_FILES['fichero']['tmp_name'], $fichero_subido)) {
-            echo "El fichero es válido y se subió con éxito.\n";
-            echo "<a href=\"$fichero_subido\">imagen</a>";
+            //echo "El fichero es válido y se subió con éxito.\n";
+            //echo "<a href=\"$fichero_subido\">imagen</a>";
             echo "<img src=\"$fichero_subido\">";
         } else {
             echo "¡error!\n";

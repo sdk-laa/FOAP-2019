@@ -62,7 +62,7 @@
                         <p><span> y que el uruguayo no podrá estar en Sevilla.</span></p>      
                         <p><img src= "../imgs/Suarez.jpg" alt="Logo" height="400px" width="700px"></p>   
                         <input type="submit" name="Like" value="Like">
-                        <p><span class="titulo"> Comment:</span></p>  
+                        <p><span> Comment:</span></p>  
                         <textarea name="comment" rows="5" cols="40" <?php echo $comment;?>></textarea>
                         <br><br>
                     </div>
@@ -72,7 +72,7 @@
                         <p><span>su contratación cuando termine la Eredivise.</span></p>      
                         <p><img src= "../imgs/DeLigt.jpg" alt="Logo" height="400px" width="700px"></p> 
                         <input type="submit" name="Like" value="Like">
-                        <p><span class="titulo"> Comment:</span></p>  
+                        <p><span> Comment:</span></p>  
                         <textarea name="comment" rows="5" cols="40" <?php echo $comment;?>></textarea>
                         <br><br>
                     </div>
@@ -82,7 +82,7 @@
                         <p><span> La debacle en Champions refuerza la idea de poner competencia y fichar gol en la delantera.</span></p> 
                         <p><img src= "../imgs/Griezman.jpg" alt="Logo" height="400px" width="700px"></p>   
                         <input type="submit" name="Like" value="Like">
-                        <p><span class="titulo"> Comment:</span></p>  
+                        <p><span> Comment:</span></p>  
                         <textarea name="comment" rows="5" cols="40" <?php echo $comment;?>></textarea>
                         <br><br>
                         <br><br>

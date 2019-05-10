@@ -6,6 +6,7 @@
     // Declaracion de variables:
     $Title=$Description=$Image="";
     $TitleError=$DescriptionError=$ImageError="";
+    $ShowImage=false;
 
     require("SpiritSocial_Functions.php");
         
@@ -20,9 +21,17 @@
             header('Location:SpiritSocial_Login_OK.php');
         }
 
+
+
+/*         if(($TitleError=="") && ($DescriptionError=="") && ($ImageError=="")){
+            $_SESSION["Upload Pub"]=true;
+            $ShowImage=true;
+        } */
+
         if(isset($_SESSION["login"]) && ($_SESSION["login"]==true)){
             if(($_SESSION["ValidUser"]=="sdk") && ($_SESSION["ValidPassword"]==md5("Sdk1234!"))){
                 if(isset($_REQUEST["UploadPub"])){
+
                     if (empty($_POST["Title"])) {
                         $TitleError = "Title is required";
                     } 
@@ -39,30 +48,31 @@
                             $DescriptionError=valida_Description($Description,$DescriptionError);
                     }
 
-                    if(isset($_REQUEST["UploadImage"])){ 
-                        print_r($_FILES);
-                        echo "<br>^<br>";
-                        if(!is_uploaded_file($_FILES['Image']['tmp_name'])){
-                            echo "otro error";
-                        }
-                        $dir_subida = '../imgs/';
-                        $Image_Upload = $dir_subida . time()."_".basename($_FILES['Image']['name']);
-                        if (move_uploaded_file($_FILES['Image']['tmp_name'], $Image_Upload)) {
-                            echo "La Imagen es válida y se subió con éxito.\n";
-                            echo "<a href=\"$Image_Upload\">imagen</a>";
-                            echo "<img src=\"$Image_Upload\">";
-                        } else {
-                            echo "¡error!\n";
-                        }
-                    }else{
-                        $ImageError="Image is required";
+                    if(empty($_REQUEST["Image"])){
+                        $ImageError="Image is required"; 
                     }
-                    if(($TitleError=="") && ($DescriptionError=="") && ($ImageError=="")){
-                        $_SESSION["Upload Pub"]=true;
-                        echo "<a href=\"$Image_Upload\">imagen</a>";
-                        echo "<img src=\"$Image_Upload\">";
-                        }
-                    } 
+
+                    if(!is_uploaded_file($_FILES['Image']['tmp_name'])){
+                        echo "otro error";
+                    }
+                    $dir_subida = '../imgs/';
+                    $Image_Upload = $dir_subida . time()."_".basename($_FILES['Image']['name']);
+                    if (move_uploaded_file($_FILES['Image']['tmp_name'], $Image_Upload)) {
+                        $ShowImage=true;
+                    }
+                    else {
+                            $ShowImage=false;
+                    }
+
+                    $_SESSION["Title"]=$_REQUEST["Title"];
+                    $_SESSION["Description"]=$_REQUEST["Description"];
+                    $_SESSION["Image"]=$_REQUEST["Image"];
+                
+                }
+
+
+        
+                
        
     
 ?>
@@ -94,8 +104,6 @@
                     <div id ="logo"> <img src= "../imgs/SpiritSocial.jpg" alt="Logo" height="450px" width="500px"></div>
                     <div>
                     <form action="SpiritSocial_AddNewPub.php" method="POST" enctype="multipart/form-data">
-                        <input type="submit" name="UploadPub" value="Upload Pub">
-                        &nbsp;&nbsp;
                         <input type="submit" name="MainMenu" value="Main Menu">
                         <br><br>
                         <br><br>
@@ -107,15 +115,39 @@
                         Title:     <input type="text" name="Title" value="<?php echo $Title;?>">
                         <span class="error">* <?php echo $TitleError;?></span>
                         <br><br>
-                        Description: <input type="text" name="Description" value="<?php echo $Description;?>">
+                        Description: <textarea name="Description" rows="5" cols="30" ></textarea> 
                         <span class="error">* <?php echo $DescriptionError;?></span>
                         <br><br>
                         IMAGE:
                         <input type="file" name="Image"><br>
-                        <input type="submit" name="UploadImage" value="Upload Image">
                         <span class="error">* <?php echo $ImageError;?></span>
+                        <br><br>
+                        <br><br>
+                        <br><br>
+                        <p>Click the button "Upload Pub" to Upload a new publication.</p>
+                        <input type="submit" name="UploadPub" value="Upload Pub">
                     </form> 
-                    </div>   
+                    </div> 
+                    <?php
+                        if($ShowImage==true){
+                            echo'<script type="text/javascript">
+                            alert("Tarea Guardada");
+                            window.location.href="SpiritSocial_SeeNewPub.php";
+                            </script>';
+                           ?>
+                            
+                            
+
+                            
+                            
+
+                    <?php        
+                        //echo "Titulo: ". $Title;
+                        //echo "Description: ". $Description;
+                        //echo "<img src=\"$Image_Upload\">"; 
+                        }
+                    
+                    ?>
                 </div>
             </section>
         </div>

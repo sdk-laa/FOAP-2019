@@ -60,5 +60,9 @@
         return $DescriptionError;
     }
 
+    function AlertFunction() {
+        alert("La publicacion se ha subido correctamente clica en acceptar para ver la nueva publicacion");
+      }
+
 
 ?>
