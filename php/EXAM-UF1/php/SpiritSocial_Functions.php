@@ -50,15 +50,14 @@
         return $TitleError;
     }
 
-    function valida_Description($Description,$DescriptionError){  //Funcion para validar la descripcion con minimo 50 caracteres y que lleve solo caracteres
-        if(strlen($Description) < 50 ){
-            $DescriptionError = $DescriptionError . "<li>The Description must have a minimum of 50 characters</li>";
+    function valida_Description($Description,$DescriptionError){  //Funcion para validar la descripcion con minimo 500 caracteres y que lleve solo caracteres
+        if(strlen($Description) < 500 ){
+            $DescriptionError = $DescriptionError . "<li>The Description must have a minimum of 500 characters</li>";
         }
         if (!preg_match("/^[a-zA-Z ]*$/",$Description)) {
             $DescriptionError = $DescriptionError . "<li>Only letters and white space allowed</li>"; 
         } 
         return $DescriptionError;
     }
-
 
 ?>

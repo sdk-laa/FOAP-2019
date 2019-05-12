@@ -3,7 +3,9 @@
 ?>
 
 <?php
-    $comment="";
+    $comment1=$comment2=$comment3=$comment4="";
+
+    require("SpiritSocial_Functions.php");
 
     if(isset($_REQUEST["Logout"])){
         session_destroy();
@@ -18,6 +20,18 @@
 
     if(isset($_SESSION["login"]) && ($_SESSION["login"]==true)){
         if(($_SESSION["ValidUser"]=="sdk") && ($_SESSION["ValidPassword"]==md5("Sdk1234!"))){
+            if (!empty($_POST["Comment1"])) {
+                $comment1 = test_input($_POST["Comment1"]);
+            }
+            if (!empty($_POST["Comment2"])) {
+                $comment2 = test_input($_POST["Comment2"]);
+            } 
+            if (!empty($_POST["Comment3"])) {
+                $comment3 = test_input($_POST["Comment3"]);
+            }
+            if (!empty($_POST["Comment4"])) {
+                $comment4 = test_input($_POST["Comment4"]);
+            }
 
 ?>
 
@@ -40,10 +54,8 @@
                 <div style= "text-align:right"> 
                     Bienvenido.......... <?=$_SESSION["ValidUser"]?>
                     <a href="SpiritSocial_Login_OK.php?Logout">[Logout]</a>
-                </div>
-                
+                </div>  
             </div>
-
         </header>
 
 
@@ -59,30 +71,76 @@
                         <p><h2> Luis Suárez se pierde la final de Copa</h2></p>
                         <p><b> El club azulgrana emitió un comunicado en el que aseguraba que la intervención había sido un éxito</p>
                         <p> y que el uruguayo no podrá estar en Sevilla.</b></p>      
-                        <p><img src= "../imgs/Suarez.jpg" alt="Logo" height="400px" width="700px"></p>   
-                        <p><input type="submit" name="Like" value="Like"></p>
-                        <p><span> Comment:</span></p>  
-                        <textarea name="comment" rows="5" cols="60" <?php echo $comment;?>></textarea>
+                        <p><img src= "../imgs/Suarez.jpg" alt="Logo" height="400px" width="700px"></p>
+                        <script language="javascript">
+                            var LikeCount_1 = 0;
+                            function contador1(){
+                                LikeCount_1 = LikeCount_1 + 1;
+                                var btn = document.getElementById("boton1");
+                                btn.value = "Like (" + LikeCount_1 + ")";
+                                //document.writeln(LikeCount_1);
+                            }
+                        </script>
+                        <p><input type="button" id="boton1" value="Like" onclick="javascript: contador1()" /></p>   
+                        <p><span> Comment:</span></p>
+                        <p><input type="text" name="Comment1" size="50" maxlength="100" value="<?php echo $comment1;?>"></p>
+                        <p><input type="submit" name="AddComment1" value="Add Comment"></p>
+                        <?php 
+                            if(isset($_REQUEST["AddComment1"])){
+                                echo $comment1;
+                            } 
+                        ?>  
+                        <!--<textarea name="comment" rows="5" cols="60"></textarea>-->
                         <br><br>
                     </div>
                     <div>
                         <p><h2> El Barça acelera los contactos finales por De Ligt</span></h2></p>
                         <p><b> Tras el KO del Ajax en la Champions, el Barça quiere dejarlo todo lista para abordar</p>
                         <p>su contratación cuando termine la Eredivise.</p></b>      
-                        <p><img src= "../imgs/DeLigt.jpg" alt="Logo" height="400px" width="700px"></p> 
-                        <p><input type="submit" name="Like" value="Like"></p>
+                        <p><img src= "../imgs/DeLigt.jpg" alt="Logo" height="400px" width="700px"></p>
+                        <script language="javascript">
+                            var LikeCount_2 = 0;
+                            function contador2(){
+                                LikeCount_2 = LikeCount_2 + 1;
+                                var btn = document.getElementById("boton2");
+                                btn.value = "Like (" + LikeCount_2 + ")";
+                            }
+                        </script>
+                        <p><input type="button" id="boton2" value="Like" onclick="javascript: contador2()" /></p>
                         <p><span> Comment:</span></p>  
-                        <textarea name="comment" rows="5" cols="60" <?php echo $comment;?>></textarea>
+                        <p><input type="text" name="Comment2" size="50" maxlength="100" value="<?php echo $comment2;?>"></p>
+                        <p><input type="submit" name="AddComment2" value="Add Comment"></p>
+                        <?php 
+                            if(isset($_REQUEST["AddComment2"])){
+                                echo $comment2;
+                            } 
+                        ?>   
+                        <!--<textarea name="comment" rows="5" cols="60"></textarea>-->
                         <br><br>
                     </div>
                     <div>
                         <p><h2> Griezmann rumbo a Barcelona:</span></h2></p>
                         <p><b>El francés concita el quorum en el área técnica del Barça por su calidad, experiencia y precio.</p>      
                         <p> La debacle en Champions refuerza la idea de poner competencia y fichar gol en la delantera.</b></p> 
-                        <p><img src= "../imgs/Griezman.jpg" alt="Logo" height="400px" width="700px"></p>   
-                        <p><input type="submit" name="Like" value="Like"></p>
+                        <p><img src= "../imgs/Griezman.jpg" alt="Logo" height="400px" width="700px"></p>
+                        <script language="javascript">
+                            var LikeCount_3 = 0;
+                            function contador3(){
+                                LikeCount_3 = LikeCount_3 + 1;
+                                var btn = document.getElementById("boton3");
+                                btn.value = "Like (" + LikeCount_3 + ")";
+                            }
+                        </script>   
+                        <p><input type="button" id="boton3" value="Like" onclick="javascript: contador3()" /></p>
                         <p><span> Comment:</span></p>  
-                        <textarea name="comment" rows="5" cols="60" <?php echo $comment;?>></textarea>
+                        <p><input type="text" name="Comment3" size="50" maxlength="100" value="<?php echo $comment3;?>"></p>
+                        <p><input type="submit" name="AddComment2" value="Add Comment"></p>
+                        <?php 
+                            if(isset($_REQUEST["AddComment3"])){
+                                echo $comment3;
+                            } 
+                        ?>   
+                        <!--<textarea name="comment" rows="5" cols="60"></textarea>-->
                         <br><br>
                         <br><br>
                     </div>
@@ -99,9 +157,24 @@
                                 echo "<br>";
                                 echo "<img src=\"$Image\">";
                         ?>
-                                <p><input type="submit" name="Like" value="Like"></p> 
+                                <script language="javascript">
+                                    var LikeCount_4 = 0;
+                                    function contador4(){
+                                        LikeCount_4 = LikeCount_4 + 1;
+                                        var btn = document.getElementById("boton4");
+                                        btn.value = "Like (" + LikeCount_4 + ")";
+                                    }
+                                </script>
+                                <p><input type="button" id="boton4" value="Like" onclick="javascript: contador4()" /></p> 
                                 <p><span> Comment:</span></p>  
-                                <textarea name="comment" rows="5" cols="60" <?php echo $comment;?>></textarea>
+                                <p><input type="text" name="Comment4" size="50" maxlength="100" value="<?php echo $comment4;?>"></p>
+                                <p><input type="submit" name="AddComment4" value="Add Comment"></p>
+                                <?php 
+                                    if(isset($_REQUEST["AddComment1"])){
+                                        echo $comment1;
+                                    } 
+                                ?>   
+                                <!--<textarea name="comment" rows="5" cols="60"></textarea>-->
                                 <br><br>
                                 <br><br>
                         <?php

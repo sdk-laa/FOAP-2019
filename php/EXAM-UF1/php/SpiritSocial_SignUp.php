@@ -101,7 +101,7 @@
             $_SESSION["ValidPassword"]=md5("Sdk1234!");
         }    
 
-        if (empty($nameError) && empty($ApellidoError) && empty($emailError) && empty($EdadError) && empty($UserError) && empty($PasswordError) && empty($RPasswordError) && empty($Errores) && $Registar==true){
+        if (empty($nameError) && empty($ApellidoError) && empty($emailError) && empty($fechaError) && empty($UserError) && empty($PasswordError) && empty($RPasswordError) && empty($Errores) && $Registar==true){
             $Rcorrecto=true;
         }
         else{

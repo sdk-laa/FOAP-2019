@@ -4,7 +4,7 @@
 
 <?php
     // Declaracion de variables:
-    $Title=$Description=$Image=$comment="";
+    $Title=$Description=$Image=$comment4="";
 
     require("SpiritSocial_Functions.php");
         
@@ -21,6 +21,9 @@
 
         if(isset($_SESSION["login"]) && ($_SESSION["login"]==true)){
             if(($_SESSION["ValidUser"]=="sdk") && ($_SESSION["ValidPassword"]==md5("Sdk1234!"))){
+                if (!empty($_POST["Comment4"])) {
+                    $comment4 = test_input($_POST["Comment4"]);
+                }
         
 ?>
 
@@ -67,9 +70,25 @@
                                 echo "<img src=\"$Image\">";
                                 
                         ?>
-                                <p><input type="submit" name="Like" value="Like"></p> 
-                                <p><span> Comment:</span></p>  
-                                <textarea name="comment" rows="5" cols="60" <?php echo $comment;?>></textarea>
+                                <script language="javascript">
+                                    var LikeCount_4 = 0;
+                                    function contador4(){
+                                        LikeCount_4 = LikeCount_4 + 1;
+                                        var btn = document.getElementById("boton4");
+                                        btn.value = "Like (" + LikeCount_4 + ")";
+                                        <?php echo("LikeCount_4");?>
+                                    }
+                                </script>
+                                <p><input type="button" id="boton4" value="Like" onclick="javascript: contador4()" /></p> 
+                                <p><span> Comment:</span></p>
+                                <p><input type="text" name="Comment4" size="50" maxlength="100" value="<?php echo $comment4;?>"></p>
+                                <p><input type="submit" name="AddComment4" value="Add Comment"></p> 
+                                <?php 
+                                    if(isset($_REQUEST["AddComment4"])){
+                                        echo $comment4;
+                                    } 
+                                ?>  
+                                <!--<textarea name="comment" rows="5" cols="60"></textarea>-->
                                 <br><br>
                                 <br><br>
                         <input type="submit" name="submit" value="AddPubToWall">
