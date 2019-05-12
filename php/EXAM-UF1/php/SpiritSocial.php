@@ -128,6 +128,8 @@
                     <br>
                     <input type="submit" name="Registrar" value="Sign Up">
                     <br>
+                    <br><br>
+                    <div style="float:left"> <img src= "../imgs/SpiritSocial-2.jpg" alt="Logo" height="200px" width="960px"></div>
                     
                 </form>
             </div>
