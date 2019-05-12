@@ -25,9 +25,9 @@ section {
     /* Definimos un padding superior */
     padding-top:30px;
     /*  
-        display:block; */
+        display:block; 
         background-color: lightblue; 
-   
+    */
 }
 footer {
     position: relative;

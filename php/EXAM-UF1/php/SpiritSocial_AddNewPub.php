@@ -119,11 +119,11 @@
                     </div> 
                     <?php
                         if($ShowImage==true){
-/*                             echo'<script type="text/javascript">
+                            echo'<script type="text/javascript">
                             alert("Publication successfully uploaded. Click on the [Accept] button to see it."); 
                             window.location.href="SpiritSocial_SeeNewPub.php";
-                            </script>'; */
-                            header("location:SpiritSocial_SeeNewPub.php");
+                            </script>'; 
+                            //header("location:SpiritSocial_SeeNewPub.php");
         
                         }
                     ?>
