@@ -19,7 +19,6 @@
     if(isset($_SESSION["login"]) && ($_SESSION["login"]==true)){
         if(($_SESSION["ValidUser"]=="sdk") && ($_SESSION["ValidPassword"]==md5("Sdk1234!"))){
 
-     
 ?>
 
 
@@ -57,9 +56,9 @@
                     <br><br>
                     <br><br>
                     <div>
-                        <b><p><h1><span class="titulo"> Luis Suárez se pierde la final de Copa</span></h1></p>
-                        <p><span> El club azulgrana emitió un comunicado en el que aseguraba que la intervención había sido un éxito</span></p>
-                        <p><span> y que el uruguayo no podrá estar en Sevilla.</span></p>      
+                        <p><h2> Luis Suárez se pierde la final de Copa</h2></p>
+                        <p><b> El club azulgrana emitió un comunicado en el que aseguraba que la intervención había sido un éxito</p>
+                        <p> y que el uruguayo no podrá estar en Sevilla.</b></p>      
                         <p><img src= "../imgs/Suarez.jpg" alt="Logo" height="400px" width="700px"></p>   
                         <p><input type="submit" name="Like" value="Like"></p>
                         <p><span> Comment:</span></p>  
@@ -67,9 +66,9 @@
                         <br><br>
                     </div>
                     <div>
-                        <b><p><h1><span class="titulo"> El Barça acelera los contactos finales por De Ligt</span></h1></p>
-                        <p><span> Tras el KO del Ajax en la Champions, el Barça quiere dejarlo todo lista para abordar</span></p>
-                        <p><span>su contratación cuando termine la Eredivise.</span></p>      
+                        <p><h2> El Barça acelera los contactos finales por De Ligt</span></h2></p>
+                        <p><b> Tras el KO del Ajax en la Champions, el Barça quiere dejarlo todo lista para abordar</p>
+                        <p>su contratación cuando termine la Eredivise.</p></b>      
                         <p><img src= "../imgs/DeLigt.jpg" alt="Logo" height="400px" width="700px"></p> 
                         <p><input type="submit" name="Like" value="Like"></p>
                         <p><span> Comment:</span></p>  
@@ -77,9 +76,9 @@
                         <br><br>
                     </div>
                     <div>
-                        <p><h1><span class="titulo"> Griezmann rumbo a Barcelona:</span></h1></p>
-                        <p><span> El francés concita el quorum en el área técnica del Barça por su calidad, experiencia y precio.</span></p>      
-                        <p><span> La debacle en Champions refuerza la idea de poner competencia y fichar gol en la delantera.</span></p> 
+                        <p><h2> Griezmann rumbo a Barcelona:</span></h2></p>
+                        <p><b>El francés concita el quorum en el área técnica del Barça por su calidad, experiencia y precio.</p>      
+                        <p> La debacle en Champions refuerza la idea de poner competencia y fichar gol en la delantera.</b></p> 
                         <p><img src= "../imgs/Griezman.jpg" alt="Logo" height="400px" width="700px"></p>   
                         <p><input type="submit" name="Like" value="Like"></p>
                         <p><span> Comment:</span></p>  
@@ -93,8 +92,8 @@
                                 $Image=$_SESSION["Image"]; 
    
                         ?> 
-                                <p><h1><span class="titulo"> <?=$_SESSION["Title"]?>:</span></h1></p>
-                                <p><span> <?=$_SESSION["Description"]?>.</span></p> 
+                                <p><h2> <?=$_SESSION["Title"]?>:</h2></p>
+                                <p><b> <?=$_SESSION["Description"]?>.</b></p> 
 
                         <?php
                                 echo "<br>";

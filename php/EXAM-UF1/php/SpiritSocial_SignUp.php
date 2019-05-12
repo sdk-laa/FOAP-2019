@@ -132,7 +132,7 @@
             <section>
                 <div class='define'>
                     <div id ="logo"> <img src= "../imgs/SpiritSocial.jpg" alt="Logo" height="500px" width="500px"></div>
-                    <h2><p><span class="Titulo"> Register new account</span></p></h2>
+                    <h2><p> Register new account</span></p></h2>
                     <p><span class="error">* Obligatory field</span></p>
 
                     <form action="SpiritSocial_SignUp.php" method="POST">

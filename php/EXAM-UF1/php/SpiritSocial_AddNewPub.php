@@ -94,26 +94,28 @@
                         <br><br>
                         <br><br>
                         
-                        <h2><p><span class="Titulo"> Add New Pub</span></p></h2>
+                        <p><h2> Add New Pub</h2></p>
                         <br><br>
                         <p><span class="error">* Obligatory field</span></p>
                         <br>
-                        <p><span class="Titulo">Title:</span></p>     
-                        <br><input type="text" name="Title" value="<?php echo $Title;?>">
+                        <p>Title:</p>   
+                        <input type="text" name="Title" value="<?php echo $Title;?>">
                         <span class="error">* <?php echo $TitleError;?></span>
                         <br><br>
-                        Description: 
-                        <br><textarea name="Description" rows="5" cols="60" ></textarea> 
+                        <p>Description:</p> 
+                        <textarea name="Description" rows="5" cols="60" ></textarea> 
                         <span class="error">* <?php echo $DescriptionError;?></span>
                         <br><br>
-                        IMAGE:
-                        <br><input type="file" name="Image"><br>
+                        </p>Image:</p>
+                        <input type="file" name="Image"><br>
                         <span class="error">* <?php echo $ImageError;?></span>
                         <br><br>
                         <br><br>
-                        <br><br>
                         <p>Click the button "Upload Pub" to Upload a new publication.</p>
-                        <input type="submit" name="UploadPub" value="Upload Pub">
+                        <p><input type="submit" name="UploadPub" value="Upload Pub"></p>
+                        <br><br>
+                        <div style="float:left"> <img src= "../imgs/SpiritSocial-2.jpg" alt="Logo" height="200px" width="960px"></div>
+
                     </form> 
                     </div> 
                     <?php
