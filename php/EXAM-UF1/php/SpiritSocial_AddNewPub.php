@@ -98,14 +98,16 @@
                         <br><br>
                         <p><span class="error">* Obligatory field</span></p>
                         <br>
-                        Title:     <input type="text" name="Title" value="<?php echo $Title;?>">
+                        <p><span class="Titulo">Title:</span></p>     
+                        <br><input type="text" name="Title" value="<?php echo $Title;?>">
                         <span class="error">* <?php echo $TitleError;?></span>
                         <br><br>
-                        Description: <textarea name="Description" rows="5" cols="60" ></textarea> 
+                        Description: 
+                        <br><textarea name="Description" rows="5" cols="60" ></textarea> 
                         <span class="error">* <?php echo $DescriptionError;?></span>
                         <br><br>
                         IMAGE:
-                        <input type="file" name="Image"><br>
+                        <br><input type="file" name="Image"><br>
                         <span class="error">* <?php echo $ImageError;?></span>
                         <br><br>
                         <br><br>
