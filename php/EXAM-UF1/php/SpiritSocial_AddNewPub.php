@@ -21,13 +21,6 @@
             header('Location:SpiritSocial_Login_OK.php');
         }
 
-
-
-/*         if(($TitleError=="") && ($DescriptionError=="") && ($ImageError=="")){
-            $_SESSION["Upload Pub"]=true;
-            $ShowImage=true;
-        } */
-
         if(isset($_SESSION["login"]) && ($_SESSION["login"]==true)){
             if(($_SESSION["ValidUser"]=="sdk") && ($_SESSION["ValidPassword"]==md5("Sdk1234!"))){
                 if(isset($_REQUEST["UploadPub"])){
@@ -66,15 +59,8 @@
 
                     $_SESSION["Title"]=$_REQUEST["Title"];
                     $_SESSION["Description"]=$_REQUEST["Description"];
-                    $_SESSION["Image"]=$_REQUEST["Image"];
-                
+                    $_SESSION["Image"]=$Image_Upload;
                 }
-
-
-        
-                
-       
-    
 ?>
 
 
@@ -115,7 +101,7 @@
                         Title:     <input type="text" name="Title" value="<?php echo $Title;?>">
                         <span class="error">* <?php echo $TitleError;?></span>
                         <br><br>
-                        Description: <textarea name="Description" rows="5" cols="30" ></textarea> 
+                        Description: <textarea name="Description" rows="5" cols="60" ></textarea> 
                         <span class="error">* <?php echo $DescriptionError;?></span>
                         <br><br>
                         IMAGE:
@@ -131,22 +117,11 @@
                     <?php
                         if($ShowImage==true){
                             echo'<script type="text/javascript">
-                            alert("Tarea Guardada");
+                            alert("Publication successfully uploaded. Click on the [Accept] button to see it."); 
                             window.location.href="SpiritSocial_SeeNewPub.php";
                             </script>';
-                           ?>
-                            
-                            
-
-                            
-                            
-
-                    <?php        
-                        //echo "Titulo: ". $Title;
-                        //echo "Description: ". $Description;
-                        //echo "<img src=\"$Image_Upload\">"; 
+        
                         }
-                    
                     ?>
                 </div>
             </section>
@@ -157,16 +132,13 @@
                 <p>Al hacer clic en Registrar, aceptas nuestras Condiciones. Obtén más información sobre cómo recopilamos, usamos y compartimos tu información en la Política de datos, así como el uso que hacemos de las cookies y tecnologías similares en nuestra Política de cookies.</p>
             </div>
         </footer>
-        <?php
-                
+        <?php    
            
             }
         }
         else{
             header('Location:SpiritSocial.php');           
         }
-
-        
         ?>
     </body>
 </html>

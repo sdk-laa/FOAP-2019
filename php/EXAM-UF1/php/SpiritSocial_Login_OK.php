@@ -4,6 +4,7 @@
 
 <?php
     $comment="";
+
     if(isset($_REQUEST["Logout"])){
         session_destroy();
         setcookie("CookieUser",0,1);
@@ -49,7 +50,6 @@
 
         <section>
             <div class='define'>
-                <!--<div id ="logo"> <img src= "../imgs/SpiritSocial.jpg" alt="Logo" height="800px" width="250px"></div>-->
                 <form action="SpiritSocial_Login_OK.php" method="POST">
                     <input type="submit" name="AddNewPub" value="Add New Pub">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -57,40 +57,61 @@
                     <br><br>
                     <br><br>
                     <div>
-                        <b><p><span class="titulo"> Luis Suárez se pierde la final de Copa</span></p></b>
+                        <b><p><h1><span class="titulo"> Luis Suárez se pierde la final de Copa</span></h1></p>
                         <p><span> El club azulgrana emitió un comunicado en el que aseguraba que la intervención había sido un éxito</span></p>
                         <p><span> y que el uruguayo no podrá estar en Sevilla.</span></p>      
                         <p><img src= "../imgs/Suarez.jpg" alt="Logo" height="400px" width="700px"></p>   
-                        <input type="submit" name="Like" value="Like">
+                        <p><input type="submit" name="Like" value="Like"></p>
                         <p><span> Comment:</span></p>  
-                        <textarea name="comment" rows="5" cols="40" <?php echo $comment;?>></textarea>
+                        <textarea name="comment" rows="5" cols="60" <?php echo $comment;?>></textarea>
                         <br><br>
                     </div>
                     <div>
-                        <b><p><span class="titulo"> El Barça acelera los contactos finales por De Ligt</span></p></b>
+                        <b><p><h1><span class="titulo"> El Barça acelera los contactos finales por De Ligt</span></h1></p>
                         <p><span> Tras el KO del Ajax en la Champions, el Barça quiere dejarlo todo lista para abordar</span></p>
                         <p><span>su contratación cuando termine la Eredivise.</span></p>      
                         <p><img src= "../imgs/DeLigt.jpg" alt="Logo" height="400px" width="700px"></p> 
-                        <input type="submit" name="Like" value="Like">
+                        <p><input type="submit" name="Like" value="Like"></p>
                         <p><span> Comment:</span></p>  
-                        <textarea name="comment" rows="5" cols="40" <?php echo $comment;?>></textarea>
+                        <textarea name="comment" rows="5" cols="60" <?php echo $comment;?>></textarea>
                         <br><br>
                     </div>
                     <div>
-                        <b><p><span class="titulo"> Griezmann rumbo a Barcelona:</span></p></b>
+                        <p><h1><span class="titulo"> Griezmann rumbo a Barcelona:</span></h1></p>
                         <p><span> El francés concita el quorum en el área técnica del Barça por su calidad, experiencia y precio.</span></p>      
                         <p><span> La debacle en Champions refuerza la idea de poner competencia y fichar gol en la delantera.</span></p> 
                         <p><img src= "../imgs/Griezman.jpg" alt="Logo" height="400px" width="700px"></p>   
-                        <input type="submit" name="Like" value="Like">
+                        <p><input type="submit" name="Like" value="Like"></p>
                         <p><span> Comment:</span></p>  
-                        <textarea name="comment" rows="5" cols="40" <?php echo $comment;?>></textarea>
+                        <textarea name="comment" rows="5" cols="60" <?php echo $comment;?>></textarea>
                         <br><br>
                         <br><br>
+                    </div>
+                    <div>
+                        <?php
+                            if (isset($_SESSION["AddPubToWall"]) && $_SESSION["AddPubToWall"]==true){
+                                $Image=$_SESSION["Image"]; 
+   
+                        ?> 
+                                <p><h1><span class="titulo"> <?=$_SESSION["Title"]?>:</span></h1></p>
+                                <p><span> <?=$_SESSION["Description"]?>.</span></p> 
+
+                        <?php
+                                echo "<br>";
+                                echo "<img src=\"$Image\">";
+                        ?>
+                                <p><input type="submit" name="Like" value="Like"></p> 
+                                <p><span> Comment:</span></p>  
+                                <textarea name="comment" rows="5" cols="60" <?php echo $comment;?>></textarea>
+                                <br><br>
+                                <br><br>
+                        <?php
+                            }
+                        ?>
                     </div>
 
 
                 </form>
-                <!--<div style="float:left"> <img src= "../imgs/redesS.png" alt="Logo" height="750px" width="400px"></div>-->
             </div>
         </section>
     </div>
@@ -102,7 +123,6 @@
     </footer>
 
     <?php
-
             
             }
         }
@@ -110,7 +130,6 @@
             header('Location:SpiritSocial.php');           
         }
 
-        
         ?>
 </body>
 </html>

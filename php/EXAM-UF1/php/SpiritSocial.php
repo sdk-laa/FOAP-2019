@@ -68,10 +68,7 @@
                 setcookie("CookiePassword",0,1);
                 // Mensaje de acceso no autorizado
             }
-
-        
     }
-
 ?>
 
 
@@ -93,7 +90,6 @@
             </div>
 
         </header>
-
 
         <section>
             <div class='define'>
@@ -134,7 +130,6 @@
                     <br>
                     
                 </form>
-                <!--<div style="float:left"> <img src= "../imgs/redesS.png" alt="Logo" height="750px" width="400px"></div>-->
             </div>
         </section>
     </div>

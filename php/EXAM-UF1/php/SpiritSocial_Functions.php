@@ -1,10 +1,10 @@
 <?php
-    function validateDate($fecha){
+    function validateDate($fecha){  //Funcion para validar fecha
         $d = strtotime($fecha);
         return ($d>=1) ? 1 : 0;
     }
 
-    function calcularEdad($fecha){
+    function calcularEdad($fecha){  //Funcion para calcular edad desde la fecha de nacimiento
         list($ano,$mes,$dia) = explode("-",$fecha);
         $ano_diferencia = date("Y") - $ano;
         $mes_diferencia = date("m") - $mes;
@@ -14,7 +14,7 @@
         return $ano_diferencia;
     }
 
-    function valida_contrasena($Password,$Errores){
+    function valida_contrasena($Password,$Errores){  //Funcion para validar contraseña
         if(strlen($Password) < 6 || strlen($Password) > 8){
             $Errores = $Errores . "<li>La contraseña debe tener entre 6 y 8 caracteres</li>";
         }
@@ -33,14 +33,14 @@
         return $Errores;
     }
 
-    function test_input($data) {
+    function test_input($data) {  //Funcion para eliminar espacios y barras, y convertir carracteres especiales en entidades de html
         $data = trim($data);
         $data = stripslashes($data);
         $data = htmlspecialchars($data);
         return $data;
     }
 
-    function valida_Title($Title,$TitleError){
+    function valida_Title($Title,$TitleError){  //Funcion para validar el titulo con minimo 10 caracteres y que lleve solo caracteres
         if(strlen($Title) < 10 ){
             $TitleError = $TitleError . "<li>The Title must have a minimum of 10 characters</li>";
         }
@@ -50,7 +50,7 @@
         return $TitleError;
     }
 
-    function valida_Description($Description,$DescriptionError){
+    function valida_Description($Description,$DescriptionError){  //Funcion para validar la descripcion con minimo 50 caracteres y que lleve solo caracteres
         if(strlen($Description) < 50 ){
             $DescriptionError = $DescriptionError . "<li>The Description must have a minimum of 50 characters</li>";
         }
@@ -59,10 +59,6 @@
         } 
         return $DescriptionError;
     }
-
-    function AlertFunction() {
-        alert("La publicacion se ha subido correctamente clica en acceptar para ver la nueva publicacion");
-      }
 
 
 ?>

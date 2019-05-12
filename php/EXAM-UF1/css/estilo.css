@@ -24,7 +24,10 @@ section {
     padding-bottom: 60px;
     /* Definimos un padding superior */
     padding-top:30px;
-    background:#FFFFFF 
+    /*  
+        display:block;
+        background-color: lightblue; 
+    */
 }
 footer {
     position: relative;
@@ -48,6 +51,7 @@ footer {
 .define {
     width:960px;     /* Esta anchura para el tamaño de pantallas cumunes, es el tamaño común para el diseño de paginas web*/
     margin:0 auto;
+
 }
 
 #logo{
@@ -76,5 +80,13 @@ p.error{
 .N{
     color:rgb(0, 0, 0);
 }
+
+.titulo{
+    color:blue;
+}
+
+h1 {
+    color:rgb(5, 53, 70);
+  }
 
 

@@ -4,7 +4,7 @@
 
 <?php
     // Declaracion de variables:
-    $Title=$Description=$Image="";
+    $Title=$Description=$Image=$comment="";
 
     require("SpiritSocial_Functions.php");
         
@@ -18,13 +18,6 @@
         if(isset($_REQUEST['MainMenu'])){
             header('Location:SpiritSocial_Login_OK.php');
         }
-
-
-
-/*         if(($TitleError=="") && ($DescriptionError=="") && ($ImageError=="")){
-            $_SESSION["Upload Pub"]=true;
-            $ShowImage=true;
-        } */
 
         if(isset($_SESSION["login"]) && ($_SESSION["login"]==true)){
             if(($_SESSION["ValidUser"]=="sdk") && ($_SESSION["ValidPassword"]==md5("Sdk1234!"))){
@@ -60,15 +53,28 @@
                         <input type="submit" name="MainMenu" value="Main Menu">
                         <br><br>
                         <br><br>
-                    </form> 
+                     
                     </div> 
+                    <div>
+                        <?php
+                                $Image=$_SESSION["Image"]; 
+                        ?> 
+                                <p><h1><span class="titulo"> <?=$_SESSION["Title"]?>:</span></h1></p>
+                                <p><span> <?=$_SESSION["Description"]?>.</span></p> 
 
-                    <?php        
-                        echo "Titulo: ". $Title;
-                        echo "Description: ". $Description;
-                        echo "<img src=\"$Image_Upload\">"; 
-                    
-                    ?>
+                        <?php
+                                echo "<br>";
+                                echo "<img src=\"$Image\">";
+                                
+                        ?>
+                                <p><input type="submit" name="Like" value="Like"></p> 
+                                <p><span> Comment:</span></p>  
+                                <textarea name="comment" rows="5" cols="60" <?php echo $comment;?>></textarea>
+                                <br><br>
+                                <br><br>
+                        <input type="submit" name="submit" value="AddPubToWall">
+                    </div>
+                    </form>
                 </div>
             </section>
         </div>
@@ -78,16 +84,21 @@
                 <p>Al hacer clic en Registrar, aceptas nuestras Condiciones. Obtén más información sobre cómo recopilamos, usamos y compartimos tu información en la Política de datos, así como el uso que hacemos de las cookies y tecnologías similares en nuestra Política de cookies.</p>
             </div>
         </footer>
-        <?php
-                
+        <?php    
            
             }
         }
         else{
             header('Location:SpiritSocial.php');           
         }
+        if(isset($_REQUEST["submit"])){
+            $_SESSION["AddPubToWall"] = true;
+            header('Location:SpiritSocial_Login_OK.php');
+        }
+        else{
+            $_SESSION["AddPubToWall"] = false;
+        }
 
-        
         ?>
     </body>
 </html>

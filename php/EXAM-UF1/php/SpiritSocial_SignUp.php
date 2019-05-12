@@ -63,7 +63,6 @@
             $fechaError="Birthdate is required";
         }
 
-
         if (empty($_POST["User"])) {
             $UserError = "User is required";
         } 
@@ -101,9 +100,6 @@
             $_SESSION["ValidUser"]="sdk";
             $_SESSION["ValidPassword"]=md5("Sdk1234!");
         }    
-        else{
-
-        }
 
         if (empty($nameError) && empty($ApellidoError) && empty($emailError) && empty($EdadError) && empty($UserError) && empty($PasswordError) && empty($RPasswordError) && empty($Errores) && $Registar==true){
             $Rcorrecto=true;
@@ -111,7 +107,6 @@
         else{
             $Rcorrecto=false;
         }
- 
     }
 
 ?>
@@ -197,7 +192,6 @@
                             
                             }
                         ?>        
-                        <!--<div style="float:left"> <img src= "../imgs/redesS.png" alt="Logo" height="750px" width="400px"></div>-->
                     </form>    
                 </div>
             </section>
