@@ -92,11 +92,11 @@
                     <div>
                     <form action="SpiritSocial_AddNewPub.php" method="POST" enctype="multipart/form-data">
                         <input type="submit" name="MainMenu" value="Main Menu">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="submit" name="RemovePub" value="Remove Pub">   
                         <br><br>
-                        <br><br>
-                        
+                        <br>
                         <p><h2> Add New Pub</h2></p>
-                        <br><br>
                         <p><span class="error">* Obligatory field</span></p>
                         <br>
                         <p>Title:</p>   
@@ -111,7 +111,7 @@
                         <input type="file" name="Image"><br>
                         <span class="error">* <?php echo $ImageError;?></span>
                         <br><br>
-                        <br><br>
+                        <br>
                         <p>Click the button "Upload Pub" to Upload a new publication.</p>
                         <p><input type="submit" name="UploadPub" value="Upload Pub"></p>
                         <br><br>
@@ -119,10 +119,11 @@
                     </div> 
                     <?php
                         if($ShowImage==true){
-                            echo'<script type="text/javascript">
+/*                             echo'<script type="text/javascript">
                             alert("Publication successfully uploaded. Click on the [Accept] button to see it."); 
                             window.location.href="SpiritSocial_SeeNewPub.php";
-                            </script>';
+                            </script>'; */
+                            header("location:SpiritSocial_SeeNewPub.php");
         
                         }
                     ?>
