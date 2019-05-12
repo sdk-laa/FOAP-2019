@@ -25,9 +25,9 @@ section {
     /* Definimos un padding superior */
     padding-top:30px;
     /*  
-        display:block;
+        display:block; */
         background-color: lightblue; 
-    */
+   
 }
 footer {
     position: relative;
@@ -86,7 +86,7 @@ p.error{
 }
 
 h1 {
-    color:rgb(5, 53, 70);
+    color:black;
   }
 
 
