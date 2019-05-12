@@ -93,9 +93,9 @@
 
         <section>
             <div class='define'>
+                <div style="float:left"> <img src= "../imgs/SpiritSocial-2.jpg" alt="Logo" height="250px" width="960px"></div>
                 <div id ="logo"> <img src= "../imgs/SpiritSocial.jpg" alt="Logo" height="450px" width="500px"></div>
                 <form action="SpiritSocial.php" method="POST">
-
                     <label>Username:</label>
                     <br>      
                     <input type="text" name="username" value="<?php echo $Username;?>">
@@ -127,10 +127,7 @@
                     <label>Register to Create an account:</label>
                     <br>
                     <input type="submit" name="Registrar" value="Sign Up">
-                    <br>
                     <br><br>
-                    <div style="float:left"> <img src= "../imgs/SpiritSocial-2.jpg" alt="Logo" height="200px" width="960px"></div>
-                    
                 </form>
             </div>
         </section>
