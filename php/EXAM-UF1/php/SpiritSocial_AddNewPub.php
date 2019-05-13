@@ -51,7 +51,7 @@
                         echo "otro error";
                     }
                     //$dir_subida = '../imgs/';
-                    $dir_subida = "C:/xampp/htdocs/Sadik/php/EXAM-UF1/imgs/";
+                    $dir_subida = "../imgs/";
                     $Image_Upload = $dir_subida . time()."_".basename($_FILES['Image']['name']);
                     if (move_uploaded_file($_FILES['Image']['tmp_name'], $Image_Upload)) {  // si se ha subido correctamente guadra en variables de session para mostrarla en otra pagina
                         $ShowImage=true;
@@ -90,8 +90,8 @@
 
             <section>  <!-- Contenido de la pagina -->
                 <div class='define'>
-                    <div style="float:left"> <img src= "../imgs/SpiritSocial-2.jpg" alt="Logo" height="200px" width="960px"></div>
-                    <div id ="logo"> <img src= "../imgs/SpiritSocial.jpg" alt="Logo" height="450px" width="500px"></div>
+                    <div style="float:left"> <img src= "../imgs/SpiritSocial-2.jpg" alt="Logo" height="150px" width="960px"></div>
+                    <div id ="logo"> <img src= "../imgs/SpiritSocial.jpg" alt="Logo" height="350px" width="500px"></div>
                     <div>
                     <form action="SpiritSocial_AddNewPub.php" method="POST" enctype="multipart/form-data">
                         <input type="submit" name="MainMenu" value="Main Menu">
@@ -105,19 +105,17 @@
                         <p>Title:</p>   
                         <input type="text" name="Title" value="<?php echo $Title;?>">
                         <span class="error">* <?php echo $TitleError;?></span>
-                        <br><br>
+                        <br>
                         <p>Description:</p> 
-                        <textarea name="Description" rows="5" cols="60" ></textarea> 
+                        <textarea name="Description" rows="2" cols="50" ></textarea> 
                         <span class="error">* <?php echo $DescriptionError;?></span>
-                        <br><br>
+                        <br>
                         </p>Image:</p>
                         <input type="file" name="Image"><br>
                         <span class="error">* <?php echo $ImageError;?></span>
                         <br><br>
-                        <br>
                         <p>Click the button "Upload Pub" to Upload a new publication.</p>
                         <p><input type="submit" name="UploadPub" value="Upload Pub"></p>
-                        <br><br>
                     </form> 
                     </div> 
                     <?php

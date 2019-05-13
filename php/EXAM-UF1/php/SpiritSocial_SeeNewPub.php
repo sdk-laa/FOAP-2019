@@ -87,31 +87,32 @@
                                 <!--<textarea name="comment" rows="5" cols="60"></textarea>-->
                                 <br><br>
                                 <br><br>
-                        <input type="submit" name="submit" value="AddPubToWall">
+                        <input type="submit" name="AddPubToWall" value="Add Pub To Wall">
                     </div>
                     </form>
                 </div>
             </section>
         </div>
-    
-        <footer>  <!-- Pie de pagina -->
-            <div class='define'>
-                <p>Al hacer clic en Registrar, aceptas nuestras Condiciones. Obtén más información sobre cómo recopilamos, usamos y compartimos tu información en la Política de datos, así como el uso que hacemos de las cookies y tecnologías similares en nuestra Política de cookies.</p>
-            </div>
-        </footer>
         <?php    
             }
         }
         else{
             header('Location:SpiritSocial.php');           
         }
-        if(isset($_REQUEST["submit"])){
-            $_SESSION["AddPubToWall"] = true;
+        if(isset($_REQUEST["AddPubToWall"])){
+            $_SESSION["Add Pub To Wall"] = true;
             header('Location:SpiritSocial_Login_OK.php');
         }
         else{
-            $_SESSION["AddPubToWall"] = false;
+            $_SESSION["Add Pub To Wall"] = false;
         }
-        ?>
+        ?>        
+    
+        <footer>  <!-- Pie de pagina -->
+            <div class='define'>
+                <p>Al hacer clic en Registrar, aceptas nuestras Condiciones. Obtén más información sobre cómo recopilamos, usamos y compartimos tu información en la Política de datos, así como el uso que hacemos de las cookies y tecnologías similares en nuestra Política de cookies.</p>
+            </div>
+        </footer>
+
     </body>
 </html>

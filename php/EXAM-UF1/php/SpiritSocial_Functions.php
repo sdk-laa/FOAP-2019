@@ -54,10 +54,6 @@
         if(strlen($Description) < 500 ){
             $DescriptionError = $DescriptionError . "<li>The Description must have a minimum of 500 characters</li>";
         }
-        if (!preg_match("/^[a-zA-Z ]*$/",$Description)) {
-            $DescriptionError = $DescriptionError . "<li>Only letters and white space allowed</li>"; 
-        } 
         return $DescriptionError;
     }
-
 ?>
