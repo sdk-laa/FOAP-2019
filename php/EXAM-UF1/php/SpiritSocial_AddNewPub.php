@@ -90,7 +90,7 @@
 
             <section>  <!-- Contenido de la pagina -->
                 <div class='define'>
-                    <div style="float:left"> <img src= "../imgs/SpiritSocial-2.jpg" alt="Logo" height="250px" width="960px"></div>
+                    <div style="float:left"> <img src= "../imgs/SpiritSocial-2.jpg" alt="Logo" height="200px" width="960px"></div>
                     <div id ="logo"> <img src= "../imgs/SpiritSocial.jpg" alt="Logo" height="450px" width="500px"></div>
                     <div>
                     <form action="SpiritSocial_AddNewPub.php" method="POST" enctype="multipart/form-data">
