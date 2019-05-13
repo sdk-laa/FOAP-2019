@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    session_start();  //Iniciar una nueva sesión o reanudar la existente
 ?>
 
 <?php
@@ -8,22 +8,22 @@
     $TitleError=$DescriptionError=$ImageError="";
     $ShowImage=false;
 
-    require("SpiritSocial_Functions.php");
+    require("SpiritSocial_Functions.php");  //Incluir funciones
         
-        if(isset($_REQUEST["Logout"])){
+        if(isset($_REQUEST["Logout"])){  //Una vez el usuario clica "Logout" se borra variables de session y las cookies
             session_destroy();
             setcookie("CookieUser",0,1);
             setcookie("CookiePassword",0,1);
             header('Location:SpiritSocial.php');           
         } 
 
-        if(isset($_REQUEST['MainMenu'])){
+        if(isset($_REQUEST['MainMenu'])){  //Si se clica en "Main Menu" Vuelve al muro de publicaciones
             header('Location:SpiritSocial_Login_OK.php');
         }
 
-        if(isset($_SESSION["login"]) && ($_SESSION["login"]==true)){
-            if(($_SESSION["ValidUser"]=="sdk") && ($_SESSION["ValidPassword"]==md5("Sdk1234!"))){
-                if(isset($_REQUEST["UploadPub"])){
+        if(isset($_SESSION["login"]) && ($_SESSION["login"]==true)){  //Si se ha hecho login verifica se U. y C. son correctos  
+            if(($_SESSION["ValidUser"]=="sdk") && ($_SESSION["ValidPassword"]==md5("Sdk1234!"))){  //Si U. y C. son correctos muestra el contenido
+                if(isset($_REQUEST["UploadPub"])){  //Si se clica en "Upload Pub" verifica todos los campos que esten correctos sino muestra error
 
                     if (empty($_POST["Title"])) {
                         $TitleError = "Title is required";
@@ -45,12 +45,14 @@
                         $ImageError="Image is required"; 
                     }
 
+                    // *** Subir el imagen: En el local funciona correctamente pero en el servidor da error. ***
+                    // *** El ejemplo que tenemos de subir imagen tambien pasa lo mismo en el servidor no se puede subir imagen. ***
                     if(!is_uploaded_file($_FILES['Image']['tmp_name'])){
                         echo "otro error";
                     }
                     $dir_subida = '../imgs/';
                     $Image_Upload = $dir_subida . time()."_".basename($_FILES['Image']['name']);
-                    if (move_uploaded_file($_FILES['Image']['tmp_name'], $Image_Upload)) {
+                    if (move_uploaded_file($_FILES['Image']['tmp_name'], $Image_Upload)) {  // si se ha subido correctamente guadra en variables de session para mostrarla en otra pagina
                         $ShowImage=true;
                     }
                     else {
@@ -75,7 +77,7 @@
  
     <body>
         <div id="wrapper">
-            <header>
+            <header>  <!-- Encabezado -->
                 <div class='define'>
                     <div style= "width:200px"> <h2> Spirit Social </h2></div>
                     <div style= "text-align:right"> 
@@ -85,7 +87,7 @@
                 </div>
             </header>
 
-            <section>
+            <section>  <!-- Contenido de la pagina -->
                 <div class='define'>
                     <div style="float:left"> <img src= "../imgs/SpiritSocial-2.jpg" alt="Logo" height="250px" width="960px"></div>
                     <div id ="logo"> <img src= "../imgs/SpiritSocial.jpg" alt="Logo" height="450px" width="500px"></div>
@@ -118,20 +120,19 @@
                     </form> 
                     </div> 
                     <?php
-                        if($ShowImage==true){
+                        if($ShowImage==true){ //Si hay nueva publicacion muestra uana alerta para indicarlo y enviar a otra pagina para verla.
                             echo'<script type="text/javascript">
                             alert("Publication successfully uploaded. Click on the [Accept] button to see it."); 
                             window.location.href="SpiritSocial_SeeNewPub.php";
                             </script>'; 
                             //header("location:SpiritSocial_SeeNewPub.php");
-        
                         }
                     ?>
                 </div>
             </section>
         </div>
     
-        <footer>
+        <footer>  <!-- Pie de pagina -->
             <div class='define'>
                 <p>Al hacer clic en Registrar, aceptas nuestras Condiciones. Obtén más información sobre cómo recopilamos, usamos y compartimos tu información en la Política de datos, así como el uso que hacemos de las cookies y tecnologías similares en nuestra Política de cookies.</p>
             </div>

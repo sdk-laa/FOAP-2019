@@ -69,13 +69,13 @@ p.error{
     display: inline;
 }
 .correcto{
-    color: #021846;
+    color: blue;
 }
 .error{
     color:red;
 }
 .nota{
-    color:rgb(15, 18, 231);
+    color:black;
 }
 
 h1 {

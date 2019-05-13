@@ -1,30 +1,29 @@
 <?php
-    session_start();
+    session_start();  //Iniciar una nueva sesión o reanudar la existente
 ?>
 
 <?php
     // Declaracion de variables:
     $Title=$Description=$Image=$comment4="";
 
-    require("SpiritSocial_Functions.php");
+    require("SpiritSocial_Functions.php");  //Incluir funciones
         
-        if(isset($_REQUEST["Logout"])){
+        if(isset($_REQUEST["Logout"])){  //Una vez el usuario clica "Logout" se borra variables de session y las cookies
             session_destroy();
             setcookie("CookieUser",0,1);
             setcookie("CookiePassword",0,1);
             header('Location:SpiritSocial.php');           
         } 
 
-        if(isset($_REQUEST['MainMenu'])){
+        if(isset($_REQUEST['MainMenu'])){  //Si se clica en "Main Menu" Vuelve al muro de publicaciones
             header('Location:SpiritSocial_Login_OK.php');
         }
 
-        if(isset($_SESSION["login"]) && ($_SESSION["login"]==true)){
-            if(($_SESSION["ValidUser"]=="sdk") && ($_SESSION["ValidPassword"]==md5("Sdk1234!"))){
-                if (!empty($_POST["Comment4"])) {
+        if(isset($_SESSION["login"]) && ($_SESSION["login"]==true)){  //Si se ha hecho login verifica se U. y C. son correctos 
+            if(($_SESSION["ValidUser"]=="sdk") && ($_SESSION["ValidPassword"]==md5("Sdk1234!"))){  //Si U. y C. son correctos muestra el contenido
+                if (!empty($_POST["Comment4"])) { //Si hay comentario muestralo
                     $comment4 = test_input($_POST["Comment4"]);
                 }
-        
 ?>
 
 
@@ -39,7 +38,7 @@
  
     <body>
         <div id="wrapper">
-            <header>
+            <header>  <!-- Encabezado -->
                 <div class='define'>
                     <div style= "width:200px"> <h2> Spirit Social </h2></div>
                     <div style= "text-align:right"> 
@@ -49,14 +48,13 @@
                 </div>
             </header>
 
-            <section>
+            <section>  <!-- Contenido de la pagina -->
                 <div class='define'>
                     <div>
                     <form action="SpiritSocial_SeeNewPub.php" method="POST">
                         <input type="submit" name="MainMenu" value="Main Menu">
                         <br><br>
                         <br><br>
-                     
                     </div> 
                     <div>
                         <?php
@@ -64,11 +62,9 @@
                         ?> 
                                 <p><h1><span class="titulo"> <?=$_SESSION["Title"]?>:</span></h1></p>
                                 <p><span> <?=$_SESSION["Description"]?>.</span></p> 
-
                         <?php
                                 echo "<br>";
                                 echo "<img src=\"$Image\">";
-                                
                         ?>
                                 <script language="javascript">
                                     var LikeCount_4 = 0;
@@ -98,13 +94,12 @@
             </section>
         </div>
     
-        <footer>
+        <footer>  <!-- Pie de pagina -->
             <div class='define'>
                 <p>Al hacer clic en Registrar, aceptas nuestras Condiciones. Obtén más información sobre cómo recopilamos, usamos y compartimos tu información en la Política de datos, así como el uso que hacemos de las cookies y tecnologías similares en nuestra Política de cookies.</p>
             </div>
         </footer>
         <?php    
-           
             }
         }
         else{
@@ -117,7 +112,6 @@
         else{
             $_SESSION["AddPubToWall"] = false;
         }
-
         ?>
     </body>
 </html>

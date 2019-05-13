@@ -1,26 +1,27 @@
 <?php
-    session_start();
+    session_start();  //Iniciar una nueva sesión o reanudar la existente
 ?>
 
 <?php
+    // Declaracion de variables:
     $comment1=$comment2=$comment3=$comment4="";
 
-    require("SpiritSocial_Functions.php");
+    require("SpiritSocial_Functions.php");  //Incluir funciones
 
-    if(isset($_REQUEST["Logout"])){
+    if(isset($_REQUEST["Logout"])){  //Una vez el usuario clica "Logout" se borra variables de session y las cookies
         session_destroy();
         setcookie("CookieUser",0,1);
         setcookie("CookiePassword",0,1);
-        header('Location:SpiritSocial.php');           
+        header('Location:SpiritSocial.php'); // Y se envia a la pagina principal          
     }
 
-    if(isset($_REQUEST['AddNewPub'])){
+    if(isset($_REQUEST['AddNewPub'])){ //Si se clica en "AddNewPub" se envia a otra pagina para añadir publicacion
         header('Location:SpiritSocial_AddNewPub.php');
     }
 
-    if(isset($_SESSION["login"]) && ($_SESSION["login"]==true)){
-        if(($_SESSION["ValidUser"]=="sdk") && ($_SESSION["ValidPassword"]==md5("Sdk1234!"))){
-            if (!empty($_POST["Comment1"])) {
+    if(isset($_SESSION["login"]) && ($_SESSION["login"]==true)){ //si se ha hecho login verifica se U. y C. son correctos  
+        if(($_SESSION["ValidUser"]=="sdk") && ($_SESSION["ValidPassword"]==md5("Sdk1234!"))){  // Si U. y C. son correctos muestra el contenido
+            if (!empty($_POST["Comment1"])) { //si hay comentario guardalo
                 $comment1 = test_input($_POST["Comment1"]);
             }
             if (!empty($_POST["Comment2"])) {
@@ -47,19 +48,18 @@
 </head>
  
 <body>
-<div id="wrapper">
-        <header>
+    <div id="wrapper">
+        <header>  <!-- Encabezado -->
             <div class='define'>
                 <div style= "width:200px"> <h2> Spirit Social </h2>   </div>
                 <div style= "text-align:right"> 
-                    Bienvenido.......... <?=$_SESSION["ValidUser"]?>
-                    <a href="SpiritSocial_Login_OK.php?Logout">[Logout]</a>
+                    Bienvenido.......... <?=$_SESSION["ValidUser"]?>  
+                    <a href="SpiritSocial_Login_OK.php?Logout">[Logout]</a> 
                 </div>  
             </div>
         </header>
 
-
-        <section>
+        <section>  <!-- Contenido de la pagina -->
             <div class='define'>
                 <form action="SpiritSocial_Login_OK.php" method="POST">
                     <input type="submit" name="AddNewPub" value="Add New Pub">
@@ -67,18 +67,17 @@
                     <input type="submit" name="RemovePub" value="Remove Pub">
                     <br><br>
                     <br><br>
-                    <div>
+                    <div>  <!-- Publicaciones -->
                         <p><h2> Luis Suárez se pierde la final de Copa</h2></p>
                         <p><b> El club azulgrana emitió un comunicado en el que aseguraba que la intervención había sido un éxito</p>
                         <p> y que el uruguayo no podrá estar en Sevilla.</b></p>      
                         <p><img src= "../imgs/Suarez.jpg" alt="Logo" height="400px" width="700px"></p>
                         <script language="javascript">
                             var LikeCount_1 = 0;
-                            function contador1(){
+                            function contador1(){  // Funcion para contar like
                                 LikeCount_1 = LikeCount_1 + 1;
                                 var btn = document.getElementById("boton1");
                                 btn.value = "Like (" + LikeCount_1 + ")";
-                                //document.writeln(LikeCount_1);
                             }
                         </script>
                         <p><input type="button" id="boton1" value="Like" onclick="javascript: contador1()" /></p>   
@@ -86,11 +85,10 @@
                         <p><input type="text" name="Comment1" size="50" maxlength="100" value="<?php echo $comment1;?>"></p>
                         <p><input type="submit" name="AddComment1" value="Add Comment"></p>
                         <?php 
-                            if(isset($_REQUEST["AddComment1"])){
+                            if(isset($_REQUEST["AddComment1"])){ // si hay comentario muestralo
                                 echo $comment1;
                             } 
                         ?>  
-                        <!--<textarea name="comment" rows="5" cols="60"></textarea>-->
                         <br><br>
                     </div>
                     <div>
@@ -115,7 +113,6 @@
                                 echo $comment2;
                             } 
                         ?>   
-                        <!--<textarea name="comment" rows="5" cols="60"></textarea>-->
                         <br><br>
                     </div>
                     <div>
@@ -140,19 +137,16 @@
                                 echo $comment3;
                             } 
                         ?>   
-                        <!--<textarea name="comment" rows="5" cols="60"></textarea>-->
                         <br><br>
                         <br><br>
                     </div>
                     <div>
                         <?php
-                            if (isset($_SESSION["AddPubToWall"]) && $_SESSION["AddPubToWall"]==true){
+                            if (isset($_SESSION["AddPubToWall"]) && $_SESSION["AddPubToWall"]==true){ //si se añade nueva publicacion muestrala
                                 $Image=$_SESSION["Image"]; 
-   
                         ?> 
                                 <p><h2> <?=$_SESSION["Title"]?>:</h2></p>
                                 <p><b> <?=$_SESSION["Description"]?>.</b></p> 
-
                         <?php
                                 echo "<br>";
                                 echo "<img src=\"$Image\">";
@@ -174,34 +168,29 @@
                                         echo $comment1;
                                     } 
                                 ?>   
-                                <!--<textarea name="comment" rows="5" cols="60"></textarea>-->
                                 <br><br>
                                 <br><br>
                         <?php
                             }
                         ?>
                     </div>
-
-
                 </form>
             </div>
         </section>
     </div>
  
-    <footer>
+    <footer>  <!-- Pie de pagina -->
         <div class='define'>
             <p>Al hacer clic en Registrar, aceptas nuestras Condiciones. Obtén más información sobre cómo recopilamos, usamos y compartimos tu información en la Política de datos, así como el uso que hacemos de las cookies y tecnologías similares en nuestra Política de cookies.</p>
         </div>
     </footer>
 
-    <?php
-            
+    <?php  
             }
         }
         else{
             header('Location:SpiritSocial.php');           
         }
-
-        ?>
+    ?>
 </body>
 </html>

@@ -1,20 +1,21 @@
 <?php
-    session_start();
+    session_start(); //Iniciar una nueva sesión o reanudar la existente
 ?>
 
 <?php
-     // Declaracion de variables:
+    // Declaracion de variables:
     $Username=$Password="";                   //Variables Usuario y Contraseña
     $UsernameError=$PasswordError=$Error="";  //Variables de Errpr de Usuario y Contraseña
     $MostarE=false;                           //Variable para mostar el error o no
 
-    require("SpiritSocial_Functions.php");
+    require("SpiritSocial_Functions.php");    //Incluir funciones
 
     if (isset($_SESSION["login"]) && $_SESSION["login"]==true){   // Si ya esta hecho login enviar siempre a la pagina restringida
+                                                                  // Y si se cierra navegador volver a login
         if(($_SESSION["ValidUser"]=="sdk") && ($_SESSION["ValidPassword"]==md5("Sdk1234!"))){
-            header('Location:SpiritSocial_Login_OK.php');
+            header('Location:SpiritSocial_Login_OK.php');     
         }       
-    }                                                            // Si se cierra navegador volver a login
+    }                                                            
     
 
     if (isset($_COOKIE["CookieUser"]) && $_COOKIE["CookiePassword"]){ // Cookie para mantener seccion abiera el tiempo que se desea aunque se cierra la pagina
@@ -33,40 +34,39 @@
         header('Location:SpiritSocial_SignUp.php');
     }
 
-    if(isset($_REQUEST['submit'])){
-            if (empty($_REQUEST["username"])) {
+    if(isset($_REQUEST['submit'])){  // si se intenta acceder a la pagina se verifica que todo es correcto antes de acceder.
+            if (empty($_REQUEST["username"])) {  //Usuario Vacio envia error
                 $UsernameError = "Rellena el usuario.";
             }
             else{
                 $Username = test_input($_REQUEST["username"]);
             }
 
-            if (empty($_REQUEST["password"])) {
+            if (empty($_REQUEST["password"])) { //Contraseña vacia envia error
                 $PasswordError = "Rellena la contraseña.";
             }
             else{
                 $Password = test_input($_REQUEST["password"]);
             }
 
-            if(($_REQUEST["username"]=="sdk") && ($_REQUEST["password"]=="Sdk1234!")) { // Si U o C son correctos enviar a la pagina restringida
+            if(($_REQUEST["username"]=="sdk") && ($_REQUEST["password"]=="Sdk1234!")) { // Si U. y C. son correctos enviar a la pagina restringida y guarda variables de session
+                // Código para usuarios autorizados
                 $_SESSION["login"]=true;
                 $_SESSION["ValidUser"]="sdk";
                 $_SESSION["ValidPassword"]=md5("Sdk1234!");
-                //$_SESSION["nombre"]=$_REQUEST["username"];
-                if(($_REQUEST["recordar"]) && ($_REQUEST["recordar"]==1)){
+                if(($_REQUEST["recordar"]) && ($_REQUEST["recordar"]==1)){ //Si se clica en Recordar guarda cookie el tiempo que se desea
                     setcookie("CookiePassword",md5($_REQUEST["password"]),time()+60*60);
                     setcookie("CookieUser",$_REQUEST["username"],time()+60*60);
                 }
                 header('Location:SpiritSocial_Login_OK.php');
                 $MostarE=false;
-                // Código para usuarios autorizados
             }    
             else{
+                // Mensaje de acceso no autorizado
                 $MostarE=true;
                 $Error="Usuario o Contraseña incorrecta";
                 setcookie("CookieUser",0,1);
                 setcookie("CookiePassword",0,1);
-                // Mensaje de acceso no autorizado
             }
     }
 ?>
@@ -84,14 +84,13 @@
  
 <body>
 <div id="wrapper">
-        <header>
+        <header> <!-- Encabezado -->
             <div class='define'>
             <div style= "width:200px"> <h2> Spirit Social </h2></div> 
             </div>
-
         </header>
 
-        <section>
+        <section>  <!-- Contenido de la pagina -->
             <div class='define'>
                 <div style="float:left"> <img src= "../imgs/SpiritSocial-2.jpg" alt="Logo" height="250px" width="960px"></div>
                 <div id ="logo"> <img src= "../imgs/SpiritSocial.jpg" alt="Logo" height="450px" width="500px"></div>
@@ -114,8 +113,8 @@
                         <?php    
                             }
                         ?> 
+                    <br><br>
 
-                    <br><br>    
                     <label>Remember:</label>
                     <br> 
                     <input type="checkbox" name="recordar" value="1">
@@ -133,7 +132,7 @@
         </section>
     </div>
  
-    <footer>
+    <footer>  <!-- Pie de pagina -->
         <div class='define'>
             <p>Al hacer clic en Registrar, aceptas nuestras Condiciones. Obtén más información sobre cómo recopilamos, usamos y compartimos tu información en la Política de datos, así como el uso que hacemos de las cookies y tecnologías similares en nuestra Política de cookies.</p>
         </div>

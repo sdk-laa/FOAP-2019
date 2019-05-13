@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    session_start();  //Iniciar una nueva sesión o reanudar la existente
 ?>
 
 <?php
@@ -10,21 +10,21 @@
    $Rcorrecto=false;
    $ValidDate=true;
 
-   require("SpiritSocial_Functions.php");
+   require("SpiritSocial_Functions.php");  //Incluir funciones
 
-   if (isset($_REQUEST["login"])){
+   if (isset($_REQUEST["login"])){  //Si se clica "login" vuelve a la pagina principal
     header('Location:SpiritSocial.php');
     } 
    
-   if(isset($_REQUEST['submit'])){
+   if(isset($_REQUEST['submit'])){  //Si se clica en "Sign Up" verifica que todo es correcto
         if (empty($_POST["name"])) {
                 $nameError = "Name is required";
         } 
         else {
                 $name = test_input($_POST["name"]);
-                /* if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
+                if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
                     $nameError = "Only letters and white space allowed"; 
-                } */
+                }
         }
 
         if (empty($_POST["Apellido"])) {
@@ -32,9 +32,9 @@
         } 
         else {
             $Apellido= test_input($_POST["Apellido"]);
-            /* if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
+            if (!preg_match("/^[a-zA-Z ]*$/",$Apellido)) {
                 $ApellidoError = "Only letters and white space allowed"; 
-            } */
+            }
         }
         
         if (empty($_POST["email"])) {
@@ -47,7 +47,7 @@
                 }
         }
 
-        if (!empty($_POST["FechaNacimiento"])){
+        if (!empty($_POST["FechaNacimiento"])){ // Si "FechaNacimiento" no esta vacia valida la fecha y calcula edad
             $fecha = $_POST["FechaNacimiento"];
             if ((validateDate($fecha)) == true) {
                 $Edad=calcularEdad($fecha);
@@ -59,7 +59,7 @@
                 $fechaError = "Error en la efecha introducida tiene que ser un formato de fechas ";
             } 
         }
-        else{
+        else{  // Si esta vacia muestra error
             $fechaError="Birthdate is required";
         }
 
@@ -83,15 +83,13 @@
         }
 
         if ((empty($PasswordError)) && (empty($RPasswordError)) ){
-            if($Password != $RPassword){
+            if($Password != $RPassword){ //Las contraseñas no coinciden.
                 $Registar=false;
-                $Errores="";
-                //echo "Las contraseñas no coinciden";
+                $Errores=""; 
             }
-            else{
+            else{  // Las contraseñas coinciden.
                 $Errores=valida_contrasena($Password,$Errores);
-                $Registar=true;
-                //echo "Todo correcto";
+                $Registar=true;   
             }
         }
         
@@ -108,7 +106,6 @@
             $Rcorrecto=false;
         }
     }
-
 ?>
 
 
@@ -123,13 +120,13 @@
  
     <body>
         <div id="wrapper">
-            <header>
+            <header>  <!-- Encabezado -->
                 <div class='define'>
                     <div style= "width:200px"> <h2> Spirit Social </h2></div> 
                 </div>
             </header>
 
-            <section>
+            <section>  <!-- Contenido de la pagina -->
                 <div class='define'>
                     <div id ="logo"> <img src= "../imgs/SpiritSocial.jpg" alt="Logo" height="500px" width="500px"></div>
                     <h2><p> Register new account</span></p></h2>
@@ -158,7 +155,7 @@
                         Repeat Password:     <input type="password" name="RPassword" value="<?php echo $RPassword;?>">
                         <span class="error">* <?php echo $RPasswordError;?></span>
                         <br><br>
-                        <input type="submit" name="submit" value="Registrar">
+                        <input type="submit" name="submit" value="Sign Up">
                     
                         <?php
                             if($Registar==false){
@@ -172,24 +169,23 @@
                                 <p><span class="N">Errores en la contraseña</span></p>
                                 <?php echo $Errores;?>
                                 <br>
-                                <?php
-                            
+                        <?php
                             }
-                                ?>
-                        <?php    
-                            if ($Rcorrecto==true && $Registar==true && $Errores==""){
                         ?>
-                                <p><span class="nota">* Account registered correctly in Spirit Social</span></p>
-                                <br><br>
-                                <p><span class="correcto"> "Spirit Social helps you communicate and share</span></p>
+                        <?php    
+                            if ($Rcorrecto==true && $Registar==true && $Errores==""){  //Si todo es correcto muetra el mensage.
+                        ?>
                                 <br>
-                                <p><span class="correcto"> with the people who are part of your life"</span></p>
+                                <p><b><span class="nota">* Account registered correctly in Spirit Social</span></b></p>
+                                <br>
+                                <p><b><span class="correcto"> "Spirit Social helps you communicate and share</span></b></p>
+                                <br>
+                                <p><b><span class="correcto"> with the people who are part of your life"</span></b></p>
                                 <br><br>
-                                <p><span class="nota"> Click in Login to start</span></p>
+                                <p><b><span class="nota"> Click in Login to start</span></b></p>
                                 <br>
                                 <input type="submit" name="login" value="Login">
                         <?php    
-                            
                             }
                         ?>        
                     </form>    
@@ -197,7 +193,7 @@
             </section>
         </div>
     
-        <footer>
+        <footer>  <!-- Pie de pagina -->
             <div class='define'>
                 <p>Al hacer clic en Registrar, aceptas nuestras Condiciones. Obtén más información sobre cómo recopilamos, usamos y compartimos tu información en la Política de datos, así como el uso que hacemos de las cookies y tecnologías similares en nuestra Política de cookies.</p>
             </div>
