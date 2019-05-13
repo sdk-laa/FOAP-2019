@@ -92,16 +92,16 @@
 
         <section>  <!-- Contenido de la pagina -->
             <div class='define'>
-                <div style="float:left"> <img src= "../imgs/SpiritSocial-2.jpg" alt="Logo" height="250px" width="960px"></div>
-                <div id ="logo"> <img src= "../imgs/SpiritSocial.jpg" alt="Logo" height="450px" width="500px"></div>
+                <div style="float:left"> <img src= "../imgs/SpiritSocial-2.jpg" alt="Logo" height="200px" width="960px"></div>
+                <div id ="logo"> <img src= "../imgs/SpiritSocial.jpg" alt="Logo" height="300px" width="500px"></div>
                 <form action="SpiritSocial.php" method="POST">
-                    <label>Username:</label>
+                    <label><b>Username:</b></label>
                     <br>      
                     <input type="text" name="username" value="<?php echo $Username;?>">
                     <span class="error">* <?php echo $UsernameError;?></span>
                     <br><br>
 
-                    <label>Password:</label>
+                    <label><b>Password:</b></label>
                     <br>  
                     <input type="password" name="password" value="<?php echo $Password;?>">
                     <span class="error">* <?php echo $PasswordError;?></span>
@@ -115,7 +115,7 @@
                         ?> 
                     <br><br>
 
-                    <label>Remember:</label>
+                    <label><b>Remember:</b></label>
                     <br> 
                     <input type="checkbox" name="recordar" value="1">
                     <br><br>
@@ -123,7 +123,7 @@
                     <input type="submit" name="submit" value="login">
                     <br><br>
 
-                    <label>Register to Create an account:</label>
+                    <label><b>Register to Create an account:</b></label>
                     <br>
                     <input type="submit" name="Registrar" value="Sign Up">
                     <br><br>

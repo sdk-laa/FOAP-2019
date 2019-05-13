@@ -50,7 +50,8 @@
                     if(!is_uploaded_file($_FILES['Image']['tmp_name'])){
                         echo "otro error";
                     }
-                    $dir_subida = '../imgs/';
+                    //$dir_subida = '../imgs/';
+                    $dir_subida = "http://dawjavi.insjoaquimmir.cat/sdk/FOAP-2019/php/EXAM-UF1/imgs.php";
                     $Image_Upload = $dir_subida . time()."_".basename($_FILES['Image']['name']);
                     if (move_uploaded_file($_FILES['Image']['tmp_name'], $Image_Upload)) {  // si se ha subido correctamente guadra en variables de session para mostrarla en otra pagina
                         $ShowImage=true;
