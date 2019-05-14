@@ -2,7 +2,7 @@
 <body>
 <script language="javascript">
 var i = 0;
- 
+
 function contador()
 {
 i = i + 1;
