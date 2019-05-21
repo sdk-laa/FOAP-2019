@@ -17,7 +17,6 @@ CREATE TABLE distruibidor(
 	id_distruibidor CHAR(4) PRIMARY KEY,
 	nom VARCHAR(30) NOT NULL,
 	telefono int(9) NOT NULL
-
 );
 
 -- Tabla de Vino:
@@ -31,7 +30,6 @@ CREATE TABLE vino(
 	ON DELETE RESTRICT
 );
 
-
 -- Tabla de Relacion entre Plato y Vino:
  CREATE TABLE plat_vin(    
 	plat_vin CHAR(4),
@@ -43,7 +41,6 @@ CREATE TABLE vino(
 	ON UPDATE CASCADE
 	ON DELETE RESTRICT,
 	PRIMARY KEY(plat_vin, vin_plat)
-
 );
 
 
