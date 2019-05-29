@@ -10,4 +10,6 @@ SELECT oficina, sum(vendes) as "Total de ventas por oficina" from empleats where
 SELECT oficina, avg(vendes) as "Total de ventas" from empleats group by oficina having avg(vendes)>300000;
 SELECT avg(salari) as "Salario medio", avg(vendes) as "Media de ventas" from empleats;
 SELECT avg(import_total) as "Importe medio", sum(import_total) as "importe total" from comanda;
-SELECT avg(import_total) as "Importe medio", sum(import_total) as "importe total" from comanda; -- falta terminar esta linea
+SELECT avg(import_total) , sum(import_total) from productes; -- falta terminar esta linea
+
+
