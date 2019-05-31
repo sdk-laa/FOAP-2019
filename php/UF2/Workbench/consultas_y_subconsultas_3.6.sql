@@ -202,5 +202,4 @@ like "%bustamante%");
 /*9. Llistar els clients assignats a Ana Bustamante que no tenen ninguna comanda
 superior a 50000.*/
 
-select
 
