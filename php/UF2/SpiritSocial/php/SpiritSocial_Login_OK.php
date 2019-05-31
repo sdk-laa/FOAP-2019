@@ -20,7 +20,8 @@
     }
 
     if(isset($_SESSION["login"]) && ($_SESSION["login"]==true)){ //si se ha hecho login verifica se U. y C. son correctos  
-        if(($_SESSION["ValidUser"]=="sdk") && ($_SESSION["ValidPassword"]==md5("Sdk1234!"))){  // Si U. y C. son correctos muestra el contenido
+        
+        //if(($_SESSION["ValidUser"]=="sdk") && ($_SESSION["ValidPassword"]==md5("Sdk1234!"))){  // Si U. y C. son correctos muestra el contenido
             if (!empty($_POST["Comment1"])) { //si hay comentario guardalo
                 $comment1 = test_input($_POST["Comment1"]);
             }
@@ -186,7 +187,7 @@
     </footer>
 
     <?php  
-            }
+            
         }
         else{
             header('Location:SpiritSocial.php');           

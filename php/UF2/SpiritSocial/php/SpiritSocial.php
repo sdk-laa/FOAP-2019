@@ -12,14 +12,15 @@
 
     if (isset($_SESSION["login"]) && $_SESSION["login"]==true){   // Si ya esta hecho login enviar siempre a la pagina restringida
                                                                   // Y si se cierra navegador volver a login
-        if(($_SESSION["ValidUser"]=="sdk") && ($_SESSION["ValidPassword"]==md5("Sdk1234!"))){
+        
             header('Location:SpiritSocial_Login_OK.php');     
-        }       
+          
     }                                                            
     
 
     if (isset($_COOKIE["CookieUser"]) && $_COOKIE["CookiePassword"]){ // Cookie para mantener seccion abiera el tiempo que se desea aunque se cierra la pagina
-        if(($_COOKIE["CookieUser"]=="sdk") && ($_COOKIE["CookiePassword"]==md5("Sdk1234!"))){ // Si el usuario y la contraseña son correctos guardar Cookie
+        if(checklogin($_COOKIE["username"],$_COOKIE["password"])){
+        //if(($_COOKIE["CookieUser"]=="sdk") && ($_COOKIE["CookiePassword"]==md5("Sdk1234!"))){ // Si el usuario y la contraseña son correctos guardar Cookie
             $_SESSION["login"]=true;
             $_SESSION["ValidUser"]=$_COOKIE["CookieUser"];
             $_SESSION["ValidPassword"]=$_COOKIE["CookiePassword"];
@@ -48,12 +49,13 @@
             else{
                 $Password = test_input($_REQUEST["password"]);
             }
-
-            if(($_REQUEST["username"]=="sdk") && ($_REQUEST["password"]=="Sdk1234!")) { // Si U. y C. son correctos enviar a la pagina restringida y guarda variables de session
+            
+            if(checklogin($_REQUEST["username"],$_REQUEST["password"])){
+            //if(($_REQUEST["username"]=="sdk") && ($_REQUEST["password"]=="Sdk1234!")) { // Si U. y C. son correctos enviar a la pagina restringida y guarda variables de session
                 // Código para usuarios autorizados
                 $_SESSION["login"]=true;
-                $_SESSION["ValidUser"]="sdk";
-                $_SESSION["ValidPassword"]=md5("Sdk1234!");
+                $_SESSION["ValidUser"]=$_REQUEST["username"];
+                $_SESSION["ValidPassword"]=$_REQUEST["password"];
                 if(($_REQUEST["recordar"]) && ($_REQUEST["recordar"]==1)){ //Si se clica en Recordar guarda cookie el tiempo que se desea
                     setcookie("CookiePassword",md5($_REQUEST["password"]),time()+60*60);
                     setcookie("CookieUser",$_REQUEST["username"],time()+60*60);

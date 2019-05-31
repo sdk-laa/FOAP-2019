@@ -69,8 +69,8 @@
 
         // dades de configuració
         $ip = 'localhost'; //127.0.0.1
-        $usuari = 'alumne'; // root o otro usuario
-        $pass = 'alumne'; // contraseña del usuario
+        $usuari = 'sdk_spiritsocial'; // root o otro usuario
+        $pass = ''; // contraseña del usuario
         $db_name = 'spiritsocial'; // Nombre de la base de datos
 
 
@@ -83,7 +83,7 @@
             echo "todo ha ido bien<br>";
         }
 
-        $sql = 'SELECT * FROM usuarios where username="'.$username.'" and password=md5("'.$password.'")     ';
+        $sql = 'SELECT * FROM usuarios where user="'.$username.'" and password=md5("'.$password.'")     ';
         $resultat = mysqli_query($con,$sql) or die('Consulta fallida: ' . mysqli_error($con));
         
         // tancar cx amb la db
