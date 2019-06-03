@@ -12,14 +12,13 @@
 
     if (isset($_SESSION["login"]) && $_SESSION["login"]==true){   // Si ya esta hecho login enviar siempre a la pagina restringida
                                                                   // Y si se cierra navegador volver a login
-        
             header('Location:SpiritSocial_Login_OK.php');     
           
     }                                                            
     
 
     if (isset($_COOKIE["CookieUser"]) && $_COOKIE["CookiePassword"]){ // Cookie para mantener seccion abiera el tiempo que se desea aunque se cierra la pagina
-        if(checklogin($_COOKIE["username"],$_COOKIE["password"])){
+        if(checklogin($_COOKIE["CookieUser"] ,$_COOKIE["CookiePassword"])){ 
         //if(($_COOKIE["CookieUser"]=="sdk") && ($_COOKIE["CookiePassword"]==md5("Sdk1234!"))){ // Si el usuario y la contraseña son correctos guardar Cookie
             $_SESSION["login"]=true;
             $_SESSION["ValidUser"]=$_COOKIE["CookieUser"];
@@ -27,10 +26,10 @@
             header('Location:SpiritSocial_Login_OK.php');
         }
         else{
-            $Error="Usuario o Contraseña incorrecta";   
+            $Error="Usuario o Contraseña incorrecta";      
         }
-        
     }
+
     if (isset($_REQUEST["Registrar"])){              //Si se aprieta el boton Registrar se envial para registarse en la pagina
         header('Location:SpiritSocial_SignUp.php');
     }

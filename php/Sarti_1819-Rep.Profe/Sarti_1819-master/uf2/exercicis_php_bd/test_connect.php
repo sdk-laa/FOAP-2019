@@ -26,11 +26,13 @@ if (!$con)  {
 }
 
 $sql = 'SELECT * FROM EMPLEATS where edat > '.$_GET["edat"];
-$resultat = mysqli_query($con,$sql) or die('Consulta fallida: ' . mysqli_error($con));
+$resultat = mysqli_query($con,$sql) or die('Consulta fallida: ' . mysqli_error($con)); // mysqli_query(): ejecuta la consulta con la conexion establecida   
+// mysqli_error(): devuelve el erro
+$nfilas=$resultat->num_rows;//mostrar todas las filas,  num_rows: devuele el numero de filas
 
 
 echo "<table>";
- while ($registre = mysqli_fetch_array($resultat, MYSQLI_ASSOC)){
+ while ($registre = mysqli_fetch_array($resultat, MYSQLI_ASSOC)){ //mostrar
     echo "<tr>";
     // només si volem mostrar tots els camps de la consulta
     echo "--->".$registre["nom"]."<----";
@@ -46,12 +48,7 @@ echo "</table>";
 
 
 
-
-
-
-
-
-mysqli_close($con);
+mysqli_close($con); // cerra la conexion
 
 
 

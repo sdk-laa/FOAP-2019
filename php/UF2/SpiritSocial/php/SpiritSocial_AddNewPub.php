@@ -22,7 +22,7 @@
         }
 
         if(isset($_SESSION["login"]) && ($_SESSION["login"]==true)){  //Si se ha hecho login verifica se U. y C. son correctos  
-            if(($_SESSION["ValidUser"]=="sdk") && ($_SESSION["ValidPassword"]==md5("Sdk1234!"))){  //Si U. y C. son correctos muestra el contenido
+            //if(($_SESSION["ValidUser"]=="sdk") && ($_SESSION["ValidPassword"]==md5("Sdk1234!"))){  //Si U. y C. son correctos muestra el contenido
                 if(isset($_REQUEST["UploadPub"])){  //Si se clica en "Upload Pub" verifica todos los campos que esten correctos sino muestra error
 
                     if (empty($_POST["Title"])) {
@@ -138,7 +138,7 @@
         </footer>
         <?php    
            
-            }
+            //}
         }
         else{
             header('Location:SpiritSocial.php');           

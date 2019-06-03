@@ -93,11 +93,11 @@
             }
         }
         
-        if(($_REQUEST["name"]=="sdk") && ($_REQUEST["Password"]=="Sdk1234!")) { // Si U o C son correctos enviar a la pagina restringida
+/*         if(($_REQUEST["name"]=="sdk") && ($_REQUEST["Password"]=="Sdk1234!")) { // Si U o C son correctos enviar a la pagina restringida
             $_SESSION["login"]=true;
             $_SESSION["ValidUser"]="sdk";
             $_SESSION["ValidPassword"]=md5("Sdk1234!");
-        }    
+        } */    
 
         if (empty($nameError) && empty($ApellidoError) && empty($emailError) && empty($fechaError) && empty($UserError) && empty($PasswordError) && empty($RPasswordError) && empty($Errores) && $Registar==true){
             $Rcorrecto=true;
@@ -174,6 +174,8 @@
                         ?>
                         <?php    
                             if ($Rcorrecto==true && $Registar==true && $Errores==""){  //Si todo es correcto muetra el mensage.
+                                // Si se ha creado el usuario correctamente pasarlo a base de datos
+                                newuser($_REQUEST["name"], $_REQUEST["Apellido"], $_REQUEST["FechaNacimiento"], $_REQUEST["email"], $_REQUEST["User"], $_REQUEST["Password"]); 
                         ?>
                                 <br>
                                 <p><b><span class="nota">* Account registered correctly in Spirit Social</span></b></p>
@@ -185,7 +187,7 @@
                                 <p><b><span class="nota"> Click in Login to start</span></b></p>
                                 <br>
                                 <input type="submit" name="login" value="Login">
-                        <?php    
+                        <?php     
                             }
                         ?>        
                     </form>    

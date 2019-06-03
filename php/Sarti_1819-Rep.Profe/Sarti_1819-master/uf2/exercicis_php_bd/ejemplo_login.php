@@ -19,9 +19,7 @@ if(isset($_COOKIE["password"])){
 
     }else{
         $error="credenciales incorrectas";
-    }
-
-         
+    }     
 
 }
 
@@ -29,8 +27,6 @@ if(isset($_REQUEST["new"])){
 
     newuser($_REQUEST["newuser"]);
     $error="Nuevo usuario creado, adelante ".$_REQUEST["new"];
-
-
 }
 
 if(isset($_REQUEST["submit"])){

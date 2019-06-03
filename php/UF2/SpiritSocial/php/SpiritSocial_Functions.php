@@ -83,17 +83,39 @@
             echo "todo ha ido bien<br>";
         }
 
-        $sql = 'SELECT * FROM usuarios where user="'.$username.'" and password=md5("'.$password.'")     ';
+        $sql = 'SELECT * FROM usuarios where User="'.$username.'" and Password="'.$password.'"     ';
         $resultat = mysqli_query($con,$sql) or die('Consulta fallida: ' . mysqli_error($con));
         
         // tancar cx amb la db
         mysqli_close($con);
 
-    
         if($resultat->num_rows==1){
             $retorna=true;
         }
 
         return $retorna;
     }
+
+    function newuser($name, $Apellido, $FechaNacimiento, $email, $nom, $password){
+
+        // dades de configuració
+        $ip = 'localhost';
+        $usuari = 'sdk_spiritsocial';
+        $pass = '';
+        $db_name = 'spiritsocial';
+    
+    
+        // connectem amb la db
+        $con = mysqli_connect($ip,$usuari,$pass,$db_name);
+        if (!$con)  {
+            echo "Ha fallat la connexió a MySQL: " . mysqli_connect_errno();
+                echo "Ha fallat la connexió a MySQL: " . mysqli_connect_error();
+        }
+    
+        $sql = "insert into usuarios (Name, Surname, Birthdate, Email, User, Password) values ('$name', '$Apellido', '$FechaNacimiento', '$email', '$nom',md5('$password') )";
+        $resultat = mysqli_query($con,$sql) or die('Consulta fallida: ' . mysqli_error($con));
+        mysqli_close($con);
+    
+    }
+
 ?>
