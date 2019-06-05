@@ -17,6 +17,7 @@
     }                                                            
     
 
+
     if (isset($_COOKIE["CookieUser"]) && $_COOKIE["CookiePassword"]){ // Cookie para mantener seccion abiera el tiempo que se desea aunque se cierra la pagina
         if(checklogin($_COOKIE["CookieUser"] ,$_COOKIE["CookiePassword"])){ 
         //if(($_COOKIE["CookieUser"]=="sdk") && ($_COOKIE["CookiePassword"]==md5("Sdk1234!"))){ // Si el usuario y la contraseña son correctos guardar Cookie
