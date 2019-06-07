@@ -28,7 +28,31 @@ select a.IdAvion from avion a where a.IdAvion is not null and not exists
 /* (6) */
 select * from vuelo where Fecha>"2017-12-01" and Origen="Pemuco" or Origen="San Pedro";
 
-/* (7) */ -- falta terminar
-select e.IdEmpleado, t.IdVuelo from tripulacion t, empleados e where ;
-select e.IdEmpleado, count(t.IdVuelo) as "Numero de vuelos" from empleados e
-		left join tripulacion t on e.IdEmpleado=t.IdEmpleado group by t.IdEmpleado;
+/* (7) */ 
+select e.IdEmpleado, e.Nombre, e.Apellidos, count(t.IdVuelo) as "Numero de vuelos" from empleados e
+		left join tripulacion t on e.IdEmpleado=t.IdEmpleado group by e.IdEmpleado having count(t.IdVuelo)>2;
+
+/* (8) */ 
+select distinct p.IdVuelo, ps.IdPasajero, ps.Nombre as Pasajero, t.IdVuelo, e.IdEmpleado, e.Nombre as Empleado 
+	from pasajeros ps, pasaje p, empleados e, tripulacion t, avion a, vuelo v
+	where ps.IdPasajero=p.IdPasajero and e.IdEmpleado=t.IdEmpleado and p.IdVuelo=t.IdVuelo and p.IdVuelo=v.IdVuelo 
+    and t.IdVuelo=v.IdVuelo and v.IdAvion=a.IdAvion and a.Fabricante like "Airbus" order by Pasajero;
+
+/* (9) */ 
+insert into empleados (DNI, Nombre, Apellidos, CategoriaProfesional) 
+	values ('12345678R', 'Joan', 'Soler Pineda ', 'Director general');
+    
+/* (10) */ 
+insert into tripulacion(IdVuelo, IdEmpleado, PuestoOcupado) 
+	(select IdVuelo, IdEmpleado, "Piloto" from vuelo, empleados 
+	where IdVuelo="12" and IdEmpleado="101") ;
+
+/* (11) */ 
+delete from avion  where IdAvion not in (select v.IdAvion from vuelo v where v.IdAvion is not null);
+
+/* (12) */ 
+update avion set AutonomiaVuelo=AutonomiaVuelo*0.9 where IdAvion 
+	in (select count(v.IdVuelo) as "Numero de vuelos" from vuelo v
+		where v.IdAvion group by v.IdAvion having count(v.IdVuelo) > 2) ;
+        
+        
