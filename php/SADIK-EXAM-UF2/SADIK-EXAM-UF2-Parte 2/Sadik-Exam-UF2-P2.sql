@@ -44,15 +44,15 @@ insert into empleados (DNI, Nombre, Apellidos, CategoriaProfesional)
     
 /* (10) */ 
 insert into tripulacion(IdVuelo, IdEmpleado, PuestoOcupado) 
-	(select IdVuelo, IdEmpleado, "Piloto" from vuelo, empleados 
-	where IdVuelo="12" and IdEmpleado="101") ;
+	select IdVuelo, IdEmpleado, "Piloto" from vuelo, empleados 
+	where IdVuelo="12" and IdEmpleado="101";
 
 /* (11) */ 
 delete from avion  where IdAvion not in (select v.IdAvion from vuelo v where v.IdAvion is not null);
 
 /* (12) */ 
-update avion set AutonomiaVuelo=AutonomiaVuelo*0.9 where IdAvion 
-	in (select count(v.IdVuelo) as "Numero de vuelos" from vuelo v
-		where v.IdAvion group by v.IdAvion having count(v.IdVuelo) > 2) ;
-        
+update avion set AutonomiaVuelo=AutonomiaVuelo * 0.9 where IdAvion   -- hay 3 que no se modifican por problema entre INT y FLOAT
+	in (select v.IdAvion from vuelo v
+		 group by v.IdAvion having count(v.IdVuelo) > 2) ;
+ 
         
