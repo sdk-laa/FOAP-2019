@@ -60,6 +60,12 @@ footer {
     display: inline;
 }
 
+#lcontenido{
+    float: left;
+    width:500px;
+    display: inline;
+}
+
 p.correcto{
     background-color: green;
     display: inline;

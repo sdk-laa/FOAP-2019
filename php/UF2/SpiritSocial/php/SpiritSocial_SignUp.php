@@ -14,7 +14,11 @@
 
    if (isset($_REQUEST["login"])){  //Si se clica "login" vuelve a la pagina principal
     header('Location:SpiritSocial.php');
-    } 
+    }
+    
+    if (isset($_REQUEST["Table"])){  //Si se clica "Table" vuelve a la tabla actualizada
+        header('Location:SpiritSocial-Usuarios.php');
+        }
    
    if(isset($_REQUEST['submit'])){  //Si se clica en "Sign Up" verifica que todo es correcto
         if (empty($_POST["name"])) {
@@ -184,9 +188,9 @@
                                 <br>
                                 <p><b><span class="correcto"> with the people who are part of your life"</span></b></p>
                                 <br><br>
-                                <p><b><span class="nota"> Click in Login to start</span></b></p>
+                                <p><b><span class="nota"> Click in Login to start or in Table to return to the table </span></b></p>
                                 <br>
-                                <input type="submit" name="login" value="Login">
+                                <input type="submit" name="login" value="Login">  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   <input type="submit" name="Table" value="Table">
                         <?php     
                             }
                         ?>        

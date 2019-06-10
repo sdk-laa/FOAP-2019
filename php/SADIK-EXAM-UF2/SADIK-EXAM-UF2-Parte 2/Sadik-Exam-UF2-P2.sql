@@ -26,7 +26,7 @@ select a.IdAvion from avion a where a.IdAvion is not null and not exists
 	(select * from vuelo v where a.IdAvion= v.IdAvion);
 
 /* (6) */
-select * from vuelo where Fecha>"2017-12-01" and Origen="Pemuco" or Origen="San Pedro";
+select * from vuelo where Fecha>"2017-12-01" and (Origen="Pemuco" or Origen="San Pedro");
 
 /* (7) */ 
 select e.IdEmpleado, e.Nombre, e.Apellidos, count(t.IdVuelo) as "Numero de vuelos" from empleados e
