@@ -1,21 +1,15 @@
 <?php
 require("SpiritSocial_Functions.php");    //Incluir funciones
 
-$Count=0;
+
 $con=connectDB();
 $select = 'SELECT * FROM usuarios';
-$resultat1 = mysqli_query($con,$select) or die('Consulta fallida: ' . mysqli_error($con));
+$resultat = mysqli_query($con,$select) or die('Consulta fallida: ' . mysqli_error($con));
 
 if(isset($_REQUEST['AddUser'])){ //Si se clica en "Add New User" se envia a otra pagina del furmulario para añadir el nuevo usuario
     header('Location:SpiritSocial_SignUp.php');
 }
 
-if(isset($_REQUEST['DeleteUser'])){ //Si se clica en "Delete User" se elimina todos los datos de ¡l usuario seleccionado
-    
-    $delete = "DELETE FROM usuarios WHERE id='$Count'";
-    $resultat2 = mysqli_query($con,$delete) or die('Consulta fallida: ' . mysqli_error($con));
-    header('Location:SpiritSocial-Usuarios.php');
-}
 ?>
 
 
@@ -48,14 +42,15 @@ if(isset($_REQUEST['DeleteUser'])){ //Si se clica en "Delete User" se elimina to
                 
                     <table >
                         <tr>
-                            <td>Nombre &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            <td>Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                             <td>Surname &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                             <td>Birthdate &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                             <td>Email &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                             <td>User</td>
                         </tr>
-                        <?php while($u = $resultat->fetch_assoc()){ ?>
-                            
+                        <?php while($u = $resultat->fetch_assoc()){
+                            print_r ($u);
+                                ?>
                             <tr>
                                 <td><?php echo $u['Name']; ?></td>
                                 <td><?php echo $u['Surname']; ?></td>
@@ -63,11 +58,14 @@ if(isset($_REQUEST['DeleteUser'])){ //Si se clica en "Delete User" se elimina to
                                 <td><?php echo $u['Email']; ?></td>
                                 <td><?php echo $u['User']; ?></td>
                                 <td><input type="submit" name="EditUser" value="Edit User"></td>
+                                <?php
+                                print($u['id']);
+                    ?>
                                 <td><input type="submit" name="DeleteUser" value="Delete User"></td>
+                                <td><a href="SpiritSocial-Delete.php/?id='<?php $u['id'];?>'">enlace</a></td>
                             </tr>
-                        <?php 
-                            $Count++;
-                            } 
+                        <?php
+                            }
                         CloseDB($con);
                         ?>
                     </table>
