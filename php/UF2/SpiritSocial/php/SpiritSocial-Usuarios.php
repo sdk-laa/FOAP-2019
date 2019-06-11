@@ -49,7 +49,6 @@ if(isset($_REQUEST['AddUser'])){ //Si se clica en "Add New User" se envia a otra
                             <td>User</td>
                         </tr>
                         <?php while($u = $resultat->fetch_assoc()){
-                            print_r ($u);
                                 ?>
                             <tr>
                                 <td><?php echo $u['Name']; ?></td>
@@ -59,10 +58,9 @@ if(isset($_REQUEST['AddUser'])){ //Si se clica en "Add New User" se envia a otra
                                 <td><?php echo $u['User']; ?></td>
                                 <td><input type="submit" name="EditUser" value="Edit User"></td>
                                 <?php
-                                print($u['id']);
                     ?>
-                                <td><input type="submit" name="DeleteUser" value="Delete User"></td>
-                                <td><a href="SpiritSocial-Delete.php/?id='<?php $u['id'];?>'">enlace</a></td>
+                                <!-- <td><input type="submit" name="DeleteUser" value="Delete User"></td> -->
+                                <td><a href="SpiritSocial-Delete.php/?id='<?php $u['id'];?>'">Delete User</a></td>
                             </tr>
                         <?php
                             }
