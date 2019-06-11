@@ -2,17 +2,17 @@
     require("SpiritSocial_Functions.php");    //Incluir funciones
 
     $con=connectDB();
-    $id=$_GET['id'];
-    echo $_id;
+
     if (isset($_REQUEST['Si'])){
-        $delete = 'DELETE FROM usuarios WHERE id="$_GET['id']"';
+
+        $delete = "DELETE FROM usuarios WHERE id='$_GET[id]'";
         $resultat2 = mysqli_query($con,$delete) or die('Consulta fallida: ' . mysqli_error($con));
-    
-        header('Location:SpiritSocial-Usuarios.php');
+        header('Location:../../SpiritSocial-Usuarios.php');
     }
 
     if (isset($_REQUEST['No'])){
-        header('Location:SpiritSocial-Usuarios.php');
+        echo "Estoy en no";
+        header('Location:../../SpiritSocial-Usuarios.php');
     }
         
 ?>
@@ -25,7 +25,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <link rel="stylesheet" type="text/css" href="../css/estilo.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/estilo.css" />
 </head>
  
 <body>
@@ -38,10 +38,11 @@
 
         <section>  <!-- Contenido de la pagina -->
             <div class='define'>
-                <div style="float:left"> <img src= "../imgs/SpiritSocial-2.jpg" alt="Logo" height="150px" width="960px"></div>
-                <div id ="logo"> <img src= "../imgs/SpiritSocial.jpg" alt="Logo" height="300px" width="500px"></div> 
+                <div style="float:left"> <img src= "../../imgs/SpiritSocial-2.jpg" alt="Logo" height="150px" width="960px"></div>
+                <div id ="logo"> <img src= "../../imgs/SpiritSocial.jpg" alt="Logo" height="300px" width="500px"></div> 
                 <div id ="contenido">
-                <form action="SpiritSocial-Usuarios.php" method="POST">
+                <form action="SpiritSocial-Delete.php/?id=<?= $_GET['id'];?>" method="POST">
+                              
                     <div>
                         <h2>Eliminar un registro</h2>
                     </div>

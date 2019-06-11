@@ -60,7 +60,7 @@ if(isset($_REQUEST['AddUser'])){ //Si se clica en "Add New User" se envia a otra
                                 <?php
                     ?>
                                 <!-- <td><input type="submit" name="DeleteUser" value="Delete User"></td> -->
-                                <td><a href="SpiritSocial-Delete.php/?id='<?php $u['id'];?>'">Delete User</a></td>
+                                <td><a href="SpiritSocial-Delete.php/?id=<?= $u['id'];?>">Delete User</a></td>
                             </tr>
                         <?php
                             }
