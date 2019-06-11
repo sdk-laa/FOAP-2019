@@ -118,6 +118,27 @@
     
     }
 
+    function UpdateUser($name, $Apellido, $fecha, $email, $nom){
+        // dades de configuració
+        $ip = 'localhost';
+        $usuari = 'sdk_spiritsocial';
+        $pass = '';
+        $db_name = 'spiritsocial'; 
+        
+    
+        // connectem amb la db
+        $con = mysqli_connect($ip,$usuari,$pass,$db_name);
+        if (!$con)  {
+            echo "Ha fallat la connexió a MySQL: " . mysqli_connect_errno();
+                echo "Ha fallat la connexió a MySQL: " . mysqli_connect_error();
+        }
+    
+        $UpdateUser = "update usuarios (Name, Surname, Birthdate, Email, User) values ('$name', '$Apellido', '$fecha', '$email', '$nom') where id=.................................. " ;
+        $resultat3 = mysqli_query($con,$UpdateUser) or die('Consulta fallida: ' . mysqli_error($con));
+        mysqli_close($con);
+    
+    }
+
     function ConnectDB(){
         // dades de configuració
         $ip = 'localhost';

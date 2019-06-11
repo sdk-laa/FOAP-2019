@@ -7,11 +7,12 @@
 
         $delete = "DELETE FROM usuarios WHERE id='$_GET[id]'";
         $resultat2 = mysqli_query($con,$delete) or die('Consulta fallida: ' . mysqli_error($con));
+        CloseDB($con);
         header('Location:../../SpiritSocial-Usuarios.php');
     }
 
     if (isset($_REQUEST['No'])){
-        echo "Estoy en no";
+        CloseDB($con);
         header('Location:../../SpiritSocial-Usuarios.php');
     }
         
@@ -39,24 +40,19 @@
         <section>  <!-- Contenido de la pagina -->
             <div class='define'>
                 <div style="float:left"> <img src= "../../imgs/SpiritSocial-2.jpg" alt="Logo" height="150px" width="960px"></div>
-                <div id ="logo"> <img src= "../../imgs/SpiritSocial.jpg" alt="Logo" height="300px" width="500px"></div> 
+                <!-- <div id ="logo"> <img src= "../../imgs/SpiritSocial.jpg" alt="Logo" height="300px" width="500px"></div> --> 
                 <div id ="contenido">
-                <form action="SpiritSocial-Delete.php/?id=<?= $_GET['id'];?>" method="POST">
-                              
+                <form action="SpiritSocial-Delete.php/?id=<?= $_GET['id'];?>" method="POST">        
                     <div>
                         <h2>Eliminar un registro</h2>
                     </div>
                     <div>
-                        <p>Seguro que quiere eliminar este registro?</p><br>
+                        <p>Seguro que quiere eliminar el registro con el id=<?= $_GET['id'];?>?</p><br>
                         <p>
                             <input type="submit" name = "Si" value="Si" >
                             <input type="submit" name = "No" value="No" >
                         </p>
                     </div>
-                    <?php
-                        CloseDB($con);
-                    ?>
-                       
                 </form>
             </div>
         </section>
