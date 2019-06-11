@@ -49,22 +49,24 @@
                 $Password = test_input($_REQUEST["password"]);
             }
             
-            if(checklogin($_REQUEST["username"],$_REQUEST["password"])){
+            if(checklogin($_REQUEST["username"],md5($_REQUEST["password"]))){
             //if(($_REQUEST["username"]=="sdk") && ($_REQUEST["password"]=="Sdk1234!")) { // Si U. y C. son correctos enviar a la pagina restringida y guarda variables de session
                 // Código para usuarios autorizados
                 $_SESSION["login"]=true;
                 $_SESSION["ValidUser"]=$_REQUEST["username"];
-                $_SESSION["ValidPassword"]=$_REQUEST["password"];
+                $_SESSION["ValidPassword"]=md5($_REQUEST["password"]);
                 if(($_REQUEST["recordar"]) && ($_REQUEST["recordar"]==1)){ //Si se clica en Recordar guarda cookie el tiempo que se desea
                     setcookie("CookiePassword",md5($_REQUEST["password"]),time()+60*60);
                     setcookie("CookieUser",$_REQUEST["username"],time()+60*60);
                 }
+                echo "4,";
                 header('Location:SpiritSocial_Login_OK.php');
                 $MostarE=false;
             }    
             else{
                 // Mensaje de acceso no autorizado
                 $MostarE=true;
+                echo "5,";
                 $Error="Usuario o Contraseña incorrecta";
                 setcookie("CookieUser",0,1);
                 setcookie("CookiePassword",0,1);

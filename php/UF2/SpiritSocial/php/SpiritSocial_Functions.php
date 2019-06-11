@@ -71,7 +71,7 @@
         $ip = 'localhost'; //127.0.0.1
         $usuari = 'sdk_spiritsocial'; // root o otro usuario
         $pass = ''; // contraseña del usuario
-        $db_name = 'spiritsocial'; // Nombre de la base de datos
+        $db_name = 'SpiritSocial'; // Nombre de la base de datos
 
 
         // connectem amb la db
@@ -82,18 +82,22 @@
         }else{
             echo "todo ha ido bien<br>";
         }
-
-        $sql = 'SELECT * FROM usuarios where User="'.$username.'" and Password="'.$password.'"     ';
+        echo "1,";
+        $sql = 'SELECT * FROM Usuarios where User="'.$username.'" and Password="'.$password.'"  ';
+        echo $sql;
         $resultat = mysqli_query($con,$sql) or die('Consulta fallida: ' . mysqli_error($con));
-        
-        // tancar cx amb la db
-        mysqli_close($con);
+        echo "2,";
+
 
         if($resultat->num_rows==1){
             $retorna=true;
         }
+        echo "3, ".$resultat->num_rows;
 
+        // tancar cx amb la db
+        mysqli_close($con);
         return $retorna;
+
     }
 
     function newuser($name, $Apellido, $FechaNacimiento, $email, $nom, $password){
@@ -118,7 +122,7 @@
     
     }
 
-    function UpdateUser($name, $Apellido, $fecha, $email, $nom){
+    function UpdateUser($name, $Apellido, $fecha, $email, $nom, $id){
         // dades de configuració
         $ip = 'localhost';
         $usuari = 'sdk_spiritsocial';
@@ -132,8 +136,7 @@
             echo "Ha fallat la connexió a MySQL: " . mysqli_connect_errno();
                 echo "Ha fallat la connexió a MySQL: " . mysqli_connect_error();
         }
-    
-        $UpdateUser = "update usuarios (Name, Surname, Birthdate, Email, User) values ('$name', '$Apellido', '$fecha', '$email', '$nom') where id=.................................. " ;
+        $UpdateUser = "update usuarios set  Name='$name', Surname='$Apellido', Birthdate='$fecha', Email='$email', User='$nom' where id='$id'";
         $resultat3 = mysqli_query($con,$UpdateUser) or die('Consulta fallida: ' . mysqli_error($con));
         mysqli_close($con);
     

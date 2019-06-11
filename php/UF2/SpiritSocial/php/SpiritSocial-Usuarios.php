@@ -8,6 +8,7 @@ $resultat = mysqli_query($con,$select) or die('Consulta fallida: ' . mysqli_erro
 
 if(isset($_REQUEST['AddUser'])){ //Si se clica en "Add New User" se envia a otra pagina del furmulario para añadir el nuevo usuario
     header('Location:SpiritSocial_SignUp.php');
+
 }
 
 ?>
@@ -57,7 +58,7 @@ if(isset($_REQUEST['AddUser'])){ //Si se clica en "Add New User" se envia a otra
                                 <td><?php echo $u['Email']; ?></td>
                                 <td><?php echo $u['User']; ?></td>
                                 <!-- <td><input type="submit" name="EditUser" value="Edit User"></td> -->
-                                <td><a href="SpiritSocial_SignUp.php/?id=<?= $u['id'];?>">Edit User</a></td>
+                                <td><a href="SpiritSocial-Update.php/?id=<?= $u['id'];?>">Edit User</a></td>
                                 <!-- <td><input type="submit" name="DeleteUser" value="Delete User"></td> -->
                                 <td><a href="SpiritSocial-Delete.php/?id=<?= $u['id'];?>">Delete User</a></td>
                             </tr>
