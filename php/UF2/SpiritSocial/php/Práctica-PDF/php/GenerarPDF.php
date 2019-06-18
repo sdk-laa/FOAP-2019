@@ -1,8 +1,8 @@
 <?php
     // include autoloader
     require_once 'dompdf/autoload.inc.php';
-    require ("Consultas1.php");
-    $SpiritSocial="SpiritSocial";
+    require ("Consultas2.php"); // require ("Consultas1.php");
+    $SpiritSocial=$Cliente;
         
     // reference the Dompdf namespace
     use Dompdf\Dompdf;

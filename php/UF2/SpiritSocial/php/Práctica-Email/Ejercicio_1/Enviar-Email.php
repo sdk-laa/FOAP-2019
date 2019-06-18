@@ -4,6 +4,8 @@ use PHPMailer\PHPMailer\Exception;
 require 'PHPMailer/src/Exception.php';
 require 'PHPMailer/src/PHPMailer.php';
 require 'PHPMailer/src/SMTP.php';
+//require ("../../Práctica-PDF/php/GenerarPDF")
+
 // Instantiation and passing `true` enables exceptions
 $mail = new PHPMailer(true);
 try {
@@ -22,9 +24,11 @@ try {
     $mail->addAddress('sadik.laaroussii@gmail.com', 'Sadik');     // Add a recipient
     // Content
     $mail->isHTML(true);                                  // Set email format to HTML
-    $mail->Subject = 'test';
-    $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
+    $mail->Subject = 'test pdf';
+    $mail->Body    = ' Enviar un pdf';
     $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+    // definiendo el adjunto 
+    //$mail->addAttachment('../../Práctica-PDF/php/GenerarPDF');
     $mail->send();
     echo 'Message has been sent';
 } catch (Exception $e) {

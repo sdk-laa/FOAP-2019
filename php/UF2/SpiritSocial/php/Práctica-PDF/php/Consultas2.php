@@ -16,8 +16,10 @@
     $select1 = 'SELECT nom FROM clients ORDER BY RAND() LIMIT 1';
     
     $NomClient = mysqli_query($con,$select1) or die('Consulta fallida: ' . mysqli_error($con));
-    echo $NomClient;
-    $select2 = 'SELECT c.* FROM comanda c INNER JOIN clients cl ON c.clie=cl.numclie AND cl.nom="$NomClient"';
+    $v = $NomClient->fetch_assoc();
+    $Cliente=$v['nom'];
+    //echo $Cliente;
+    $select2 = "SELECT c.* FROM comanda c INNER JOIN clients cl ON c.clie=cl.numclie AND cl.nom='$Cliente'";
     $resultat = mysqli_query($con,$select2) or die('Consulta fallida: ' . mysqli_error($con));
 ?>
 
@@ -45,15 +47,33 @@
                  <!--<div id ="logo"> <img src= "../imgs/SpiritSocial.jpg" alt="Logo" height="300px" width="500px"></div> -->
                 <div id ="contenido">
                     <form  method="POST">
-                            <h2>Lista de Clientes:</h2>
-                            <?php echo "<br>";?>
-                            <?php while($u = $resultat->fetch_assoc()){     
-                                echo utf8_encode($u['numcomanda']); 
-                                echo "<br>"; 
+                            <h2>Comandas del Cliente: <?php echo utf8_encode($Cliente);?></h2>
+                        <table >
+                            <tr>
+                                <td>Numero Comanda &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                <td>Fecha de comanda &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                <td>Numero Cliente &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                <td>Numero Representante &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                <td>Importe Total</td>
+                            </tr>
+                            <?php //echo "<br>";?>
+                            <?php while($u = $resultat->fetch_assoc()){ ?>    
+                            <tr>    
+                                <td><?php echo utf8_encode($u['numcomanda']); ?></td>
+                                
+                                <td><?php echo utf8_encode($u['data']);?></td> 
+                               
+                               <td><?php echo utf8_encode($u['clie']); ?></td>
+                               
+                               <td><?php echo utf8_encode($u['rep_ven']);?></td> 
+                                
+                               <td><?php echo utf8_encode($u['import_total']);?></td> 
+                            </tr>   
+                               <?php //echo "<br>"; 
                             }
                                 mysqli_close($con);    
                             ?>
-                        
+                        </table>
                     </form>
                 </div>
             </div>

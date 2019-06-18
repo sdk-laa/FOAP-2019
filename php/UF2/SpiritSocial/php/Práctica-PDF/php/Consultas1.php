@@ -5,6 +5,8 @@
     $pass = '';
     $db_name = 'empresa';
     
+
+    $Cliente="Clientes";
     // connectem amb la db
     $con = mysqli_connect($ip,$usuari,$pass,$db_name);
     if (!$con)  {
