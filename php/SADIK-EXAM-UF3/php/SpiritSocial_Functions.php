@@ -91,7 +91,7 @@
             $retorna=true;
         }
         echo "3, ".$resultat->num_rows;
-
+        // no esta haciendo bien la consulta
         // tancar cx amb la db
         mysqli_close($con);
         return $retorna;
