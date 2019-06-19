@@ -51,7 +51,7 @@
             <section>  <!-- Contenido de la pagina -->
                 <div class='define'>
                     <div>
-                    <form action="SpiritSocial_SeeNewPub.php" method="POST">
+                    <form action="SpiritSocial_SeeNewNews.php" method="POST">
                         <input type="submit" name="MainMenu" value="Main Menu">
                         <br><br>
                         <br><br>
@@ -87,7 +87,7 @@
                                 <!--<textarea name="comment" rows="5" cols="60"></textarea>-->
                                 <br><br>
                                 <br><br>
-                        <input type="submit" name="AddPubToWall" value="Add Pub To Wall">
+                        <input type="submit" name="AddNewsToWall" value="Add News To Wall">
                     </div>
                     </form>
                 </div>
@@ -97,14 +97,15 @@
             }
         }
         else{
+            $_SESSION["SeeNewNews"]=true;
             header('Location:SpiritSocial.php');           
         }
-        if(isset($_REQUEST["AddPubToWall"])){
-            $_SESSION["Add Pub To Wall"] = true;
+        if(isset($_REQUEST["AddNewsToWall"])){
+            $_SESSION["Add News To Wall"] = true;
             header('Location:SpiritSocial_Login_OK.php');
         }
         else{
-            $_SESSION["Add Pub To Wall"] = false;
+            $_SESSION["Add News To Wall"] = false;
         }
         ?>        
     

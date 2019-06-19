@@ -11,8 +11,15 @@
     require("SpiritSocial_Functions.php");    //Incluir funciones
 
     if (isset($_SESSION["login"]) && $_SESSION["login"]==true){   // Si ya esta hecho login enviar siempre a la pagina restringida
-                                                                  // Y si se cierra navegador volver a login
-            header('Location:SpiritSocial_Login_OK.php');     
+                                                                 // Y si se cierra navegador volver a login
+        if(isset($_SESSION["AddNewNews"]) && $_SESSION["AddNewNews"]==true){
+            header('Location:SpiritSocial_AddNewNews.php'); 
+        }
+        if(isset($_SESSION["RemoveNews"]) && $_SESSION["RemoveNews"]==true){
+            header('Location:SpiritSocial_RemoveNews.php'); 
+        } 
+        
+        //header('Location:SpiritSocial_Login_OK.php');     
           
     }                                                            
     
@@ -59,14 +66,21 @@
                     setcookie("CookiePassword",md5($_REQUEST["password"]),time()+60*60);
                     setcookie("CookieUser",$_REQUEST["username"],time()+60*60);
                 }
-                echo "4,";
-                header('Location:SpiritSocial_Login_OK.php');
+                if(isset($_SESSION["AddNewNews"]) && $_SESSION["AddNewNews"]==true){
+                    header('Location:SpiritSocial_AddNewNews.php'); 
+                }
+                if(isset($_SESSION["RemoveNews"]) && $_SESSION["RemoveNews"]==true){
+                    header('Location:SpiritSocial_RemoveNews.php'); 
+                } 
+                if($_SESSION["RemoveNews"]==false && $_SESSION["AddNewNews"]==false ){
+                    header('Location:SpiritSocial_Login_OK.php'); 
+                }
+                
                 $MostarE=false;
             }    
             else{
                 // Mensaje de acceso no autorizado
                 $MostarE=true;
-                echo "5,";
                 $Error="Usuario o Contraseña incorrecta";
                 setcookie("CookieUser",0,1);
                 setcookie("CookiePassword",0,1);

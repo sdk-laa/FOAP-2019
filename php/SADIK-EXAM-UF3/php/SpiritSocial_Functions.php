@@ -15,21 +15,21 @@
     }
 
     function valida_contrasena($Password,$Errores){  //Funcion para validar contraseña
-        if(strlen($Password) < 6 || strlen($Password) > 8){
-            $Errores = $Errores . "<li>La contraseña debe tener entre 6 y 8 caracteres</li>";
+        if(strlen($Password) < 4 || strlen($Password) > 8){
+            $Errores = $Errores . "<li>La contraseña debe tener entre 4 y 8 caracteres</li>";
         }
-        if (!preg_match('/[a-z]/',$Password)){
+        /* if (!preg_match('/[a-z]/',$Password)){
             $Errores = $Errores . "<li>La contraseña debe tener al menos una letra minúscula</li>";
-        }
-        if (!preg_match('/[A-Z]/',$Password)){
+        } */
+        /* if (!preg_match('/[A-Z]/',$Password)){
             $Errores = $Errores . "<li>La contraseña debe tener al menos una letra mayúscula</li>";
-        }
-        if (!preg_match('/[0-9]/',$Password)){
+        } */
+        /* if (!preg_match('/[0-9]/',$Password)){
             $Errores = $Errores . "<li>La contraseña debe tener al menos un caracter numérico</li>";
-        }
-        if (!preg_match('/[#~$%!]/',$Password)){
+        } */
+        /*if (!preg_match('/[#~$%!]/',$Password)){
             $Errores = $Errores . "<li>La contraseña debe tener al menos un caracter de estos ' #~$%!& '</li>";
-        }
+        } */
         return $Errores;
     }
 
@@ -69,9 +69,9 @@
 
         // dades de configuració
         $ip = 'localhost'; //127.0.0.1
-        $usuari = 'sdk_spiritsocial'; // root o otro usuario
-        $pass = ''; // contraseña del usuario
-        $db_name = 'SpiritSocial'; // Nombre de la base de datos
+        $usuari = 'prova'; // root o otro usuario
+        $pass = 'prova'; // contraseña del usuario
+        $db_name = 'prova'; // Nombre de la base de datos
 
 
         // connectem amb la db
@@ -80,13 +80,11 @@
             echo "Ha fallat la connexió a MySQL: " . mysqli_connect_errno();
                 echo "Ha fallat la connexió a MySQL: " . mysqli_connect_error();
         }else{
-            echo "todo ha ido bien<br>";
+            //echo "todo ha ido bien<br>";
         }
-        echo "1,";
-        $sql = 'SELECT * FROM Usuarios where User="'.$username.'" and Password="'.$password.'"  ';
+        $sql = 'SELECT * FROM usuarios where User="'.$username.'" and Password="'.$password.'"  ';
         echo $sql;
         $resultat = mysqli_query($con,$sql) or die('Consulta fallida: ' . mysqli_error($con));
-        echo "2,";
 
 
         if($resultat->num_rows==1){
@@ -104,9 +102,9 @@
 
         // dades de configuració
         $ip = 'localhost';
-        $usuari = 'sdk_spiritsocial';
-        $pass = '';
-        $db_name = 'spiritsocial';
+        $usuari = 'prova';
+        $pass = 'prova';
+        $db_name = 'prova';
     
     
         // connectem amb la db
@@ -125,9 +123,9 @@
     function UpdateUser($name, $Apellido, $fecha, $email, $nom, $id){
         // dades de configuració
         $ip = 'localhost';
-        $usuari = 'sdk_spiritsocial';
-        $pass = '';
-        $db_name = 'spiritsocial'; 
+        $usuari = 'prova';
+        $pass = 'prova';
+        $db_name = 'prova'; 
         
     
         // connectem amb la db
@@ -145,9 +143,9 @@
     function ConnectDB(){
         // dades de configuració
         $ip = 'localhost';
-        $usuari = 'sdk_spiritsocial';
-        $pass = '';
-        $db_name = 'spiritsocial';
+        $usuari = 'prova';
+        $pass = 'prova';
+        $db_name = 'prova';
         
         // connectem amb la db
         $con = mysqli_connect($ip,$usuari,$pass,$db_name);

@@ -95,12 +95,12 @@
         </div>
     </footer>
 
-    <?php  
+<?php  
             
-        }
-        else{
-            header('Location:SpiritSocial.php');           
-        }
-    ?>
+    }else{
+        $_SESSION["LOGIN_OK"]=true;
+        header('Location:SpiritSocial.php');           
+    }
+?>
 </body>
 </html>

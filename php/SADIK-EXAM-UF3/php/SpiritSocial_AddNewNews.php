@@ -18,7 +18,7 @@
         } 
 
         if(isset($_REQUEST['MainMenu'])){  //Si se clica en "Main Menu" Vuelve al muro de publicaciones
-            header('Location:SpiritSocial_Login_OK.php');
+            header('Location:SpiritSocial_CheckNews.php');
         }
 
         if(isset($_SESSION["login"]) && ($_SESSION["login"]==true)){  //Si se ha hecho login verifica se U. y C. son correctos  
@@ -93,30 +93,30 @@
                     <div style="float:left"> <img src= "../imgs/SpiritSocial-2.jpg" alt="Logo" height="150px" width="960px"></div>
                     <div id ="logo"> <img src= "../imgs/SpiritSocial.jpg" alt="Logo" height="350px" width="500px"></div>
                     <div>
-                    <form action="SpiritSocial_AddNewPub.php" method="POST" enctype="multipart/form-data">
-                        <input type="submit" name="MainMenu" value="Main Menu">
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <input type="submit" name="RemovePub" value="Remove Pub">   
-                        <br><br>
-                        <br>
-                        <p><h2> Add New Pub</h2></p>
-                        <p><span class="error">* Obligatory field</span></p>
-                        <br>
-                        <p>Title:</p>   
-                        <input type="text" name="Title" value="<?php echo $Title;?>">
-                        <span class="error">* <?php echo $TitleError;?></span>
-                        <br>
-                        <p>Description:</p> 
-                        <textarea name="Description" rows="2" cols="50" ></textarea> 
-                        <span class="error">* <?php echo $DescriptionError;?></span>
-                        <br>
-                        </p>Image:</p>
-                        <input type="file" name="Image"><br>
-                        <span class="error">* <?php echo $ImageError;?></span>
-                        <br><br>
-                        <p>Click the button "Upload Pub" to Upload a new publication.</p>
-                        <p><input type="submit" name="UploadPub" value="Upload Pub"></p>
-                    </form> 
+                        <form action="SpiritSocial_AddNewNews.php" method="POST" enctype="multipart/form-data">
+                            <input type="submit" name="MainMenu" value="Main Menu">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="submit" name="RemovePub" value="Remove Pub">   
+                            <br><br>
+                            <br>
+                            <p><h2> Add New Pub</h2></p>
+                            <p><span class="error">* Obligatory field</span></p>
+                            <br>
+                            <p>Title:</p>   
+                            <input type="text" name="Title" value="<?php echo $Title;?>">
+                            <span class="error">* <?php echo $TitleError;?></span>
+                            <br>
+                            <p>Description:</p> 
+                            <textarea name="Description" rows="2" cols="50" ></textarea> 
+                            <span class="error">* <?php echo $DescriptionError;?></span>
+                            <br>
+                            </p>Image:</p>
+                            <input type="file" name="Image"><br>
+                            <span class="error">* <?php echo $ImageError;?></span>
+                            <br><br>
+                            <p>Click the button "Upload Pub" to Upload a new publication.</p>
+                            <p><input type="submit" name="UploadPub" value="Upload Pub"></p>
+                        </form> 
                     </div> 
                     <?php
                         if($ShowImage==true){ //Si hay nueva publicacion muestra uana alerta para indicarlo y enviar a otra pagina para verla.
@@ -137,12 +137,11 @@
             </div>
         </footer>
         <?php    
-           
             //}
-        }
-        else{
-            header('Location:SpiritSocial.php');           
-        }
+            }else{
+                $_SESSION["AddNewNews"]=true;
+                header('Location:SpiritSocial.php');           
+            }
         ?>
     </body>
 </html>

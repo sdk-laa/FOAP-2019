@@ -19,37 +19,49 @@
     if(isset($_SESSION["login"]) && ($_SESSION["login"]==true)){ //si se ha hecho login verifica se U. y C. son correctos  
         //if(($_SESSION["ValidUser"]=="sdk") && ($_SESSION["ValidPassword"]==md5("Sdk1234!"))){  // Si U. y C. son correctos muestra el contenido
         $Log=true;
-    }
     
-    if(isset($_REQUEST['Menu'])){ //Si se clica en "Menu" se envia a la pagina principal
-        header('Location:SpiritSocial_Login_OK.php');
-    }
     
-    if(isset($_REQUEST['AddNewNews']) && $Log==true){ //Si se clica en "Add New News" se envia a otra pagina para añadir noticias
-        header('Location:SpiritSocial_AddNewNews.php');
-    }else{
+        if(isset($_REQUEST['Menu'])){ //Si se clica en "Menu" se envia a la pagina principal
+            header('Location:SpiritSocial_Login_OK.php');
+        }
+    
+        if(isset($_REQUEST['AddNewNews']) && $Log==true){ //Si se clica en "Add New News" se envia a otra pagina para añadir noticias
+            header('Location:SpiritSocial_AddNewNews.php');
+        }/* else if (isset($_REQUEST['AddNewNews'])){
+            echo'<script type="text/javascript">
+            alert("You should start session first. Click on the [Login] button to start session."); 
+            window.location.href="SpiritSocial_AddNewNews.php";
+            </script>';
+            $_SESSION["AddNewNews"]=true;
+        }else{
+            $_SESSION["AddNewNews"]=false; 
+        } */
 
-    }
+        if(isset($_REQUEST['RemoveNews']) && $Log==true){ //Si se clica en "Remove News" se envia a otra pagina para borrar noticias
+            header('Location:SpiritSocial_RemoveNews.php');
+        }/* else if (isset($_REQUEST['RemoveNews'])){
+            echo'<script type="text/javascript">
+            alert("You should start session first. Click on the [Login] button to start session."); 
+            window.location.href="SpiritSocial_RemoveNews.php";
+            </script>';
+            $_SESSION["RemoveNews"]=true;
+        }else{
+            $_SESSION["RemoveNews"]=false;
+        } */
 
-    if(isset($_REQUEST['RemoveNews']) && $Log==true){ //Si se clica en "Remove News" se envia a otra pagina para borrar noticias
-        header('Location:SpiritSocial_RemoveNews.php');
-    }else{
-        
-    }
 
-
-    if (!empty($_POST["Comment1"])) { //si hay comentario guardalo
-        $comment1 = test_input($_POST["Comment1"]);
-    }
-    if (!empty($_POST["Comment2"])) {
-        $comment2 = test_input($_POST["Comment2"]);
-    } 
-    if (!empty($_POST["Comment3"])) {
-        $comment3 = test_input($_POST["Comment3"]);
-    }
-    if (!empty($_POST["Comment4"])) {
-        $comment4 = test_input($_POST["Comment4"]);
-    }
+        if (!empty($_POST["Comment1"])) { //si hay comentario guardalo
+            $comment1 = test_input($_POST["Comment1"]);
+        }
+        if (!empty($_POST["Comment2"])) {
+            $comment2 = test_input($_POST["Comment2"]);
+        } 
+        if (!empty($_POST["Comment3"])) {
+            $comment3 = test_input($_POST["Comment3"]);
+        }
+        if (!empty($_POST["Comment4"])) {
+            $comment4 = test_input($_POST["Comment4"]);
+        }
 
 ?>
 
@@ -69,17 +81,10 @@
         <header>  <!-- Encabezado -->
             <div class='define'>
                 <div style= "width:200px"> <h2> Spirit Social </h2>   </div>
-                <?php if ($Log==true){ ?>
                     <div style= "text-align:right"> 
                         Bienvenido.......... <?=$_SESSION["ValidUser"]?>  
                         <a href="SpiritSocial_Login_OK.php?Logout">[Logout]</a> 
-                    </div>
-                <?php }else{ ?>    
-                    <div style= "text-align:right"> 
-                        <a href="SpiritSocial.php?Logout">[LOGIN]</a> 
-                    </div>
-                <?php } ?>     
-  
+                    </div>     
             </div>
         </header>
 
@@ -210,5 +215,11 @@
             <p>Al hacer clic en Registrar, aceptas nuestras Condiciones. Obtén más información sobre cómo recopilamos, usamos y compartimos tu información en la Política de datos, así como el uso que hacemos de las cookies y tecnologías similares en nuestra Política de cookies.</p>
         </div>
     </footer>
+<?php          
+    }else{
+        $_SESSION["CheckNews"]=true;
+         header('Location:SpiritSocial.php');           
+    }
+?>
 </body>
 </html>
