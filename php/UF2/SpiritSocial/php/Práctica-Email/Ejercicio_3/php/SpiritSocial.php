@@ -83,6 +83,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <link rel="stylesheet" type="text/css" href="../css/estilo.css" />
+    <script>
+
+        function checkusername(){
+            if(document.forms[0].username.value.length<2){
+                alert("Necessito saber l'usuari del que vols recordar la password");
+            }else{
+                window.location.href="Enviar-Email-3.php?User="+document.forms[0].username.value;
+            }
+        }
+    </script>
 </head>
  
 <body>
@@ -122,12 +132,10 @@
                     <br> 
                     <input type="checkbox" name="recordar" value="1">
                     <br><br>
-
                     <input type="submit" name="submit" value="login">
                     <br><br>
                     <label><b>Have you forgotten your password?</b></label><br>
-                    <input type="submit" name="rememberPass" value="Remember Password">
-                    
+                    <input type="button" name="RememberPass" onclick="checkusername()" value="Remember Password">
                     <br><br>
                     <label><b>Register to Create an account:</b></label>
                     <br>

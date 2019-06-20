@@ -1,14 +1,63 @@
 <?php
+/*
+coger el id del usuario
+
+generar token
+guardar a la DB
+enviar email amb link al formulari de modo de password juntamnete con el token
+
+
+al formulari de mod passs:
+    verificar el token (*verificar la caducitat)
+    modificar la pass per lusuari vinculat al token
+
+*/
+
+require("SpiritSocial_Functions.php");    //Incluir funciones
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 require 'PHPMailer/src/Exception.php';
 require 'PHPMailer/src/PHPMailer.php';
 require 'PHPMailer/src/SMTP.php';
+
+function randomPassword() {
+    $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+    $pass = array(); //remember to declare $pass as an array
+    $alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
+    for ($i = 0; $i < 20; $i++) {
+        $n = rand(0, $alphaLength);
+        $pass[] = $alphabet[$n];
+    }
+    return implode($pass); //turn the array into a string
+}
+
+//Coger el email del usuario:
+$User=$_GET["User"];
+$con=ConnectDB();
+$selectEmail = " SELECT id, Email from usuarios where User='".$User."' ";
+$resultatEmail = mysqli_query($con,$selectEmail) or die('Consulta fallida: ' . mysqli_error($con));
+CloseDB($con);
+
+$idEmail = $resultatEmail->fetch_assoc();
+$id=$idEmail['id'];
+$email= $idEmail['Email'];  
+
+
+//Generar token:
+$token = randomPassword();
+
+//guardar token  a la db
+$con=ConnectDB();
+$InsertToken = " insert into tokens (token,id_usuarios) values ('$token','$id') ";
+$resultatToken = mysqli_query($con,$InsertToken) or die('Consulta fallida: ' . mysqli_error($con));
+CloseDB($con);
+
 // Instantiation and passing `true` enables exceptions
 $mail = new PHPMailer(true);
 try {
     //Server settings
-    $mail->SMTPDebug = 2;                                       // Enable verbose debug output
+    $mail->SMTPDebug = 0;                                       // Enable verbose debug output
     $mail->isSMTP();                                            // Set mailer to use SMTP
     $mail->Host = 'smtp.gmail.com';
     $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
@@ -22,11 +71,11 @@ try {
     $mail->addAddress('sadik.laaroussii@gmail.com', 'Sadik');     // Add a recipient
     // Content
     $mail->isHTML(true);                                  // Set email format to HTML
-    $mail->Subject = 'test';
-    $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
-    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+    $mail->Subject = 'New Password';                                 
+    $mail->Body    = "El link per generar el nou  password es: <a href=\"http://localhost/sadik/php/UF2/SpiritSocial/php/Práctica-Email/Ejercicio_3/php/SpiritSocial_GenerateNewPass.php?token=$token\" >LINK</a>";
+    $mail->AltBody = '';
     $mail->send();
-    echo 'Message has been sent';
+    echo 'El link para generar password se ha enviado a el email proporcionado.';
 } catch (Exception $e) {
     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 }
