@@ -57,89 +57,6 @@
         return $DescriptionError;
     }
 
-    
-    function checklogin($username,$password){
-
-        $retorna=false;
-        /*
-            obrir connexió a la db
-            fer consulta amb les credencials
-            comprovar que ha tornat UN resultat
-        */
-
-        // dades de configuració
-        $ip = 'localhost'; //127.0.0.1
-        $usuari = 'prova'; // root o otro usuario
-        $pass = 'prova'; // contraseña del usuario
-        $db_name = 'prova'; // Nombre de la base de datos
-
-
-        // connectem amb la db
-        $con = mysqli_connect($ip,$usuari,$pass,$db_name);
-        if (!$con)  {
-            echo "Ha fallat la connexió a MySQL: " . mysqli_connect_errno();
-                echo "Ha fallat la connexió a MySQL: " . mysqli_connect_error();
-        }else{
-            //echo "todo ha ido bien<br>";
-        }
-        $sql = 'SELECT * FROM usuarios where User="'.$username.'" and Password="'.$password.'"  ';
-        echo $sql;
-        $resultat = mysqli_query($con,$sql) or die('Consulta fallida: ' . mysqli_error($con));
-
-
-        if($resultat->num_rows==1){
-            $retorna=true;
-        }
-        echo "3, ".$resultat->num_rows;
-        // no esta haciendo bien la consulta
-        // tancar cx amb la db
-        mysqli_close($con);
-        return $retorna;
-
-    }
-
-    function newuser($name, $Apellido, $FechaNacimiento, $email, $nom, $password){
-
-        // dades de configuració
-        $ip = 'localhost';
-        $usuari = 'prova';
-        $pass = 'prova';
-        $db_name = 'prova';
-    
-    
-        // connectem amb la db
-        $con = mysqli_connect($ip,$usuari,$pass,$db_name);
-        if (!$con)  {
-            echo "Ha fallat la connexió a MySQL: " . mysqli_connect_errno();
-                echo "Ha fallat la connexió a MySQL: " . mysqli_connect_error();
-        }
-    
-        $sql = "insert into usuarios (Name, Surname, Birthdate, Email, User, Password) values ('$name', '$Apellido', '$FechaNacimiento', '$email', '$nom',md5('$password') )";
-        $resultat = mysqli_query($con,$sql) or die('Consulta fallida: ' . mysqli_error($con));
-        mysqli_close($con);
-    
-    }
-
-    function UpdateUser($name, $Apellido, $fecha, $email, $nom, $id){
-        // dades de configuració
-        $ip = 'localhost';
-        $usuari = 'prova';
-        $pass = 'prova';
-        $db_name = 'prova'; 
-        
-    
-        // connectem amb la db
-        $con = mysqli_connect($ip,$usuari,$pass,$db_name);
-        if (!$con)  {
-            echo "Ha fallat la connexió a MySQL: " . mysqli_connect_errno();
-                echo "Ha fallat la connexió a MySQL: " . mysqli_connect_error();
-        }
-        $UpdateUser = "update usuarios set  Name='$name', Surname='$Apellido', Birthdate='$fecha', Email='$email', User='$nom' where id='$id'";
-        $resultat3 = mysqli_query($con,$UpdateUser) or die('Consulta fallida: ' . mysqli_error($con));
-        mysqli_close($con);
-    
-    }
-
     function ConnectDB(){
         // dades de configuració
         $ip = 'localhost';
@@ -152,24 +69,63 @@
         if (!$con)  {
                 echo "Ha fallat la connexió a MySQL: " . mysqli_connect_errno();
                 echo "Ha fallat la connexió a MySQL: " . mysqli_connect_error();
-        }else{
-           // echo "todo ha ido bien<br>";
+        }else{// echo "todo ha ido bien<br>";
         }
-        
+
         /*
-
             Codigo de consultas
-
         */
 
         //Cerrar conexion:
         //mysqli_close($con);
-
         return $con;
     }
 
     function CloseDB($con){
-        mysqli_close($con);
+        mysqli_close($con); //Cerrar conexion:
+    }
+
+    function checklogin($username,$password){
+        $retorna=false;
+        // Conectar a la base de datos:
+        $con=ConnectDB();
+
+        // Codigo de la consulta a la base de datos:
+        $sql = 'SELECT * FROM usuarios where User="'.$username.'" and Password="'.$password.'"  ';
+        $resultat = mysqli_query($con,$sql) or die('Consulta fallida: ' . mysqli_error($con));
+
+        if($resultat->num_rows==1){
+            $retorna=true;
+        }
+        //echo "num_rows= ".$resultat->num_rows;
+        
+        // tancar cx amb la db
+        CloseDB($con);
+        return $retorna;
+    }
+
+    function newuser($name, $Apellido, $FechaNacimiento, $email, $nom, $password){
+        // Conectar a la base de datos:
+        $con=ConnectDB();
+        
+        // Codigo de la consulta a la base de datos:
+        $sql = "insert into usuarios (Name, Surname, Birthdate, Email, User, Password) values ('$name', '$Apellido', '$FechaNacimiento', '$email', '$nom',md5('$password') )";
+        $resultat = mysqli_query($con,$sql) or die('Consulta fallida: ' . mysqli_error($con));
+        
+        // tancar cx amb la db
+        CloseDB($con);
+    }
+
+    function UpdateUser($name, $Apellido, $fecha, $email, $nom, $id){
+        // Conectar a la base de datos:
+        $con=ConnectDB();
+
+        // Codigo de la consulta a la base de datos:
+        $UpdateUser = "update usuarios set  Name='$name', Surname='$Apellido', Birthdate='$fecha', Email='$email', User='$nom' where id='$id'";
+        $resultat3 = mysqli_query($con,$UpdateUser) or die('Consulta fallida: ' . mysqli_error($con));
+        
+        // tancar cx amb la db
+        CloseDB($con);
     }
 
 ?>
