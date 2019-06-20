@@ -14,12 +14,12 @@ try {
     $mail->isSMTP();                                            // Set mailer to use SMTP
     $mail->Host = 'smtp.gmail.com';
     $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-    $mail->Username   = 'sadik.laaroussii@gmail.com';                     // SMTP username
-    $mail->Password   = 'rocmanhgvdfyecbk';                               // SMTP password
+    $mail->Username   = 'sadik.laaroussii@gmail.com';      // LAP: sdk.laaroussi@gmail.com    // Comp: sadik.laaroussii@gmail.com           // SMTP username
+    $mail->Password   = 'rocmanhgvdfyecbk';                //PASS LAPTOP: dkdqrjkxgrztvucs    // PASS COMPUTER:  rocmanhgvdfyecbk           // SMTP password
     $mail->SMTPSecure = 'tls';                                  // Enable TLS encryption, `ssl` also accepted
     $mail->Port       = 587;                                    // TCP port to connect to
     //Recipients
-    $mail->setFrom('s-sdk-s@hotmail.es', 'sdk');
+    $mail->setFrom('sdk.laaroussi@gmail.com', 'sdk');
     $mail->addAddress('sdk.laaroussi@gmail.com', 'Sdk');     // Add a recipient
     $mail->addAddress('sadik.laaroussii@gmail.com', 'Sadik');     // Add a recipient
     // Content

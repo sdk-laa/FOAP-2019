@@ -11,15 +11,8 @@
     require("SpiritSocial_Functions.php");    //Incluir funciones
 
     if (isset($_SESSION["login"]) && $_SESSION["login"]==true){   // Si ya esta hecho login enviar siempre a la pagina restringida
-                                                                 // Y si se cierra navegador volver a login
-        if(isset($_SESSION["AddNewNews"]) && $_SESSION["AddNewNews"]==true){
-            header('Location:SpiritSocial_AddNewNews.php'); 
-        }
-        if(isset($_SESSION["RemoveNews"]) && $_SESSION["RemoveNews"]==true){
-            header('Location:SpiritSocial_RemoveNews.php'); 
-        } 
-        
-        //header('Location:SpiritSocial_Login_OK.php');     
+                                                                  // Y si se cierra navegador volver a login
+            header('Location:SpiritSocial_Login_OK.php');     
           
     }                                                            
     
@@ -66,16 +59,7 @@
                     setcookie("CookiePassword",md5($_REQUEST["password"]),time()+60*60);
                     setcookie("CookieUser",$_REQUEST["username"],time()+60*60);
                 }
-                if(isset($_SESSION["AddNewNews"]) && $_SESSION["AddNewNews"]==true){
-                    header('Location:SpiritSocial_AddNewNews.php'); 
-                }
-                if(isset($_SESSION["RemoveNews"]) && $_SESSION["RemoveNews"]==true){
-                    header('Location:SpiritSocial_RemoveNews.php'); 
-                } 
-                if($_SESSION["RemoveNews"]==false && $_SESSION["AddNewNews"]==false ){
-                    header('Location:SpiritSocial_Login_OK.php'); 
-                }
-                
+                header('Location:SpiritSocial_Login_OK.php');
                 $MostarE=false;
             }    
             else{
@@ -97,6 +81,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <link rel="stylesheet" type="text/css" href="../css/estilo.css" />
+    <script>
+
+        function checkusername(){
+            if(document.forms[0].username.value.length<2){
+                alert("Necessito saber l'usuari del que vols recordar la password");
+            }else{
+                window.location.href="Enviar-Email-3.php?User="+document.forms[0].username.value;
+            }
+        }
+    </script>
 </head>
  
 <body>
@@ -136,12 +130,10 @@
                     <br> 
                     <input type="checkbox" name="recordar" value="1">
                     <br><br>
-
                     <input type="submit" name="submit" value="login">
                     <br><br>
                     <label><b>Have you forgotten your password?</b></label><br>
-                    <input type="submit" name="rememberPass" value="Remember Password">
-                    
+                    <input type="button" name="RememberPass" onclick="checkusername()" value="Remember Password">
                     <br><br>
                     <label><b>Register to Create an account:</b></label>
                     <br>
