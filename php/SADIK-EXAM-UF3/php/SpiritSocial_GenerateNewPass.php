@@ -1,9 +1,12 @@
 
 <?php
-
     require("SpiritSocial_Functions.php");    //Incluir funciones
 
     $Login=false;
+
+    if (isset($_REQUEST["GoToLogin"])){  //Si se clica "login" vuelve a la pagina principal
+        header('Location:SpiritSocial.php');
+    }
 
     if(isset($_REQUEST["change"])){
         // modificar la pass per lusuari vinculat al token
@@ -26,10 +29,7 @@
                 $id=$registre["id_usuarios"];
                 $SqlUpdate="update usuarios set Password=md5('$Pass1') where id='$id'  ";
                 $ResultatUpdate = mysqli_query($con,$SqlUpdate) or die('Consulta fallida: ' . mysqli_error($con));
-                if ($ResultatUpdate->num_rows==1) {
-                    echo "Password changed correctly ....";
-                    $Login=true;
-                } 
+                $Login=true;
             }
             CloseDB($con);
         }
@@ -37,25 +37,22 @@
             echo " las contraseñas no coinciden...";
         }
     }
-    //else{
-        /*
+
+    /*
         al formulari de mod passs:
             verificar el token (*verificar la caducitat)
             mostrar formulari per introduir nou password
-        */
-
-        $token=$_GET["token"];
-        echo "Token2=".$token;
-        $con=ConnectDB();
-        $SqlTokens = "SELECT * fROM tokens wHERE token='$token' and DATE_ADD(hora, INTERVAL 5 MINUTE)>CURRENT_TIMESTAMP ";
-        $ResultatTokens = mysqli_query($con,$SqlTokens) or die('Consulta fallida: ' . mysqli_error($con));
-        echo "ResultatTokens= ".$ResultatTokens->num_rows;
-        if($ResultatTokens->num_rows!=1){
-            echo "Se ha detectado un problema.Contacta con el adminstrador.";
-            die();
-            echo "ResultatTokens2= ".$ResultatTokens->num_rows;
-        }
-        CloseDB($con);  
+    */
+    $token=$_GET["token"];
+    $con=ConnectDB();
+    $SqlTokens = "SELECT * fROM tokens wHERE token='$token' and DATE_ADD(hora, INTERVAL 5 MINUTE)>CURRENT_TIMESTAMP ";
+    $ResultatTokens = mysqli_query($con,$SqlTokens) or die('Consulta fallida: ' . mysqli_error($con));
+    if($ResultatTokens->num_rows!=1){
+        echo "Se ha detectado un problema.Contacta con el adminstrador.";
+        die();
+        echo "ResultatTokens2= ".$ResultatTokens->num_rows;
+    }
+    CloseDB($con);  
 ?>
 
 <!DOCTYPE html>
@@ -64,9 +61,9 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
         <link rel="stylesheet" type="text/css" href="../css/estilo.css" />
     </head>
+
     <body>
         <div id="wrapper">
             <header> <!-- Encabezado -->
@@ -78,24 +75,34 @@
                 <div class='define'>
                     <div style="float:left"> <img src= "../imgs/SpiritSocial-2.jpg" alt="Logo" height="200px" width="960px"></div>
                     <div id ="logo"> <img src= "../imgs/SpiritSocial.jpg" alt="Logo" height="300px" width="500px"></div>
+                        <br><br>
+                        <br><br>
                         <form  method="post">
                             <br><br>
-                            Password: <input type="password" name="Pass1" id=""><br>
-                            <br><br>
-                            Repeat Password: <input type="password" name="Pass2" id=""><br>
-                            <br><br>
-                            <br><br>
-                            <input type="hidden" name="token" value="<?=$token?>">
-                            <input type="submit" name="change" value="Save">
-<?php
-    //}
-?>
                             <br><br>
                             <?php
-                                if ($login==true){
+                                if ($Login==false){                                
+                            ?>
+                                    Password: <input type="password" name="Pass1" id=""><br>
+                                    <br><br>
+                                    Repeat Password: <input type="password" name="Pass2" id=""><br>
+                                    <br>
+                                    <br><br>
+                                    <input type="hidden" name="token" value="<?=$token?>">
+                                    <input type="submit" name="change" value="Save">
+                            <?php
+                                }
                             ?>
                             <br><br>
-                            Clik in "Login" to start:<input type="submit" name="GoToLogin" value="Login">
+                            <?php
+                                if ($Login==true){     
+                            ?>
+                                    <br><br>
+                                    Password changed correctly
+                                    <br><br>
+                                    Clik in "Login" to start:
+                                    <br><br>
+                                    <input type="submit" name="GoToLogin" value="Login">
                             <?php
                                 }
                             ?>
