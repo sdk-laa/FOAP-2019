@@ -64,6 +64,15 @@ try {
     $mail->Username   = 'sadik.laaroussii@gmail.com';            // SMTP username
     $mail->Password   = 'rocmanhgvdfyecbk';                     //PASS LAPTOP: iaxxfyaimmubbhvc   // PASS COMPUTER:  rocmanhgvdfyecbk     // SMTP password
     $mail->SMTPSecure = 'tls';                                  // Enable TLS encryption, `ssl` also accepted
+    
+    $mail->SMTPOptions = array(                           // Para poder conectar con SMTP hay que poner esta parate del codigo
+        'ssl' => array(
+            'verify_peer' => false,
+            'verify_peer_name' => false,
+            'allow_self_signed' => false
+        )
+    );
+
     $mail->Port       = 587;                                    // TCP port to connect to
     //Recipients
     $mail->setFrom('s-sdk-s@hotmail.es', 'sdk');
