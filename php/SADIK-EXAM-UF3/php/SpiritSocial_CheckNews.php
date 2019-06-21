@@ -20,34 +20,21 @@
         //if(($_SESSION["ValidUser"]=="sdk") && ($_SESSION["ValidPassword"]==md5("Sdk1234!"))){  // Si U. y C. son correctos muestra el contenido
         $Log=true;
     
-    
+        $con=connectDB();
+        $SqltNoticias = 'SELECT * FROM noticias';
+        $ResultatNoticias = mysqli_query($con,$SqltNoticias) or die('Consulta fallida: ' . mysqli_error($con));
+
         if(isset($_REQUEST['Menu'])){ //Si se clica en "Menu" se envia a la pagina principal
             header('Location:SpiritSocial_Login_OK.php');
         }
     
         if(isset($_REQUEST['AddNewNews']) && $Log==true){ //Si se clica en "Add New News" se envia a otra pagina para añadir noticias
             header('Location:SpiritSocial_AddNewNews.php');
-        }/* else if (isset($_REQUEST['AddNewNews'])){
-            echo'<script type="text/javascript">
-            alert("You should start session first. Click on the [Login] button to start session."); 
-            window.location.href="SpiritSocial_AddNewNews.php";
-            </script>';
-            $_SESSION["AddNewNews"]=true;
-        }else{
-            $_SESSION["AddNewNews"]=false; 
-        } */
+        }
 
         if(isset($_REQUEST['RemoveNews']) && $Log==true){ //Si se clica en "Remove News" se envia a otra pagina para borrar noticias
             header('Location:SpiritSocial_RemoveNews.php');
-        }/* else if (isset($_REQUEST['RemoveNews'])){
-            echo'<script type="text/javascript">
-            alert("You should start session first. Click on the [Login] button to start session."); 
-            window.location.href="SpiritSocial_RemoveNews.php";
-            </script>';
-            $_SESSION["RemoveNews"]=true;
-        }else{
-            $_SESSION["RemoveNews"]=false;
-        } */
+        }
 
 
         if (!empty($_POST["Comment1"])) { //si hay comentario guardalo
@@ -99,7 +86,12 @@
                     <br><br>
                     <br><br>
                     <div>  <!-- Publicaciones -->
-                        <p><h2> Luis Suárez se pierde la final de Copa</h2></p>
+                        <?php while($noticias = $SqltNoticias->fetch_assoc()){
+                        ?>
+                        <p><h2> </h2></p>
+                        <p><h2> <?php echo $noticias['Titulo'];?></h2></p>
+                        <p><h2> <?php echo $noticias['Discripcion'];?></h2></p>
+                        <p><img src= "$noticias['Discripcion']" alt="Logo" height="400px" width="700px"></p> <!--  falta terminar esto -->
                         <p><b> El club azulgrana emitió un comunicado en el que aseguraba que la intervención había sido un éxito</p>
                         <p> y que el uruguayo no podrá estar en Sevilla.</b></p>      
                         <p><img src= "../imgs/Suarez.jpg" alt="Logo" height="400px" width="700px"></p>

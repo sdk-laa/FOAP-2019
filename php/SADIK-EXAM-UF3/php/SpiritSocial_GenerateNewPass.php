@@ -3,6 +3,7 @@
     require("SpiritSocial_Functions.php");    //Incluir funciones
 
     $Login=false;
+    $ErrorPass=false;
 
     if (isset($_REQUEST["GoToLogin"])){  //Si se clica "login" vuelve a la pagina principal
         header('Location:SpiritSocial.php');
@@ -34,7 +35,7 @@
             CloseDB($con);
         }
         else{
-            echo " las contraseñas no coinciden...";
+            $ErrorPass=true;
         }
     }
 
@@ -87,6 +88,13 @@
                                     <br><br>
                                     Repeat Password: <input type="password" name="Pass2" id=""><br>
                                     <br>
+                                    <?php
+                                        if ($ErrorPass==true){                                
+                                    ?>          
+                                            <span class="error">* las contraseñas no coinciden</span>
+                                    <?php
+                                        }
+                                    ?>
                                     <br><br>
                                     <input type="hidden" name="token" value="<?=$token?>">
                                     <input type="submit" name="change" value="Save">

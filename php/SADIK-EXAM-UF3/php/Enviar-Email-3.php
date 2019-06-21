@@ -1,15 +1,15 @@
 <?php
 /*
-coger el id del usuario
+    **Coger el usuario introducido
+    con el usuario selecionado recoger el email y el id del mismo 
 
-generar token
-guardar a la DB
-enviar email amb link al formulari de modo de password juntamnete con el token
+    **generar token
+    guardar a la DB
+    enviar email amb link al formulari de modo de password juntamnete con el token
 
-
-al formulari de mod passs:
+    **Al formulario de mod passs:
     verificar el token (*verificar la caducitat)
-    modificar la pass per lusuari vinculat al token
+    modificar la pass para el usuario vinculado al token
 
 */
 
@@ -32,8 +32,10 @@ function randomPassword() {
     return implode($pass); //turn the array into a string
 }
 
-//Coger el email del usuario:
+//Coger el usuario selecionado:
 $User=$_GET["User"];
+
+//Recoger el id y el email vinculados al usuario selecionado:
 $con=ConnectDB();
 $selectEmail = " SELECT id, Email from usuarios where User='".$User."' ";
 $resultatEmail = mysqli_query($con,$selectEmail) or die('Consulta fallida: ' . mysqli_error($con));
@@ -73,11 +75,12 @@ try {
         )
     );
 
-    $mail->Port       = 587;                                    // TCP port to connect to
+    $mail->Port = 587;                                    // TCP port to connect to
+    
     //Recipients
     $mail->setFrom('s-sdk-s@hotmail.es', 'sdk');
-    $mail->addAddress('sdk.laaroussi@gmail.com', 'Sdk');     // Add a recipient
-    $mail->addAddress('sadik.laaroussii@gmail.com', 'Sadik');     // Add a recipient
+    $mail->addAddress($email, $User);     // Add a recipient
+    
     // Content
     $mail->isHTML(true);                                  // Set email format to HTML
     $mail->Subject = 'New Password';                                 

@@ -60,9 +60,9 @@
     function ConnectDB(){
         // dades de configuració
         $ip = 'localhost';
-        $usuari = 'sdk_spiritsocial';  // 'prova'
-        $pass = '';    // 'prova'
-        $db_name = 'spiritsocial'; // 'prova'
+        $usuari = 'prova';  // 'prova'  //sdk_spiritsocia
+        $pass = 'prova';                   // 'prova'  // '' 
+        $db_name = 'prova';   // 'prova'  //spiritsocial
         
         // connectem amb la db
         $con = mysqli_connect($ip,$usuari,$pass,$db_name);
