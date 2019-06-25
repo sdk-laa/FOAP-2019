@@ -19,12 +19,12 @@
             $delete = "DELETE FROM noticias WHERE id_noticia='$id_noticia'";
             $resultat2 = mysqli_query($con,$delete) or die('Consulta fallida: ' . mysqli_error($con));
             CloseDB($con);
-            header('Location:../../SpiritSocial_CheckNews.php');
+            header('Location:../SpiritSocial_CheckNews.php');
         }
 
         if (isset($_REQUEST['No'])){
             CloseDB($con);
-            header('Location:../../SpiritSocial_CheckNews.php');
+            header('Location:../SpiritSocial_CheckNews.php');
         }
         
 ?>

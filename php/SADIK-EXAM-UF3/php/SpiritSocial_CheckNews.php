@@ -48,6 +48,10 @@
             $EditNews=false;
         }
 
+        if(isset($_REQUEST['PrintNews'])){ //Si se clica en "Edit My News" se actualiza y mostarara las opciones de Editar
+            header('Location:SpiritSocial_PrintNews.php');
+        }
+
         if(isset($_REQUEST['ConfigureNews']) && ($ConnectedUser=="admin")){ //Si se clica en "Remove News" se envia a otra pagina para borrar noticias
             header('Location:SpiritSocial_ConfigureNews.php');
         }
@@ -87,6 +91,8 @@
                             <input type="submit" name="AddNewNews" value="Add New News">
                             &nbsp;&nbsp;&nbsp;&nbsp;
                             <input type="submit" name="EditMyNews" value="Edit My News">
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="submit" name="PrintNews" value="Print News">
                             <?php 
                                 if ($ConnectedUser=="admin"){
                             ?>
@@ -142,7 +148,6 @@
         </footer>
         <?php          
             }else{
-                $_SESSION["CheckNews"]=true;
                 header('Location:SpiritSocial.php');           
             }
         ?>
