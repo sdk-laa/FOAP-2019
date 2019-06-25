@@ -32,14 +32,20 @@
         if(isset($_REQUEST['Menu'])){ //Si se clica en "Menu" se envia a la pagina principal
             header('Location:SpiritSocial_Login_OK.php');
         }
+
+        if(isset($_REQUEST['CheckNews'])){ //Si se clica en "Check News" se envia a la pagina de mostrar noticias
+            header('Location:SpiritSocial_CheckNews.php');
+        }
     
         if(isset($_REQUEST['AddNewNews'])){ //Si se clica en "Add New News" se envia a otra pagina para añadir noticias
             header('Location:SpiritSocial_AddNewNews.php');
         }
 
-        if(isset($_REQUEST['EditMyNews'])){ //Si se clica en "Remove News" se envia a otra pagina para borrar noticias
-            $EditNews=false;***********************************************************************
-            header('Location:SpiritSocial_CheckNews.php');
+        if(isset($_REQUEST['EditMyNews'])){ //Si se clica en "Edit My News" se actualiza y mostarara las opciones de Editar
+            $EditNews=true;
+        }
+        else{
+            $EditNews=false;
         }
 
         if(isset($_REQUEST['ConfigureNews']) && ($ConnectedUser=="admin")){ //Si se clica en "Remove News" se envia a otra pagina para borrar noticias
@@ -75,6 +81,8 @@
                     <div id="define">
                         <form action="SpiritSocial_CheckNews.php" method="POST">
                             <input type="submit" name="Menu" value="Menu">
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="submit" name="CheckNews" value="Check News">
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <input type="submit" name="AddNewNews" value="Add New News">
                             &nbsp;&nbsp;&nbsp;&nbsp;
@@ -92,20 +100,32 @@
                             <?php while($noticias = $ResultatNoticias->fetch_assoc()){
                             ?>
                                 <div id="Centrado">  <!--Publicaciones -->
-                                    <p><h2><?php echo ($noticias['Titulo']);?></h2></p>
-                                    <p><b><?php echo ($noticias['Descripcion']);?></b></p>
-                                    <?php $Ruta = $noticias['RutaImagen'];?>
-                                    <p><img src= "<?=$Ruta?>" alt="Logo" height="500px" width="900px"></p> 
-                                    <div style="text-align: left">Author: <?php echo utf8_encode($noticias['Autor']);?></div>
-                                    <?php $_SESSION["User"]=utf8_encode($noticias['Autor']);?>
-                                    <?php if($noticias['Autor'] == $_SESSION["ValidUser"]){?>
-                                        <div style="text-align: right"> 
-                                            <a href="SpiritSocial-Update.php/?id_noticia=<?= $noticias['id_noticia'];?>">Update  News</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <a href="SpiritSocial-Delete.php/?id_noticia=<?= $noticias['id_noticia'];?>">Delete News</a>
-                                        </div>
-                                    <?php }?>
-                                    <br><br>
-                                    <br><br>
+                                    <?php if($EditNews==false){?>
+                                        <p><h2><?php echo ($noticias['Titulo']);?></h2></p>
+                                        <p><b><?php echo ($noticias['Descripcion']);?></b></p>
+                                        <?php $Ruta = $noticias['RutaImagen'];?>
+                                        <p><img src= "<?=$Ruta?>" alt="Logo" height="500px" width="900px"></p> 
+                                        <div style="text-align: left">Author: <?php echo utf8_encode($noticias['Autor']);?></div>
+                                        <?php $_SESSION["User"]=utf8_encode($noticias['Autor']);?>
+                                        <br><br>
+                                        <br><br>
+                                    <?php 
+                                        }else if( ($noticias['Autor'] == $_SESSION["ValidUser"]) && ($EditNews==true)){?>
+                                            <p><h2><?php echo ($noticias['Titulo']);?></h2></p>
+                                            <p><b><?php echo ($noticias['Descripcion']);?></b></p>
+                                            <?php $Ruta = $noticias['RutaImagen'];?>
+                                            <p><img src= "<?=$Ruta?>" alt="Logo" height="500px" width="900px"></p> 
+                                            <div style="text-align: left">Author: <?php echo utf8_encode($noticias['Autor']);?></div>
+                                            <?php $_SESSION["User"]=utf8_encode($noticias['Autor']);?>
+                                                <div style="text-align: right"> 
+                                                    <a href="SpiritSocial-Update.php/?id_noticia=<?= $noticias['id_noticia'];?>">Update  News</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <a href="SpiritSocial-Delete.php/?id_noticia=<?= $noticias['id_noticia'];?>">Delete News</a>
+                                                </div>
+                                            <br><br>
+                                            <br><br>
+                                    <?php
+                                        }
+                                    ?>
                                 </div>
                             <?php 
                                 } 

@@ -21,6 +21,10 @@
             header('Location:SpiritSocial_CheckNews.php');
         }
 
+        if(isset($_REQUEST['Menu'])){  //Si se clica en "Main Menu" Vuelve al muro de publicaciones
+            header('Location:SpiritSocial_Login_OK.php');
+        }
+
         if(isset($_SESSION["login"]) && ($_SESSION["login"]==true)){  //Si se ha hecho login verifica se U. y C. son correctos  
             //if(($_SESSION["ValidUser"]=="sdk") && ($_SESSION["ValidPassword"]==md5("Sdk1234!"))){  //Si U. y C. son correctos muestra el contenido
                 if(isset($_REQUEST["UploadPub"])){  //Si se clica en "Upload Pub" verifica todos los campos que esten correctos sino muestra error
@@ -94,9 +98,9 @@
                     <div id ="logo"> <img src= "../imgs/SpiritSocial.jpg" alt="Logo" height=auto width="500px"></div>
                     <div>
                         <form action="SpiritSocial_AddNewNews.php" method="POST" enctype="multipart/form-data">
-                            <input type="submit" name="MainMenu" value="Main Menu">
+                            <input type="submit" name="MainMenu" value="Check News">
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <input type="submit" name="RemovePub" value="Remove Pub">   
+                            <input type="submit" name="Menu" value="Menu">   
                             <br><br>
                             <br>
                             <p><h2> Add New Pub</h2></p>
