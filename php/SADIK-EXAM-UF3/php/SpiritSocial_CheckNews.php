@@ -37,8 +37,9 @@
             header('Location:SpiritSocial_AddNewNews.php');
         }
 
-        if(isset($_REQUEST['RemoveNews'])){ //Si se clica en "Remove News" se envia a otra pagina para borrar noticias
-            header('Location:SpiritSocial_RemoveNews.php');
+        if(isset($_REQUEST['EditMyNews'])){ //Si se clica en "Remove News" se envia a otra pagina para borrar noticias
+            $EditNews=false;***********************************************************************
+            header('Location:SpiritSocial_CheckNews.php');
         }
 
         if(isset($_REQUEST['ConfigureNews']) && ($ConnectedUser=="admin")){ //Si se clica en "Remove News" se envia a otra pagina para borrar noticias
@@ -76,8 +77,8 @@
                             <input type="submit" name="Menu" value="Menu">
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <input type="submit" name="AddNewNews" value="Add New News">
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <input type="submit" name="RemoveNews" value="Remove News">
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="submit" name="EditMyNews" value="Edit My News">
                             <?php 
                                 if ($ConnectedUser=="admin"){
                             ?>

@@ -48,7 +48,7 @@
             <section>  <!-- Contenido de la pagina -->
                 <div id="define">
                     <div>
-                    <form action="SpiritSocial_Read.php" method="POST">
+                    <form action="SpiritSocial_SeeNewNews.php" method="POST">
                         <input type="submit" name="Menu" value="Menu">
                         <br><br>
                         <br><br>

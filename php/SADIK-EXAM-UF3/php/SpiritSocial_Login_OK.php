@@ -65,7 +65,7 @@
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     <input type="submit" name="AddNewNews" value="Add New News">
                     &nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="submit" name="RemoveNews" value="Remove News">
+                    <input type="submit" name="EditMyNews" value="Edit My News">
                     <?php 
                         if ($ConnectedUser=="admin"){
                     ?>

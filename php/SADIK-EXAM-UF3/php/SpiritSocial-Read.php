@@ -7,7 +7,7 @@
     $Title=$Description=$Image="";
     //$id_noticia=$_GET["id_noticia"];
     $ConnectedUser=$_SESSION["ValidUser"];
-    $User=$_GET["Autor"];
+    $User=$_GET['Autor'];
 
     require("SpiritSocial_Functions.php");  //Incluir funciones
         
@@ -19,15 +19,15 @@
         } 
 
         if(isset($_REQUEST['Menu'])){  //Si se clica en "Main Menu" Vuelve al menu
-            header('Location:SpiritSocial_Login_OK.php');   // fallo no encuentra la pagina
+            header('Location:../SpiritSocial_Login_OK.php');   // fallo no encuentra la pagina
         }
 
         if(isset($_REQUEST['CheckNews'])){  //Si se clica en "CheckNews" Vuelve al muro de noticias
-            header('Location:SpiritSocial_CheckNews.php');   // fallo no encuentra la pagina
+            header('Location:../SpiritSocial_CheckNews.php');   // fallo no encuentra la pagina
         }
 
         if(isset($_REQUEST['ConfigureNews'])){  //Si se clica en "CheckNews" Vuelve al muro de noticias
-            header('Location:SpiritSocial_ConfigureNews.php');   // fallo no encuentra la pagina
+            header('Location:../SpiritSocial_ConfigureNews.php');   // fallo no encuentra la pagina
         }
 
         if(isset($_SESSION["login"]) && ($_SESSION["login"]==true)){  //Si se ha hecho login verifica se U. y C. son correctos 
@@ -65,7 +65,7 @@
             <section>  <!-- Contenido de la pagina -->
                 <div id="define">
                     <div>
-                    <form action="../SpiritSocial-Read.php/?id_noticia=<?= $_GET['id_noticia'];?>" method="POST">
+                    <form action="../SpiritSocial-Read.php/?id_noticia=<?= $_GET['id_noticia'];?>&Autor=<?= $_GET['Autor'];?>" method="POST">
                         <input type="submit" name="Menu" value="Menu">
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <input type="submit" name="CheckNews" value="Check News">
@@ -85,10 +85,6 @@
                                 echo "<img src=\"$Image\" alt='Logo' height='500px' width='900px'>";
                         ?>
                         <div style="text-align: left">Author: <?= $User;?></div>                      
-                        <div style="text-align: right">
-                            <a href="../SpiritSocial-Update.php/?id_noticia=<?= $noticias['id_noticia'];?>">Update News</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <a href="../SpiritSocial-Delete.php/?id_noticia=<?= $noticias['id_noticia'];?>">Delete News</a>
-                        </div>
                         <br><br>
                         <br><br>
                     </div>
