@@ -51,6 +51,7 @@ footer {
 .define {
     width:960px;     /* Esta anchura para el tamaño de pantallas cumunes, es el tamaño común para el diseño de paginas web*/
     margin:0 auto;
+    text-align: left;
 
 }
 
@@ -60,7 +61,7 @@ footer {
     display: inline;
 }
 
-#lcontenido{
+#contenido{
     float: left;
     width:500px;
     display: inline;

@@ -4,7 +4,7 @@
 
 <?php
     // Declaracion de variables:
-    $Title=$Description=$Image=$comment4="";
+    $Title=$Description=$Image="";
 
     require("SpiritSocial_Functions.php");  //Incluir funciones
         
@@ -15,15 +15,12 @@
             header('Location:SpiritSocial.php');           
         } 
 
-        if(isset($_REQUEST['MainMenu'])){  //Si se clica en "Main Menu" Vuelve al muro de publicaciones
+        if(isset($_REQUEST['Menu'])){  //Si se clica en "Main Menu" Vuelve al muro de publicaciones
             header('Location:SpiritSocial_Login_OK.php');
         }
 
         if(isset($_SESSION["login"]) && ($_SESSION["login"]==true)){  //Si se ha hecho login verifica se U. y C. son correctos 
-            if(($_SESSION["ValidUser"]=="sdk") && ($_SESSION["ValidPassword"]==md5("Sdk1234!"))){  //Si U. y C. son correctos muestra el contenido
-                if (!empty($_POST["Comment4"])) { //Si hay comentario muestralo
-                    $comment4 = test_input($_POST["Comment4"]);
-                }
+            //if(($_SESSION["ValidUser"]=="sdk") && ($_SESSION["ValidPassword"]==md5("Sdk1234!"))){  //Si U. y C. son correctos muestra el contenido
 ?>
 
 
@@ -33,30 +30,30 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link rel="stylesheet" type="text/css" href="../css/estilo.css" />
+        <link rel="stylesheet" type="text/css" href="../css/Prueba1.css" />
     </head>
  
     <body>
         <div id="wrapper">
             <header>  <!-- Encabezado -->
-                <div class='define'>
+                <div id="define">
                     <div style= "width:200px"> <h2> Spirit Social </h2></div>
                     <div style= "text-align:right"> 
                         <?=$_SESSION["ValidUser"]?>
-                        <a href="SpiritSocial_Login_OK.php?Logout">[Logout]</a>
+                        <a href="SpiritSocial.php?Logout">[Logout]</a>
                     </div> 
                 </div>
             </header>
 
             <section>  <!-- Contenido de la pagina -->
-                <div class='define'>
+                <div id="define">
                     <div>
-                    <form action="SpiritSocial_SeeNewNews.php" method="POST">
-                        <input type="submit" name="MainMenu" value="Main Menu">
+                    <form action="SpiritSocial_Read.php" method="POST">
+                        <input type="submit" name="Menu" value="Menu">
                         <br><br>
                         <br><br>
                     </div> 
-                    <div>
+                    <div id="Centrado">
                         <?php
                                 $Image=$_SESSION["Image"]; 
                         ?> 
@@ -64,29 +61,13 @@
                                 <p><span> <?=$_SESSION["Description"]?>.</span></p> 
                         <?php
                                 echo "<br>";
-                                echo "<img src=\"$Image\">";
+                                echo "<img src=\"$Image\" alt='Logo' height='500px' width='900px'>";
                         ?>
-                                <script language="javascript">
-                                    var LikeCount_4 = 0;
-                                    function contador4(){
-                                        LikeCount_4 = LikeCount_4 + 1;
-                                        var btn = document.getElementById("boton4");
-                                        btn.value = "Like (" + LikeCount_4 + ")";
-                                        <?php echo("LikeCount_4");?>
-                                    }
-                                </script>
-                                <p><input type="button" id="boton4" value="Like" onclick="javascript: contador4()" /></p> 
-                                <p><span> Comment:</span></p>
-                                <p><input type="text" name="Comment4" size="50" maxlength="100" value="<?php echo $comment4;?>"></p>
-                                <p><input type="submit" name="AddComment4" value="Add Comment"></p> 
-                                <?php 
-                                    if(isset($_REQUEST["AddComment4"])){
-                                        echo $comment4;
-                                    } 
-                                ?>  
-                                <!--<textarea name="comment" rows="5" cols="60"></textarea>-->
-                                <br><br>
-                                <br><br>
+                        <br><br>
+                        Author: <?= $_SESSION["ValidUser"];?>
+
+                        <br><br>
+                        <br><br>
                         <input type="submit" name="AddNewsToWall" value="Add News To Wall">
                     </div>
                     </form>
@@ -94,23 +75,27 @@
             </section>
         </div>
         <?php    
-            }
+            
         }
         else{
-            $_SESSION["SeeNewNews"]=true;
             header('Location:SpiritSocial.php');           
         }
         if(isset($_REQUEST["AddNewsToWall"])){
-            $_SESSION["Add News To Wall"] = true;
-            header('Location:SpiritSocial_Login_OK.php');
-        }
-        else{
-            $_SESSION["Add News To Wall"] = false;
+
+            $User=$_SESSION["ValidUser"];
+            $Titulo=$_SESSION["Title"];
+            $Descripcion=$_SESSION["Description"];
+            
+            $con=ConnectDB();
+            $SqlNoticia = "insert into noticias (Titulo, Descripcion, RutaImagen, Autor) values ('$Titulo', '$Descripcion', '$Image', '$User')";
+            $ResultatNoticia = mysqli_query($con,$SqlNoticia) or die('Consulta fallida: ' . mysqli_error($con));
+            CloseDB($con);
+            header('Location:SpiritSocial_CheckNews.php');
         }
         ?>        
     
         <footer>  <!-- Pie de pagina -->
-            <div class='define'>
+            <div id="define">
                 <p>Al hacer clic en Registrar, aceptas nuestras Condiciones. Obtén más información sobre cómo recopilamos, usamos y compartimos tu información en la Política de datos, así como el uso que hacemos de las cookies y tecnologías similares en nuestra Política de cookies.</p>
             </div>
         </footer>

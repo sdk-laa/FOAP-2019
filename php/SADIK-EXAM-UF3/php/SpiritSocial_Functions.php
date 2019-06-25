@@ -127,5 +127,16 @@
         // tancar cx amb la db
         CloseDB($con);
     }
+    
+    function UpdateNews($Titulo, $Descripcion, $RutaImagen, $id_noticia){
+        // Conectar a la base de datos:
+        $con=ConnectDB();
 
+        // Codigo de la consulta a la base de datos:
+        $UpdateNews = "update noticias set  Titulo='$Titulo', Descripcion='$Descripcion', RutaImagen='$RutaImagen' where id_noticia='$id_noticia'";
+        $resultat3 = mysqli_query($con,$UpdateNews) or die('Consulta fallida: ' . mysqli_error($con));
+        
+        // tancar cx amb la db
+        CloseDB($con);
+    }
 ?>

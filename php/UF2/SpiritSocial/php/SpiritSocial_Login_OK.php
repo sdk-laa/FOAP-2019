@@ -68,7 +68,7 @@
                     <input type="submit" name="RemovePub" value="Remove Pub">
                     <br><br>
                     <br><br>
-                    <div>  <!-- Publicaciones -->
+                    <div width="700px">  <!-- Publicaciones -->
                         <p><h2> Luis Suárez se pierde la final de Copa</h2></p>
                         <p><b> El club azulgrana emitió un comunicado en el que aseguraba que la intervención había sido un éxito</p>
                         <p> y que el uruguayo no podrá estar en Sevilla.</b></p>      

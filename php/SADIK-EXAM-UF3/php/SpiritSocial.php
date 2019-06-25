@@ -80,7 +80,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <link rel="stylesheet" type="text/css" href="../css/estilo.css" />
+    <link rel="stylesheet" type="text/css" href="../css/Estilo.css" />
     <script>
 
         function checkusername(){
@@ -104,7 +104,7 @@
         <section>  <!-- Contenido de la pagina -->
             <div class='define'>
                 <div style="float:left"> <img src= "../imgs/SpiritSocial-2.jpg" alt="Logo" height="200px" width="960px"></div>
-                <div id ="logo"> <img src= "../imgs/SpiritSocial.jpg" alt="Logo" height="300px" width="500px"></div>
+                <div id ="logo"> <img src= "../imgs/SpiritSocial.jpg" alt="Logo" height=auto width="500px"></div>
                 <form action="SpiritSocial.php" method="POST">
                     <label><b>Username:</b></label>
                     <br>      

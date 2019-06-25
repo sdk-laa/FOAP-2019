@@ -96,7 +96,7 @@
         <section>  <!-- Contenido de la pagina -->
             <div class='define'>
                 <div style="float:left"> <img src= "../imgs/SpiritSocial-2.jpg" alt="Logo" height="200px" width="960px"></div>
-                <div id ="logo"> <img src= "../imgs/SpiritSocial.jpg" alt="Logo" height="300px" width="500px"></div>
+                <div id ="logo"> <img src= "../imgs/SpiritSocial.jpg" alt="Logo" height=auto width="500px"></div>
                 <form action="SpiritSocial.php" method="POST">
                     <label><b>Username:</b></label>
                     <br>      

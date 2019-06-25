@@ -73,7 +73,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link rel="stylesheet" type="text/css" href="../css/estilo.css" />
+        <link rel="stylesheet" type="text/css" href="../css/Estilo.css" />
     </head>
  
     <body>
@@ -83,15 +83,15 @@
                     <div style= "width:200px"> <h2> Spirit Social </h2></div>
                     <div style= "text-align:right"> 
                         <?=$_SESSION["ValidUser"]?>
-                        <a href="SpiritSocial_Login_OK.php?Logout">[Logout]</a>
+                        <a href="SpiritSocial_Login_OK.php?Logout">[Logout]</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
                     </div> 
                 </div>
             </header>
 
             <section>  <!-- Contenido de la pagina -->
-                <div class='define'>
-                    <div style="float:left"> <img src= "../imgs/SpiritSocial-2.jpg" alt="Logo" height="150px" width="960px"></div>
-                    <div id ="logo"> <img src= "../imgs/SpiritSocial.jpg" alt="Logo" height="350px" width="500px"></div>
+                <div class="define">
+                    <div style="float:left"> <img src= "../imgs/SpiritSocial-2.jpg" alt="Logo" height="200px" width=100%></div>
+                    <div id ="logo"> <img src= "../imgs/SpiritSocial.jpg" alt="Logo" height=auto width="500px"></div>
                     <div>
                         <form action="SpiritSocial_AddNewNews.php" method="POST" enctype="multipart/form-data">
                             <input type="submit" name="MainMenu" value="Main Menu">
@@ -122,9 +122,9 @@
                         if($ShowImage==true){ //Si hay nueva publicacion muestra uana alerta para indicarlo y enviar a otra pagina para verla.
                             echo'<script type="text/javascript">
                             alert("Publication successfully uploaded. Click on the [Accept] button to see it."); 
-                            window.location.href="SpiritSocial_SeeNewPub.php";
+                            window.location.href="SpiritSocial_SeeNewNews.php";
                             </script>'; 
-                            //header("location:SpiritSocial_SeeNewPub.php");
+                            //header("location:SpiritSocial_SeeNewNews.php");
                         }
                     ?>
                 </div>
@@ -132,7 +132,7 @@
         </div>
     
         <footer>  <!-- Pie de pagina -->
-            <div class='define'>
+            <div class="define">
                 <p>Al hacer clic en Registrar, aceptas nuestras Condiciones. Obtén más información sobre cómo recopilamos, usamos y compartimos tu información en la Política de datos, así como el uso que hacemos de las cookies y tecnologías similares en nuestra Política de cookies.</p>
             </div>
         </footer>

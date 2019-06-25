@@ -1,0 +1,94 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+html,body {
+    height:100%;
+}
+/* Div que engloba el contenido de la página menos el footer */
+#wrapper {
+    min-height:100%;
+}
+header {
+    display:block;
+    background:#47494A;
+    padding:20px 0px;
+    text-align: left;
+    color: #FFFFFF;
+}
+section {
+    overflow: auto;
+    /* Definimos el padding inferior:
+       50px del pie de pagina mas 10px de separacion
+    */
+    padding-bottom: 60px;
+    /* Definimos un padding superior */
+    padding-top:30px;
+    /*  
+        display:block; 
+        background-color: lightblue; 
+    */
+}
+footer {
+    position: relative;
+    /* Altura total del footer en px con valor negativo */
+    margin-top: -50px;
+    /* Altura del footer en px. Se han restado los 5px del margen
+       superior mas los 5px del margen inferior
+    */
+    height: 40px;
+    padding:5px 0px;
+    clear: both;
+    background: #47494A;
+    text-align: left;
+    color: #FFFFFF;
+}
+
+/* Esta clase define la anchura del contenido y la posicion centrada 
+   El contenido queda centrado y limitado, pero la cabecera y el pie
+   llegan hasta los limites del navegador.
+*/
+.define {
+    width:960px;     /* Esta anchura para el tamaño de pantallas cumunes, es el tamaño común para el diseño de paginas web*/
+    margin:0 auto;
+
+}
+
+#logo{
+    float: right;
+    width:500px;
+    display: inline;
+}
+
+#lcontenido{
+    float: left;
+    width:500px;
+    display: inline;
+}
+
+p.correcto{
+    background-color: green;
+    display: inline;
+}
+p.error{
+    background-color: red;
+    display: inline;
+}
+.correcto{
+    color: blue;
+}
+.error{
+    color:red;
+}
+.nota{
+    color:black;
+}
+
+
+
+
+
+
+
+
+
